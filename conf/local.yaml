@@ -1,0 +1,12 @@
+name: 'Juglans'
+port: ':8080'
+prefix: '/api/v1'
+mode: 'debug'
+mongo:
+  addrs:
+    - 'localhost:27017'
+  opts:
+    timeout: 60
+    database: 'test'
+    # username: 'root'
+    # password: 'root'
