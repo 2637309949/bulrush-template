@@ -6,8 +6,6 @@ import (
 
 // Inject as Function that accept some injection parameters
 func Inject (injects map[string]interface{}) {
-	mongo, ok := injects["Mongo"].(*bulrush.MongoGroup)
-	if ok {
-		user(mongo)
-	}
+	mongo, _ := injects["Mongo"].(*bulrush.MongoGroup)
+	user(mongo)
 }

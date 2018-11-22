@@ -6,8 +6,7 @@ import (
 
 // Inject as Function that accept some injection parameters
 func Inject (injects map[string]interface{}) {
-	engine, ok := injects["Engine"].(*gin.Engine)
-	if ok {
-		Base(engine)
-	}
+	engine, _ := injects["Engine"].(*gin.Engine);
+	router, _ := injects["Router"].(*gin.RouterGroup);
+	base(router, engine)
 }

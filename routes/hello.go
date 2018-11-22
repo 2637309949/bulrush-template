@@ -10,10 +10,8 @@ import (
 )
 
 var db = make(map[string]string)
-
-
 // Hello as Function that accept some injection parameters
-func Hello (engine *gin.Engine, r *gin.RouterGroup, _mongo *bulrush.MongoGroup) {
+func Hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
 	r.GET("/ping", func(c *gin.Context) {
 		services.AddUsers([]interface {} {
 			models.User{
@@ -23,15 +21,17 @@ func Hello (engine *gin.Engine, r *gin.RouterGroup, _mongo *bulrush.MongoGroup) 
 			},
 		})
 		users := services.FindUsers(bson.M{"name": "double"})
-		c.JSON(http.StatusOK, gin.H{"results": users})
+		c.JSON(http.StatusOK, gin.H{
+			"data": 	users,
+			"errcode": 	nil,
+			"errmsg": 	nil,
+		})
 	})
-	r.GET("/user/:name", func(c *gin.Context) {
-		user := c.Params.ByName("name")
-		value, ok := db[user]
-		if ok {
-			c.JSON(http.StatusOK, gin.H{"user": user, "value": value})
-		} else {
-			c.JSON(http.StatusOK, gin.H{"user": user, "status": "no value"})
-		}
+	r.GET("/hello", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"data": 	"ok",
+			"errcode": 	nil,
+			"errmsg": 	nil,
+		})
 	})
 }

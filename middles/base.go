@@ -1,13 +1,11 @@
 package middles
 
 import (
-	// "2637309949/Bulrush/bulrush/middles"
+	"github.com/2637309949/bulrush/middles"
 	"github.com/gin-gonic/gin"
 )
 
-// Base as Function that accept some injection parameters
-func Base (r *gin.Engine) {
-	r.Use(gin.Logger())
+func base (r *gin.RouterGroup, g *gin.Engine) {
 	r.Use(gin.Recovery())
-	// r.Use(middles.Override(r))
+	r.Use(middles.Override(g))
 }
