@@ -9,10 +9,8 @@ import (
 	"github.com/2637309949/bulrush"
 )
 
-var db = make(map[string]string)
-// Hello as Function that accept some injection parameters
-func Hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
-	r.GET("/ping", func(c *gin.Context) {
+func hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
+	r.GET("/ping", func (c *gin.Context) {
 		services.AddUsers([]interface {} {
 			models.User{
 				Name: "double",
@@ -27,7 +25,20 @@ func Hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
 			"errmsg": 	nil,
 		})
 	})
-	r.GET("/hello", func(c *gin.Context) {
+    /**
+     * @api {get} /hello 检验Token有效性
+     * @apiGroup Test
+     * @apiDescription 测试系统可用性
+     * @apiParam {String} accessToken        认证令牌
+     * @apiSuccessExample {json}             正常返回
+     * HTTP/1.1 200 OK
+     * {
+     *        "errcode": null,
+     *        "errmsg":  null,
+	 *        "data":    "ok"
+	 * }
+     */
+	r.GET("/hello", func (c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"data": 	"ok",
 			"errcode": 	nil,

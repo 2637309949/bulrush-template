@@ -9,4 +9,6 @@ func Inject (injects map[string]interface{}) {
 	engine, _ := injects["Engine"].(*gin.Engine);
 	router, _ := injects["Router"].(*gin.RouterGroup);
 	base(router, engine)
+	iden(injects)
+	static(injects)
 }
