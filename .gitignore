@@ -4,4 +4,6 @@
 
 pids
 logs
+build
 vendor
+node_modules

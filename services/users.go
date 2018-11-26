@@ -7,9 +7,8 @@ import (
 
 // FindUsers users
 func FindUsers(match map[string]interface{}) []models.User{
-	mongo := bulrush.Mongo
 	var users []models.User
-	User, _ := mongo.Model("user")
+	User, _ := bulrush.Mongo.Model("user")
 	err := User.Find(match).All(&users)
 	if err != nil {
 		panic(err)
@@ -19,8 +18,7 @@ func FindUsers(match map[string]interface{}) []models.User{
 
 // AddUsers users
 func AddUsers(users [] interface{}) {
-	var mongo = bulrush.Mongo
-	User, _ := mongo.Model("user")
+	User, _ := bulrush.Mongo.Model("user")
 	err := User.Insert(users...)
 	if err != nil {
 		panic(err)

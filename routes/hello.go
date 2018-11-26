@@ -10,6 +10,7 @@ import (
 )
 
 func hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
+
 	r.GET("/ping", func (c *gin.Context) {
 		services.AddUsers([]interface {} {
 			models.User{
@@ -25,6 +26,7 @@ func hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
 			"errmsg": 	nil,
 		})
 	})
+
     /**
      * @api {get} /hello 检验Token有效性
      * @apiGroup Test

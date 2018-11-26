@@ -10,5 +10,6 @@ func static (injects map[string]interface{}) {
 		URLPrefix: "/public",
 		Fs: middles.LocalFile(path.Join("assets/public", ""), false),
 	}
+
 	serive.Inject(injects)
 }

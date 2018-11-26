@@ -1,21 +1,20 @@
 package main
 
 import (
-			 "github.com/gin-gonic/gin"
-			 "github.com/2637309949/bulrush"
-   bUtils    "github.com/2637309949/bulrush/utils"
-			 "github.com/2637309949/bulrush_template/routes"
-			 "github.com/2637309949/bulrush_template/models"
-			 "github.com/2637309949/bulrush_template/middles"
-			 "path"
-			 "time"
-			 "fmt"
-			 "os"
+	"github.com/gin-gonic/gin"
+	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush/utils"
+	"github.com/2637309949/bulrush_template/routes"
+	"github.com/2637309949/bulrush_template/models"
+	"github.com/2637309949/bulrush_template/middles"
+	"path"
+	"time"
+	"fmt"
+	"os"
 )
 
-// GINMODE app env
-var GINMODE = bUtils.Some(os.Getenv("GIN_MODE"), "local")
-
+// GINMODE APP ENV
+var GINMODE = utils.Some(os.Getenv("GIN_MODE"), "local")
 // CONFIGPATH PATH
 var CONFIGPATH = path.Join(fmt.Sprintf("conf/%s.yaml", GINMODE))
 
@@ -36,7 +35,7 @@ func main() {
 		}
 		fmt.Fprintf(out, "--> %v %8v %s %6s %s\n", end.Format("2006/01/02 15:04:05"), latency, clientIP, method, path)
 	})
-	app.LoadConfig(CONFIGPATH, bUtils.YAMLMode)
+	app.LoadConfig(CONFIGPATH, utils.YAMLMode)
 	app.Inject(middles.Inject, models.Inject, routes.Inject)
 	app.Run()
 }

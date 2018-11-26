@@ -89,7 +89,7 @@ var entity = &middles.Iden {
 		Revoke  :revoke,
 		Find	:find,
 	},
-	IgnoreURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*` },
+	IgnoreURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*` },
 }
 
 // iden as Function that accept some injection parameters
