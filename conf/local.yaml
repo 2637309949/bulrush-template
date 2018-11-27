@@ -1,12 +1,17 @@
-name: 'Juglans'
+name: 'bulrush_template'
 port: ':8080'
 prefix: '/api/v1'
 mode: 'debug'
 mongo:
   addrs:
-    - 'localhost:27017'
+    - '192.168.168.120:27017'
   opts:
     timeout: 60
     database: 'test'
     # username: 'root'
     # password: 'root'
+redis:
+  addrs: '192.168.168.120:6379'
+  opts:
+    password: ''
+    db: 0

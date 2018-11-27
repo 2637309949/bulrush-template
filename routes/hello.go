@@ -1,16 +1,15 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 	"github.com/globalsign/mgo/bson"
 	"github.com/gin-gonic/gin"
 	"github.com/2637309949/bulrush_template/services"
 	"github.com/2637309949/bulrush_template/models"
-	"github.com/2637309949/bulrush"
 )
 
-func hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
-
+func hello (r *gin.RouterGroup) {
 	r.GET("/ping", func (c *gin.Context) {
 		services.AddUsers([]interface {} {
 			models.User{
@@ -46,5 +45,12 @@ func hello (engine *gin.Engine, r *gin.RouterGroup, mongo *bulrush.MongoGroup) {
 			"errcode": 	nil,
 			"errmsg": 	nil,
 		})
+	})
+
+	r.POST("/ptest", func(c *gin.Context) {
+		var json map[string]interface{}
+		if c.BindJSON(&json) == nil {
+			fmt.Print(json)
+		}
 	})
 }

@@ -7,3 +7,8 @@ logs
 build
 vendor
 node_modules
+
+/vendor/*
+!/vendor/vendor.json
+
+/tmp/*
