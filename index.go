@@ -35,7 +35,7 @@ func main() {
 		}
 		fmt.Fprintf(out, "--> %v %8v %s %6s %s\n", end.Format("2006/01/02 15:04:05"), latency, clientIP, method, path)
 	})
-	app.LoadConfig(CONFIGPATH, utils.YAMLMode)
-	app.Inject(middles.Inject, models.Inject, routes.Inject)
+	app.LoadConfig(CONFIGPATH, bulrush.YAMLMode)
+	app.Inject(&middles.Middles{}, &routes.Routes{}, &models.Model{})
 	app.Run()
 }

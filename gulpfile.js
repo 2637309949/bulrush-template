@@ -4,6 +4,9 @@ const del = require('del')
 const exec = require('child_process').exec
 const sequence = require('gulp-sequence')
 
+const platform = process.platform
+const target = (platform === 'win32') ? 'web.exe' : 'web'
+
 const dest = 'build'
 const env = process.env.GIN_MODE || 'local'
 
@@ -26,7 +29,7 @@ gulp.task('build:apidoc', function (cb) {
 
 // 编译服务端
 gulp.task('build:server', function (cb) {
-  return exec('go build -tags=jsoniter -o web .', function (err, stdout, stderr) {
+  return exec(`go build -tags=jsoniter -o ${target} .`, function (err, stdout, stderr) {
     console.log(stdout)
     console.log(stderr)
     cb(err)
@@ -39,12 +42,12 @@ gulp.task('copy', function () {
     'Dockerfile',
     '*assets/**/*',
     '*conf/**/*',
-    'web'
+    target
   ]).pipe(gulp.dest(dest))
 })
 
-// 安装依赖
-gulp.task('install', function (cb) {
+// 安装生产依赖
+gulp.task('rely:prod', function (cb) {
   [
     'npm install',                              // install gulp   depend
     'npm install apidoc -g',                    // install apidoc depend
@@ -90,12 +93,55 @@ gulp.task('install', function (cb) {
   })
 })
 
+// 安装开发依赖
+gulp.task('rely:dev', function (cb) {
+  [
+    'go get github.com/pilu/fresh',
+  ]
+  .reduce(async (acc, curr) => {
+    let some;
+    if(!acc) {
+      some = new Promise((res, rej) => {
+        exec(curr, function (err, stdout, stderr){
+          if(err) {
+            rej(err);
+          } else {
+            console.log(stdout)
+            console.log(stderr)
+            res(null);
+          }
+        })
+      })
+    } else {
+      some = acc;
+    }
+    await some;
+    return new Promise((res, rej) => {
+      exec(curr, function (err, stdout, stderr){
+        if(err) {
+          rej(err);
+        } else {
+          console.log(stdout)
+          console.log(stderr)
+          res();
+        }
+      })
+    })
+  }, null)
+  .then(res => {
+    cb(res)
+  })
+  .catch(err => {
+    cb(err)
+  })
+})
+
 // 清除任务
 gulp.task('clean', function (cb) {
   del([
-    'web',
+    target,
   ], cb);
 });
 
-
-gulp.task('default', sequence('install', 'clean', 'build:apidoc', 'build:server', 'copy', 'clean'))
+gulp.task('default', sequence('rely:prod', 'build:apidoc', 'build:server', 'copy', 'clean'))
+gulp.task('rely', sequence('rely:prod', 'rely:dev'))

@@ -4,7 +4,9 @@
   "description": "bulrush",
   "main": "index.js",
   "scripts": {
-    "build": "gulp"
+    "dev": "fresh -c fresh.conf",
+    "build": "gulp",
+    "rely": "gulp rely"
   },
   "keywords": [],
   "author": "Double",

@@ -4,9 +4,13 @@ import (
 	"github.com/2637309949/bulrush"
 )
 
+// Model -
+type Model struct {
+	bulrush.InjectGroup
+}
 
-// Inject as Function that accept some injection parameters
-func Inject (injects map[string]interface{}) {
+// Inject -
+func (ml *Model)Inject(injects map[string]interface{}) {
 	mongo, _ := injects["Mongo"].(*bulrush.MongoGroup)
 	router, _ := injects["Router"].(*gin.RouterGroup)
 	user(mongo, router)
