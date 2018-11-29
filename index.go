@@ -14,9 +14,9 @@ import (
 )
 
 // GINMODE APP ENV
-var GINMODE = utils.Some(os.Getenv("GIN_MODE"), "local")
+var GINMODE 	= utils.Some(os.Getenv("GIN_MODE"), "local")
 // CONFIGPATH PATH
-var CONFIGPATH = path.Join(fmt.Sprintf("conf/%s.yaml", GINMODE))
+var CONFIGPATH  = path.Join(fmt.Sprintf("conf/%s.yaml", GINMODE))
 
 func main() {
 	app := bulrush.New()
@@ -35,7 +35,7 @@ func main() {
 		}
 		fmt.Fprintf(out, "--> %v %8v %s %6s %s\n", end.Format("2006/01/02 15:04:05"), latency, clientIP, method, path)
 	})
-	app.LoadConfig(CONFIGPATH, bulrush.YAMLMode)
+	app.LoadConfig(CONFIGPATH)
 	app.Inject(&middles.Middles{}, &routes.Routes{}, &models.Model{})
 	app.Run()
 }
