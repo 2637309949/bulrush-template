@@ -4,14 +4,14 @@ prefix: '/api/v1'
 mode: 'debug'
 mongo:
   addrs:
-    - '192.168.168.120:27017'
+    - '127.0.0.1:27017'
   opts:
     timeout: 60
     database: 'test'
     # username: 'root'
     # password: 'root'
 redis:
-  addrs: '192.168.168.120:6379'
+  addrs: '127.0.0.1:6379'
   opts:
     password: ''
     db: 0
