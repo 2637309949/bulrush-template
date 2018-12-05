@@ -2,14 +2,13 @@ name: 'bulrush_template'
 port: ':8080'
 prefix: '/api/v1'
 mode: 'debug'
+logs: '/logs'
 mongo:
   addrs:
     - '127.0.0.1:27017'
   opts:
     timeout: 60
     database: 'test'
-    # username: 'root'
-    # password: 'root'
 redis:
   addrs: '127.0.0.1:6379'
   opts:

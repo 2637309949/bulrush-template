@@ -16,16 +16,12 @@ var manifest = map[string]interface{} {
 	"db": "test",
 	"name": "user",
 	"displayName": "user",
-    "defaultRouteHooks": map[string] interface{} {
-        "list": map[string] interface{} {
-            "pre": nil,
-        },
-	},
+	"reflector": &User{},
 }
 
 // user inject function
 func user(mongo *bulrush.MongoGroup, r *gin.RouterGroup) {
 	mongo.Register(manifest)
-	user := make([]User, 0)
-	r.GET("/user", mongo.Hooks.List("user", &user))
+	r.GET("/user", mongo.Hooks.List("user"))
+	r.GET("/user/:id", mongo.Hooks.One("user"))
 }
