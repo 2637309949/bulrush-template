@@ -5,18 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "fresh -c fresh.conf",
-    "build": "gulp",
-    "rely": "gulp rely"
+    "build": "node_modules/.bin/gulp",
+    "rely": "node_modules/.bin/gulp rely"
   },
   "keywords": [],
   "author": "Double",
   "license": "ISC",
   "devDependencies": {
+    "apidoc": "^0.17.7",
     "del": "^3.0.0",
     "fs-extra": "^7.0.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "7.0.0",
-    "gulp-sequence": "0.4.6",
-    "gulp-uglify": "3.0.0"
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-uglify": "^3.0.1"
   }
 }

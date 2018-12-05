@@ -11,7 +11,6 @@ const dest = 'build'
 const env = process.env.GIN_MODE || 'local'
 
 console.log(`============= ${env} =============\n`)
-
 // 清空目录
 gulp.task('clean', function () {
   fsx.emptyDirSync(dest)
@@ -20,7 +19,7 @@ gulp.task('clean', function () {
 
 // 接口文档
 gulp.task('build:apidoc', function (cb) {
-  return exec('apidoc -i routes/ -o ./assets/public/apidoc', function (err, stdout, stderr) {
+  return exec('node_modules/.bin/apidoc -i routes/ -o ./assets/public/apidoc', function (err, stdout, stderr) {
     console.log(stdout)
     console.log(stderr)
     cb(err)
@@ -42,6 +41,7 @@ gulp.task('copy', function () {
     'Dockerfile',
     '*assets/**/*',
     '*conf/**/*',
+    '*logs/**/*',
     target
   ]).pipe(gulp.dest(dest))
 })
@@ -49,8 +49,6 @@ gulp.task('copy', function () {
 // 安装生产依赖
 gulp.task('rely:prod', function (cb) {
   [
-    'npm install',                              // install gulp   depend
-    'npm install apidoc -g',                    // install apidoc depend
     'go get github.com/kardianos/govendor',     // install go pkg depend
     'go get github.com/json-iterator/go',       // install go build depend
     'govendor sync',                            // install project  depend

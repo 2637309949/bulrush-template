@@ -1,14 +1,12 @@
 package main
 
 import (
-	// "github.com/gin-gonic/gin"
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush/utils"
 	"github.com/2637309949/bulrush_template/routes"
 	"github.com/2637309949/bulrush_template/models"
-	"github.com/2637309949/bulrush_template/middles"
+	"github.com/2637309949/bulrush_template/plugins"
 	"path"
-	// "time"
 	"fmt"
 	"os"
 )
@@ -21,6 +19,6 @@ var CONFIGPATH  = path.Join(fmt.Sprintf("conf/%s.yaml", GINMODE))
 func main() {
 	app := bulrush.Default()
 	app.LoadConfig(CONFIGPATH)
-	app.Inject(&middles.Middles{}, &routes.Routes{}, &models.Model{})
+	app.Inject(&plugins.Middles{}, &routes.Routes{}, &models.Model{})
 	app.Run()
 }
