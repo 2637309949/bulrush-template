@@ -2,6 +2,17 @@
 
 ![Bulrush flash](./assets/flash.jpg)
 
+## Usage
+#### 1. For Dev
+```shell
+$ npm run rely
+$ npm run dev
+```
+#### 2. For Prod
+```shell
+$ npm run rely
+$ npm run build
+```
 ## MIT License
 
 Copyright (c) 2016 Freax
