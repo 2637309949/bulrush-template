@@ -15,7 +15,7 @@ type User struct {
 var manifest = map[string]interface{} {
 	"db": "test",
 	"name": "user",
-	"displayName": "user",
+	"collection": "user",
 	"reflector": &User{},
 }
 

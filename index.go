@@ -14,7 +14,7 @@ import (
 // GINMODE APP ENV
 var GINMODE 	= utils.Some(os.Getenv("GIN_MODE"), "local")
 // CONFIGPATH PATH
-var CONFIGPATH  = path.Join(fmt.Sprintf("conf/%s.yaml", GINMODE))
+var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
 
 func main() {
 	app := bulrush.Default()
