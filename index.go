@@ -20,5 +20,8 @@ func main() {
 	app := bulrush.Default()
 	app.LoadConfig(CONFIGPATH)
 	app.Inject(&plugins.Middles{}, &routes.Routes{}, &models.Model{})
+	app.DebugPrintRouteFunc(func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+		fmt.Printf("%5v %9v\n", httpMethod, absolutePath)
+	})
 	app.Run()
 }

@@ -1,5 +1,6 @@
 const fsx = require('fs-extra')
 const gulp = require('gulp')
+const path = require('path')
 const del = require('del')
 const exec = require('child_process').exec
 const sequence = require('gulp-sequence')
@@ -19,7 +20,7 @@ gulp.task('clean', function () {
 
 // 接口文档
 gulp.task('build:apidoc', function (cb) {
-  return exec('node_modules/.bin/apidoc -i routes/ -o ./assets/public/apidoc', function (err, stdout, stderr) {
+  return exec(`${path.join(__dirname, 'node_modules/.bin/apidoc')} -i routes/ -o ./assets/public/apidoc`, function (err, stdout, stderr) {
     console.log(stdout)
     console.log(stderr)
     cb(err)
@@ -54,31 +55,33 @@ gulp.task('rely:prod', function (cb) {
     'govendor sync',                            // install project  depend
   ]
   .reduce(async (acc, curr) => {
-    let some;
+    let some
     if(!acc) {
       some = new Promise((res, rej) => {
+        console.log(`${curr}`)
         exec(curr, function (err, stdout, stderr){
           if(err) {
-            rej(err);
+            rej(err)
           } else {
             console.log(stdout)
             console.log(stderr)
-            res(null);
+            res(null)
           }
         })
       })
     } else {
-      some = acc;
+      some = acc
     }
-    await some;
+    await some
     return new Promise((res, rej) => {
+      console.log(`${curr}`)
       exec(curr, function (err, stdout, stderr){
         if(err) {
-          rej(err);
+          rej(err)
         } else {
           console.log(stdout)
           console.log(stderr)
-          res();
+          res()
         }
       })
     })
@@ -97,31 +100,33 @@ gulp.task('rely:dev', function (cb) {
     'go get github.com/pilu/fresh',
   ]
   .reduce(async (acc, curr) => {
-    let some;
+    let some
     if(!acc) {
       some = new Promise((res, rej) => {
+        console.log(`${curr}`)
         exec(curr, function (err, stdout, stderr){
           if(err) {
-            rej(err);
+            rej(err)
           } else {
             console.log(stdout)
             console.log(stderr)
-            res(null);
+            res(null)
           }
         })
       })
     } else {
-      some = acc;
+      some = acc
     }
-    await some;
+    await some
     return new Promise((res, rej) => {
+      console.log(`${curr}`)
       exec(curr, function (err, stdout, stderr){
         if(err) {
-          rej(err);
+          rej(err)
         } else {
           console.log(stdout)
           console.log(stderr)
-          res();
+          res()
         }
       })
     })
@@ -138,8 +143,8 @@ gulp.task('rely:dev', function (cb) {
 gulp.task('clean', function (cb) {
   del([
     target,
-  ], cb);
-});
+  ], cb)
+})
 
 gulp.task('default', sequence('rely:prod', 'build:apidoc', 'build:server', 'copy', 'clean'))
-gulp.task('rely', sequence('rely:prod', 'rely:dev'))
+gulp.task('rely',    sequence('rely:prod', 'rely:dev'))

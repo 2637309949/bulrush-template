@@ -7,10 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/2637309949/bulrush_template/services"
 	"github.com/2637309949/bulrush_template/models"
+	"github.com/2637309949/bulrush"
 )
 
 func hello (r *gin.RouterGroup) {
 	r.GET("/ping", func (c *gin.Context) {
+		bulrush.Logger("pingtest...")
 		services.AddUsers([]interface {} {
 			models.User{
 				Name: "double",
