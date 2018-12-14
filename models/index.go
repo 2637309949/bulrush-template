@@ -10,6 +10,6 @@ type Model struct {
 }
 
 // InjectMongoAndRouter -
-func (ml *Model)InjectMongoAndRouter(mongo *bulrush.MongoGroup, router *gin.RouterGroup) {
-	user(mongo, router)
+func (ml *Model)InjectMongoAndRouter(router *gin.RouterGroup) {
+	user(router)
 }

@@ -1,8 +1,8 @@
 package models
 
 import (
+	"github.com/2637309949/bulrush_template/utils"
 	"github.com/gin-gonic/gin"
-	"github.com/2637309949/bulrush"
 )
 
 // User info
@@ -20,8 +20,8 @@ var manifest = map[string]interface{} {
 }
 
 // user inject function
-func user(mongo *bulrush.MongoGroup, r *gin.RouterGroup) {
-	mongo.Register(manifest)
-	r.GET("/user", mongo.Hooks.List("user"))
-	r.GET("/user/:id", mongo.Hooks.One("user"))
+func user(r *gin.RouterGroup) {
+	utils.Mgo.Register(manifest)
+	r.GET("/user", utils.Mgo.Hooks.List("user"))
+	r.GET("/user/:id", utils.Mgo.Hooks.One("user"))
 }
