@@ -1,27 +1,80 @@
 package main
 
 import (
+	"github.com/2637309949/bulrush_template/binds"
+	"errors"
+	"net/http"
+	"github.com/gin-gonic/gin"
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush/utils"
+	bUtils "github.com/2637309949/bulrush/utils"
 	"github.com/2637309949/bulrush_template/routes"
 	"github.com/2637309949/bulrush_template/models"
-	"github.com/2637309949/bulrush_template/plugins"
+	"github.com/2637309949/bulrush_template/utils"
+	"github.com/2637309949/bulrush/plugins"
 	"path"
 	"fmt"
 	"os"
 )
 
 // GINMODE APP ENV
-var GINMODE 	= utils.Some(os.Getenv("GIN_MODE"), "local")
+var GINMODE 	= bUtils.Some(os.Getenv("GIN_MODE"), "local")
 // CONFIGPATH PATH
 var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
+// Delivery -
+var delivery = &plugins.Delivery {
+	URLPrefix: "/public",
+	Fs: plugins.LocalFile(path.Join("assets/public", ""), false),
+}
+// Override -
+var override = &plugins.Override{}
+// Identify -
+var identity = &plugins.Identify {
+	ExpiresIn: 	86400,
+	Auth: 	func(c *gin.Context) (interface{}, error) {
+		var login binds.Login
+		if err := c.ShouldBindJSON(&login); err != nil {
+			return nil, err
+		}
+		if login.Password == "xx" && login.UserName == "xx" {
+			return  map[string] interface{} {
+						"id":			"3e4r56u80a55",
+						"username": 	login.UserName,
+					}, nil
+		}
+		return nil, errors.New("user authentication failed")
+	},
+	Routes: plugins.RoutesGroup {
+		ObtainTokenRoute:  "/obtainToken",
+		RevokeTokenRoute:  "/revokeToken",
+		RefleshTokenRoute: "/refleshToken",
+	},
+	Tokens: plugins.TokensGroup {
+				Save 	: utils.Rds.Hooks.SaveToken,
+				Revoke  : utils.Rds.Hooks.RevokeToken,
+				Find	: utils.Rds.Hooks.FindToken,
+			},
+	IgnoreURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
+}
 
 func main() {
 	app := bulrush.Default()
-	app.LoadConfig(CONFIGPATH)
-	app.Inject(&plugins.Middles{}, &routes.Routes{}, &models.Model{})
+	app.Config(CONFIGPATH)
 	app.DebugPrintRouteFunc(func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		fmt.Printf("%5v %9v\n", httpMethod, absolutePath)
+	})
+	app.Inject("bulrushApp")
+	app.SetMode(gin.DebugMode)
+	app.Use(override.Inject, delivery.Inject)
+	app.Use(identity.Inject)
+	app.Use(models.Inject, routes.Inject)
+	app.Use(func(router *gin.RouterGroup) {
+		router.GET("/bulrushApp", func (c *gin.Context) {
+			c.JSON(http.StatusOK, gin.H{
+				"data": 	nil,
+				"errcode": 	nil,
+				"errmsg": 	nil,
+			})
+		})
 	})
 	app.Run()
 }

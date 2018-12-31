@@ -48,7 +48,7 @@ var identity = &plugins.Identify {
 
 // Middles -
 type Middles struct {
-	bulrush.InjectGroup
+	bulrush.IBase
 }
 
 // Inject -
