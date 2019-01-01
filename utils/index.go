@@ -19,7 +19,7 @@ var Rds *bulrush.Rds
 // Logger -
 var Logger func(string)
 // WC -
-var WC *bulrush.WellConfig
+var WC *bulrush.WellCfg
 func init() {
 	WC     = bulrush.NewWc(CONFIGPATH)
 	Logger = bulrush.LoggerWrap(WC)

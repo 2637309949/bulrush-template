@@ -57,11 +57,10 @@ var identity = &plugins.Identify {
 }
 
 func main() {
-	bulrush.SetMode(gin.DebugMode)
-	bulrush.DebugPrintRouteFunc(func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+	gin.SetMode(gin.DebugMode)
+	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		fmt.Printf("%5v %9v\n", httpMethod, absolutePath)
-	})
-
+	}
 	app := bulrush.Default()
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
