@@ -23,6 +23,6 @@ var WC *bulrush.WellConfig
 func init() {
 	WC     = bulrush.NewWc(CONFIGPATH)
 	Logger = bulrush.LoggerWrap(WC)
-	Mgo    = bulrush.NewMgo(CONFIGPATH)
-	Rds    = bulrush.NewRds(CONFIGPATH)
+	Mgo    = bulrush.NewMgo(WC)
+	Rds    = bulrush.NewRds(WC)
 }
