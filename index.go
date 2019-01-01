@@ -16,10 +16,10 @@ import (
 	"os"
 )
 
-// GINMODE APP ENV
-var GINMODE 	= bUtils.Some(os.Getenv("GIN_MODE"), "local")
+// GOMODE APP ENV
+var GOMODE 	= bUtils.Some(os.Getenv("GO_MODE"), "local")
 // CONFIGPATH PATH
-var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
+var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GOMODE))
 // Delivery -
 var delivery = &plugins.Delivery {
 	URLPrefix: "/public",
@@ -57,13 +57,14 @@ var identity = &plugins.Identify {
 }
 
 func main() {
-	app := bulrush.Default()
-	app.Config(CONFIGPATH)
-	app.DebugPrintRouteFunc(func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+	bulrush.SetMode(gin.DebugMode)
+	bulrush.DebugPrintRouteFunc(func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		fmt.Printf("%5v %9v\n", httpMethod, absolutePath)
 	})
+
+	app := bulrush.Default()
+	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
-	app.SetMode(gin.DebugMode)
 	app.Use(override.Inject, delivery.Inject)
 	app.Use(identity.Inject)
 	app.Use(models.Inject, routes.Inject)
