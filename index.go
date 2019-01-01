@@ -68,10 +68,10 @@ func main() {
 	app.Use(override.Inject, delivery.Inject)
 	app.Use(identity.Inject)
 	app.Use(models.Inject, routes.Inject)
-	app.Use(func(router *gin.RouterGroup) {
+	app.Use(func(iStr string, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", func (c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
-				"data": 	nil,
+				"data": 	iStr,
 				"errcode": 	nil,
 				"errmsg": 	nil,
 			})
