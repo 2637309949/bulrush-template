@@ -5,7 +5,7 @@ import (
 )
 
 
-// Inject -
-func Inject(router *gin.RouterGroup) {
+// Plugin -
+func Plugin(router *gin.RouterGroup) {
 	hello(router)
 }

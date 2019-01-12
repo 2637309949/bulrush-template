@@ -3,7 +3,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Inject -
-func Inject(router *gin.RouterGroup) {
+// Plugin -
+func Plugin(router *gin.RouterGroup) {
 	user(router)
 }

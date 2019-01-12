@@ -23,10 +23,8 @@ var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GOMODE))
 // Delivery -
 var delivery = &plugins.Delivery {
 	URLPrefix: "/public",
-	Fs: plugins.LocalFile(path.Join("assets/public", ""), false),
+	Path: path.Join("assets/public", ""),
 }
-// Override -
-var override = &plugins.Override{}
 // Identify -
 var identity = &plugins.Identify {
 	ExpiresIn: 	86400,
@@ -43,17 +41,12 @@ var identity = &plugins.Identify {
 		}
 		return nil, errors.New("user authentication failed")
 	},
-	Routes: plugins.RoutesGroup {
-		ObtainTokenRoute:  "/obtainToken",
-		RevokeTokenRoute:  "/revokeToken",
-		RefleshTokenRoute: "/refleshToken",
-	},
 	Tokens: plugins.TokensGroup {
 				Save 	: utils.Rds.Hooks.SaveToken,
 				Revoke  : utils.Rds.Hooks.RevokeToken,
 				Find	: utils.Rds.Hooks.FindToken,
 			},
-	IgnoreURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
+	FakeURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
 }
 
 func main() {
@@ -64,9 +57,9 @@ func main() {
 	app := bulrush.Default()
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
-	app.Use(override.Inject, delivery.Inject)
-	app.Use(identity.Inject)
-	app.Use(models.Inject, routes.Inject)
+	app.Use(plugins.Override(), delivery.Plugin)
+	app.Use(identity.Plugin)
+	app.Use(models.Plugin, routes.Plugin)
 	app.Use(func(iStr string, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", func (c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
