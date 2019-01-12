@@ -25,6 +25,12 @@ var delivery = &plugins.Delivery {
 	URLPrefix: "/public",
 	Path: path.Join("assets/public", ""),
 }
+// Upload
+var upload = plugins.Upload{
+	URLPrefix: "/public/upload",
+	AssetPath: path.Join("assets/public/upload", ""),
+}
+
 // Identify -
 var identity = &plugins.Identify {
 	ExpiresIn: 	86400,
@@ -58,6 +64,7 @@ func main() {
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
 	app.Use(plugins.Override(), delivery.Plugin)
+	app.Use(upload.Plugin)
 	app.Use(identity.Plugin)
 	app.Use(models.Plugin, routes.Plugin)
 	app.Use(func(iStr string, router *gin.RouterGroup) {
