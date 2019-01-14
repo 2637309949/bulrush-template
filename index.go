@@ -56,10 +56,6 @@ var identity = &plugins.Identify {
 }
 
 func main() {
-	gin.SetMode(gin.DebugMode)
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		fmt.Printf("%5v %9v\n", httpMethod, absolutePath)
-	}
 	app := bulrush.Default()
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
@@ -76,5 +72,16 @@ func main() {
 			})
 		})
 	})
-	app.Run()
+	app.Run(func(err error, config *bulrush.Config) {
+		if err != nil {
+			panic(err)
+		} else {
+			name := config.GetString("name",  "")
+			port := config.GetString("port",  "")
+			fmt.Println("================================")
+			fmt.Printf("App: %s\n", name)
+			fmt.Printf("Listen on %s\n", port)
+			fmt.Println("================================")
+		}
+	})
 }
