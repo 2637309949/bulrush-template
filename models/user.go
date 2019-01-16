@@ -1,3 +1,11 @@
+/**
+ * @author [author]
+ * @email [example@mail.com]
+ * @create date 2019-01-16 20:49:40
+ * @modify date 2019-01-16 20:49:40
+ * @desc [description]
+ */
+
 package models
 
 import (

@@ -1,3 +1,11 @@
+/**
+ * @author [author]
+ * @email [example@mail.com]
+ * @create date 2019-01-16 20:50:15
+ * @modify date 2019-01-16 20:50:15
+ * @desc [description]
+ */
+
 package utils
 
 import (
@@ -20,6 +28,16 @@ var Rds *bulrush.Rds
 var Logger func(string)
 // WC -
 var WC *bulrush.Config
+
+
+// Some get or a default value
+func Some(target interface{}, initValue interface{}) interface{}{
+	if target != nil && target != "" && target != 0 {
+		return target
+	}
+	return initValue
+}
+
 func init() {
 	WC     = bulrush.NewCfg(CONFIGPATH)
 	Logger = bulrush.LoggerWrap(WC)
