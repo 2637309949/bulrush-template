@@ -55,11 +55,13 @@ var identity = &plugins.Identify {
 	FakeURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
 }
 
+var override = plugins.Override
+
 func main() {
 	app := bulrush.Default()
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
-	app.Use(plugins.Override(), delivery.Plugin)
+	app.Use(override, delivery.Plugin)
 	app.Use(upload.Plugin)
 	app.Use(identity.Plugin)
 	app.Use(models.Plugin, routes.Plugin)
