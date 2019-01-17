@@ -33,16 +33,15 @@ func main() {
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
 	app.Use(
-		&plugins.Override{},
 		&plugins.Delivery {
 			URLPrefix: "/public",
 			Path: path.Join("assets/public", ""),
 		},
+		&plugins.Upload{
+			URLPrefix: "/public/upload",
+			AssetPath: path.Join("assets/public/upload", ""),
+		},
 	)
-	app.Use(&plugins.Upload{
-		URLPrefix: "/public/upload",
-		AssetPath: path.Join("assets/public/upload", ""),
-	})
 	app.Use(&plugins.Identify {
 		Auth: 	func(c *gin.Context) (interface{}, error) {
 			var login binds.Login
@@ -65,17 +64,15 @@ func main() {
 		FakeURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
 	})
 	app.Use(&models.Model{}, &routes.Route{})
-	app.Use(&bulrush.PNQuick {
-		func(iStr string, router *gin.RouterGroup) {
-			router.GET("/bulrushApp", func (c *gin.Context) {
-				c.JSON(http.StatusOK, gin.H{
-					"data": 	iStr,
-					"errcode": 	nil,
-					"errmsg": 	nil,
-				})
+	app.Use(bulrush.PNQuick(func(testInject string, router *gin.RouterGroup) {
+		router.GET("/bulrushApp", func (c *gin.Context) {
+			c.JSON(http.StatusOK, gin.H{
+				"data": 	testInject,
+				"errcode": 	nil,
+				"errmsg": 	nil,
 			})
-		},
-	})
+		})
+	}))
 	app.Run(func(err error, config *bulrush.Config) {
 		if err != nil {
 			panic(err)
