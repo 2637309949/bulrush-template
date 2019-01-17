@@ -41,6 +41,7 @@ func main() {
 			URLPrefix: "/public/upload",
 			AssetPath: path.Join("assets/public/upload", ""),
 		},
+		&plugins.LoggerWriter{},
 	)
 	app.Use(&plugins.Identify {
 		Auth: 	func(c *gin.Context) (interface{}, error) {

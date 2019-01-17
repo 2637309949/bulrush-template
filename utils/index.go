@@ -24,8 +24,6 @@ var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
 var Mgo *bulrush.Mgo
 // Rds -
 var Rds *bulrush.Rds
-// Logger -
-var Logger func(string)
 // WC -
 var WC *bulrush.Config
 
@@ -40,7 +38,6 @@ func Some(target interface{}, initValue interface{}) interface{}{
 
 func init() {
 	WC     = bulrush.NewCfg(CONFIGPATH)
-	Logger = bulrush.LoggerWrap(WC)
 	Mgo    = bulrush.NewMgo(WC)
 	Rds    = bulrush.NewRds(WC)
 }

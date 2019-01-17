@@ -11,16 +11,14 @@ package routes
 import (
 	"fmt"
 	"net/http"
-	"github.com/globalsign/mgo/bson"
 	"github.com/gin-gonic/gin"
+	"github.com/globalsign/mgo/bson"
 	"github.com/2637309949/bulrush_template/services"
 	"github.com/2637309949/bulrush_template/models"
-	"github.com/2637309949/bulrush_template/utils"
 )
 
 func hello (r *gin.RouterGroup) {
 	r.GET("/ping", func (c *gin.Context) {
-		utils.Logger("pingtest...")
 		services.AddUsers([]interface {} {
 			models.User{
 				Name: "double",
