@@ -1,19 +1,4 @@
-# Bulrush Framework
-
-![Bulrush flash](./assets/flash.jpg)
-
-## Usage
-#### 1. For Dev
-```shell
-$ npm run rely
-$ npm run dev
-```
-#### 2. For Prod
-```shell
-$ npm run rely
-$ npm run build
-```
-## MIT License
+The MIT License (MIT)
 
 Copyright (c) 2018-2020 Double
 
@@ -34,3 +19,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
