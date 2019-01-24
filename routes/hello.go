@@ -27,11 +27,7 @@ func hello (r *gin.RouterGroup) {
 			},
 		})
 		users := services.FindUsers(bson.M{"name": "double"})
-		c.JSON(http.StatusOK, gin.H{
-			"data": 	users,
-			"errcode": 	nil,
-			"errmsg": 	nil,
-		})
+		c.JSON(http.StatusOK, users)
 	})
 
     /**
@@ -42,16 +38,12 @@ func hello (r *gin.RouterGroup) {
      * @apiSuccessExample {json}             正常返回
      * HTTP/1.1 200 OK
      * {
-     *        "errcode": null,
-     *        "errmsg":  null,
-	 *        "data":    "ok"
+	 *        "message":    "ok"
 	 * }
      */
 	r.GET("/hello", func (c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"data": 	"ok",
-			"errcode": 	nil,
-			"errmsg": 	nil,
+			"message": 	"ok",
 		})
 	})
 
