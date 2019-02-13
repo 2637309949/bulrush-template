@@ -13,8 +13,8 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
-	"github.com/2637309949/bulrush_template/services"
-	"github.com/2637309949/bulrush_template/models"
+	"github.com/2637309949/bulrush-template/services"
+	"github.com/2637309949/bulrush-template/models"
 )
 
 func hello (r *gin.RouterGroup) {

@@ -9,7 +9,7 @@
 package models
 
 import (
-	"github.com/2637309949/bulrush_template/utils"
+	"github.com/2637309949/bulrush-template/utils"
 	"github.com/gin-gonic/gin"
 )
 

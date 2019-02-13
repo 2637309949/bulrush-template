@@ -10,7 +10,7 @@ package utils
 
 import (
 	"errors"
-	"github.com/2637309949/bulrush_template/binds"
+	"github.com/2637309949/bulrush-template/binds"
 	"github.com/gin-gonic/gin"
 )
 
