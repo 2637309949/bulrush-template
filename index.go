@@ -9,66 +9,71 @@
 package main
 
 import (
-	"os"
-	"fmt"
-	"path"
 	"errors"
+	"fmt"
 	"net/http"
-	"github.com/gin-gonic/gin"
+	"os"
+	"path"
+
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush/plugins"
-	"github.com/2637309949/bulrush-template/routes"
-	"github.com/2637309949/bulrush-template/models"
-	"github.com/2637309949/bulrush-template/utils"
+	delivery "github.com/2637309949/bulrush-delivery"
+	identify "github.com/2637309949/bulrush-identify"
+	logger "github.com/2637309949/bulrush-logger"
 	"github.com/2637309949/bulrush-template/binds"
+	"github.com/2637309949/bulrush-template/models"
+	"github.com/2637309949/bulrush-template/routes"
+	"github.com/2637309949/bulrush-template/utils"
+	upload "github.com/2637309949/bulrush-upload"
+	"github.com/gin-gonic/gin"
 )
 
 // GOMODE APP ENV
-var GOMODE 	= utils.Some(os.Getenv("GO_MODE"), "local")
+var GOMODE = utils.Some(os.Getenv("GO_MODE"), "local")
+
 // CONFIGPATH PATH
-var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GOMODE))
+var CONFIGPATH = path.Join(".", fmt.Sprintf("conf/%s.yaml", GOMODE))
 
 func main() {
 	app := bulrush.Default()
 	app.Config(CONFIGPATH)
 	app.Inject("bulrushApp")
 	app.Use(
-		&plugins.Delivery {
+		&delivery.Delivery{
 			URLPrefix: "/public",
-			Path: path.Join("assets/public", ""),
+			Path:      path.Join("assets/public", ""),
 		},
-		&plugins.Upload{
+		&upload.Upload{
 			URLPrefix: "/public/upload",
 			AssetPath: path.Join("assets/public/upload", ""),
 		},
-		&plugins.LoggerWriter{},
+		&logger.LoggerWriter{},
 	)
-	app.Use(&plugins.Identify {
-		Auth: 	func(c *gin.Context) (interface{}, error) {
+	app.Use(&identify.Identify{
+		Auth: func(c *gin.Context) (interface{}, error) {
 			var login binds.Login
 			if err := c.ShouldBindJSON(&login); err != nil {
 				return nil, err
 			}
 			if login.Password == "xx" && login.UserName == "xx" {
-				return  map[string] interface{} {
-							"id":			"3e4r56u80a55",
-							"username": 	login.UserName,
-						}, nil
+				return map[string]interface{}{
+					"id":       "3e4r56u80a55",
+					"username": login.UserName,
+				}, nil
 			}
 			return nil, errors.New("user authentication failed")
 		},
-		Tokens: plugins.TokensGroup {
-					Save 	: utils.Rds.Hooks.SaveToken,
-					Revoke  : utils.Rds.Hooks.RevokeToken,
-					Find	: utils.Rds.Hooks.FindToken,
-				},
-		FakeURLs: []interface{}{ `^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$` },
+		Tokens: identify.TokensGroup{
+			Save:   utils.Rds.Hooks.SaveToken,
+			Revoke: utils.Rds.Hooks.RevokeToken,
+			Find:   utils.Rds.Hooks.FindToken,
+		},
+		FakeURLs: []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
 	app.Use(&models.Model{}, &routes.Route{})
 	app.Use(bulrush.PNQuick(func(testInject string, router *gin.RouterGroup) {
-		router.GET("/bulrushApp", func (c *gin.Context) {
+		router.GET("/bulrushApp", func(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
-				"message": 	testInject,
+				"message": testInject,
 			})
 		})
 	}))
@@ -76,8 +81,8 @@ func main() {
 		if err != nil {
 			panic(err)
 		} else {
-			name := config.GetString("name",  "")
-			port := config.GetString("port",  "")
+			name := config.GetString("name", "")
+			port := config.GetString("port", "")
 			fmt.Println("================================")
 			fmt.Printf("App: %s\n", name)
 			fmt.Printf("Listen on %s\n", port)

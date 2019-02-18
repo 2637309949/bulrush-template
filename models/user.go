@@ -15,16 +15,16 @@ import (
 
 // User info
 type User struct {
-	Name string			`bson:"name"`
-	Password string		`bson:"password"`
-	Age int				`bson:"age"`
+	Name     string `bson:"name"`
+	Password string `bson:"password"`
+	Age      int    `bson:"age"`
 }
 
-var manifest = map[string]interface{} {
-	"db": "test",
-	"name": "user",
+var manifest = map[string]interface{}{
+	"db":         "test",
+	"name":       "user",
 	"collection": "user",
-	"reflector": &User{},
+	"reflector":  &User{},
 }
 
 // user inject function

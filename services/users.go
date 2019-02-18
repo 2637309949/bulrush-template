@@ -14,7 +14,7 @@ import (
 )
 
 // FindUsers users
-func FindUsers(match map[string]interface{}) []models.User{
+func FindUsers(match map[string]interface{}) []models.User {
 	var users []models.User
 	User, _ := utils.Mgo.Model("user")
 	err := User.Find(match).All(&users)
@@ -25,7 +25,7 @@ func FindUsers(match map[string]interface{}) []models.User{
 }
 
 // AddUsers users
-func AddUsers(users [] interface{}) {
+func AddUsers(users []interface{}) {
 	User, _ := utils.Mgo.Model("user")
 	err := User.Insert(users...)
 	if err != nil {

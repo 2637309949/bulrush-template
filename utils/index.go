@@ -9,27 +9,31 @@
 package utils
 
 import (
-	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush/utils"
-	"path"
 	"fmt"
 	"os"
+	"path"
+
+	"github.com/2637309949/bulrush"
+	addition "github.com/2637309949/bulrush-addition"
 )
 
 // GINMODE APP ENV
-var GINMODE 	= utils.Some(os.Getenv("GIN_MODE"), "local")
+var GINMODE = Some(os.Getenv("GIN_MODE"), "local")
+
 // CONFIGPATH PATH
-var CONFIGPATH  = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
+var CONFIGPATH = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
+
 // Mgo -
-var Mgo *bulrush.Mgo
+var Mgo *addition.Mgo
+
 // Rds -
-var Rds *bulrush.Rds
+var Rds *addition.Rds
+
 // WC -
 var WC *bulrush.Config
 
-
 // Some get or a default value
-func Some(target interface{}, initValue interface{}) interface{}{
+func Some(target interface{}, initValue interface{}) interface{} {
 	if target != nil && target != "" && target != 0 {
 		return target
 	}
@@ -37,7 +41,7 @@ func Some(target interface{}, initValue interface{}) interface{}{
 }
 
 func init() {
-	WC     = bulrush.NewCfg(CONFIGPATH)
-	Mgo    = bulrush.NewMgo(WC)
-	Rds    = bulrush.NewRds(WC)
+	WC = bulrush.NewCfg(CONFIGPATH)
+	Mgo = addition.NewMgo(WC)
+	Rds = addition.NewRds(WC)
 }
