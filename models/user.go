@@ -9,7 +9,7 @@
 package models
 
 import (
-	"github.com/2637309949/bulrush-template/utils"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,15 +21,14 @@ type User struct {
 }
 
 var manifest = map[string]interface{}{
-	"db":         "test",
-	"name":       "user",
-	"collection": "user",
-	"reflector":  &User{},
+	"db":        "test",
+	"name":      "user",
+	"reflector": &User{},
 }
 
 // user inject function
 func user(r *gin.RouterGroup) {
-	utils.Mgo.Register(manifest)
-	r.GET("/user", utils.Mgo.Hooks.List("user"))
-	r.GET("/user/:id", utils.Mgo.Hooks.One("user"))
+	addition.Mongo.Register(manifest)
+	r.GET("/user", addition.Mongo.Hooks.List("user"))
+	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
 }

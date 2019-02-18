@@ -15,6 +15,8 @@ import (
 	"os"
 	"path"
 
+	"github.com/2637309949/bulrush-template/addition"
+
 	"github.com/2637309949/bulrush"
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
@@ -63,9 +65,9 @@ func main() {
 			return nil, errors.New("user authentication failed")
 		},
 		Tokens: identify.TokensGroup{
-			Save:   utils.Rds.Hooks.SaveToken,
-			Revoke: utils.Rds.Hooks.RevokeToken,
-			Find:   utils.Rds.Hooks.FindToken,
+			Save:   addition.Redis.Hooks.SaveToken,
+			Revoke: addition.Redis.Hooks.RevokeToken,
+			Find:   addition.Redis.Hooks.FindToken,
 		},
 		FakeURLs: []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})

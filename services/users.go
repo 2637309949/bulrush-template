@@ -10,13 +10,13 @@ package services
 
 import (
 	"github.com/2637309949/bulrush-template/models"
-	"github.com/2637309949/bulrush-template/utils"
+	"github.com/2637309949/bulrush-template/addition"
 )
 
 // FindUsers users
 func FindUsers(match map[string]interface{}) []models.User {
 	var users []models.User
-	User, _ := utils.Mgo.Model("user")
+	User, _ := addition.Mongo.Model("user")
 	err := User.Find(match).All(&users)
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func FindUsers(match map[string]interface{}) []models.User {
 
 // AddUsers users
 func AddUsers(users []interface{}) {
-	User, _ := utils.Mgo.Model("user")
+	User, _ := addition.Mongo.Model("user")
 	err := User.Insert(users...)
 	if err != nil {
 		panic(err)
