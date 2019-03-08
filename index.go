@@ -21,6 +21,7 @@ import (
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
 	logger "github.com/2637309949/bulrush-logger"
+	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/binds"
 	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/routes"
@@ -71,9 +72,18 @@ func main() {
 		},
 		FakeURLs: []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
+	app.Use(&role.Role{
+		FailureHandler: func(c *gin.Context, action string) {
+		},
+		RoleHandler: func(c *gin.Context, action string) bool {
+			actions := role.TransformAction(action)
+			fmt.Printf("actions: %s\n", actions)
+			return true
+		},
+	})
 	app.Use(&models.Model{}, &routes.Route{})
-	app.Use(bulrush.PNQuick(func(testInject string, router *gin.RouterGroup) {
-		router.GET("/bulrushApp", func(c *gin.Context) {
+	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
+		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
 				"message": testInject,
 			})
