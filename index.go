@@ -70,6 +70,7 @@ func main() {
 			Revoke: addition.Redis.Hooks.RevokeToken,
 			Find:   addition.Redis.Hooks.FindToken,
 		},
+		FakeTokens: []interface{}{"DEBUG"},
 		FakeURLs: []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
 	app.Use(&role.Role{
