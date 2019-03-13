@@ -15,9 +15,9 @@ import (
 
 // User info
 type User struct {
-	Name     string `bson:"name"`
-	Password string `bson:"password"`
-	Age      int    `bson:"age"`
+	Name     string `bson:"name" form:"name" json:"name" xml:"name"`
+	Password string `bson:"password" form:"password" json:"password" xml:"password" `
+	Age      int    `bson:"age" form:"age" json:"age" xml:"age"`
 }
 
 var manifest = map[string]interface{}{
@@ -30,5 +30,7 @@ var manifest = map[string]interface{}{
 func user(r *gin.RouterGroup) {
 	addition.Mongo.Register(manifest)
 	r.GET("/user", addition.Mongo.Hooks.List("user"))
+	r.POST("/user", addition.Mongo.Hooks.Create("user"))
 	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
+	r.PUT("/user", addition.Mongo.Hooks.Update("user"))
 }

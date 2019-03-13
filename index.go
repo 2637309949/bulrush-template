@@ -54,7 +54,7 @@ func main() {
 	app.Use(&identify.Identify{
 		Auth: func(c *gin.Context) (interface{}, error) {
 			var login binds.Login
-			if err := c.ShouldBindJSON(&login); err != nil {
+			if err := c.ShouldBind(&login); err != nil {
 				return nil, err
 			}
 			if login.Password == "xx" && login.UserName == "xx" {
@@ -71,7 +71,7 @@ func main() {
 			Find:   addition.Redis.Hooks.FindToken,
 		},
 		FakeTokens: []interface{}{"DEBUG"},
-		FakeURLs: []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
+		FakeURLs:   []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
 	app.Use(&role.Role{
 		FailureHandler: func(c *gin.Context, action string) {

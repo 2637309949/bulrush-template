@@ -9,8 +9,8 @@
 package services
 
 import (
-	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/models"
 )
 
 // FindUsers users
