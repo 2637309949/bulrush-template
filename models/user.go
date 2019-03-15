@@ -30,7 +30,8 @@ var manifest = map[string]interface{}{
 func user(r *gin.RouterGroup) {
 	addition.Mongo.Register(manifest)
 	r.GET("/user", addition.Mongo.Hooks.List("user"))
-	r.POST("/user", addition.Mongo.Hooks.Create("user"))
 	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
+	r.POST("/user", addition.Mongo.Hooks.Create("user"))
 	r.PUT("/user", addition.Mongo.Hooks.Update("user"))
+	r.DELETE("/user", addition.Mongo.Hooks.Delete("user"))
 }
