@@ -65,10 +65,8 @@ func main() {
 			}
 			return nil, errors.New("user authentication failed")
 		},
-		Tokens: identify.TokensGroup{
-			Save:   addition.Redis.Hooks.SaveToken,
-			Revoke: addition.Redis.Hooks.RevokeToken,
-			Find:   addition.Redis.Hooks.FindToken,
+		Tokens: &identify.RedisTokensGroup{
+			Redis: addition.Redis,
 		},
 		FakeTokens: []interface{}{"DEBUG"},
 		FakeURLs:   []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
