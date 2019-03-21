@@ -1,0 +1,6 @@
+fresh:
+	@echo "\033[32mFreshing\033[0m"
+	@fresh -c fresh.conf
+.PHONY: fresh
+
+

@@ -22,7 +22,7 @@ define({ "api": [
       "examples": [
         {
           "title": "正常返回",
-          "content": "HTTP/1.1 200 OK\n{\n       \"errcode\": null,\n       \"errmsg\":  null,\n       \"data\":    \"ok\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n       \"message\":    \"ok\"\n}",
           "type": "json"
         }
       ]
