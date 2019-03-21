@@ -14,14 +14,14 @@ import (
 )
 
 type (
-	// Route -
+	// Route application routes
 	Route struct {
 		bulrush.PNBase
 	}
 )
 
 // Plugin -
-func (route *Route)Plugin() bulrush.PNRet {
+func (route *Route) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup) {
 		hello(router)
 	}

@@ -19,23 +19,17 @@ import (
 	"github.com/2637309949/bulrush-template/utils"
 )
 
-// GINMODE APP ENV
-var GINMODE = utils.Some(os.Getenv("GIN_MODE"), "local")
-
-// CONFIGPATH PATH
-var CONFIGPATH = path.Join(".", fmt.Sprintf("conf/%s.yaml", GINMODE))
-
-// Mongo -
+// Mongo application mongo store
 var Mongo *mongo.Mongo
 
-// Redis -
+// Redis application redis store
 var Redis *redis.Redis
 
-// WC -
-var WC *bulrush.Config
+// Config application cfg
+var Config *bulrush.Config
 
 func init() {
-	WC = bulrush.NewCfg(CONFIGPATH)
-	Mongo = mongo.New(WC)
-	Redis = redis.New(WC)
+	Config = bulrush.NewCfg(path.Join(".", fmt.Sprintf("conf/%s.yaml", utils.Some(os.Getenv("GIN_MODE"), "local"))))
+	Mongo = mongo.New(Config)
+	Redis = redis.New(Config)
 }
