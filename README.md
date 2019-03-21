@@ -4,6 +4,33 @@
 
 ## Usage
 
+### Project structure
+
+    bulrush-template
+    │
+    ├── addition        # global reference module
+    ├── assets          # assets
+    │   └── public
+    │       ├── apidoc  # apidoc assets
+    │       └── upload  # upload assets
+    ├── bin             # bin execScript 
+    ├── binds           # bind models for jsonMap
+    ├── build           # files assets after build
+    │   ├── assets
+    │   │   └── public
+    │   │       ├── apidoc
+    │   │       └── upload
+    │   ├── conf
+    │   └── logs
+    ├── conf            # project conf
+    ├── logs            # logs files
+    ├── models          # project models defined
+    ├── routes          # http routes
+    ├── services        # services layers
+    ├── tmp             # tmp file for fresh
+    ├── utils           # utils tools
+    └── vendor          # dependence listing
+
 #### For Dev
 ```shell
 $ make -f Makefile.dep
