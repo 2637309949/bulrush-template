@@ -5,13 +5,12 @@
 ## Usage
 #### 1. For Dev
 ```shell
-$ npm run rely
-$ npm run dev
+$ make -f Makefile.dep
+$ make -f Makefile.dev
 ```
 #### 2. For Prod
 ```shell
-$ npm run rely
-$ npm run build
+$ make
 ```
 ## MIT License
 
