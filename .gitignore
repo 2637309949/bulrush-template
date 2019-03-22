@@ -3,7 +3,10 @@
 .history
 
 pids
-logs
+
+/logs/*
+!/logs/.gitkeep
+
 build
 vendor
 node_modules
@@ -11,4 +14,4 @@ node_modules
 /vendor/*
 !/vendor/vendor.json
 
-/tmp/*
+tmp
