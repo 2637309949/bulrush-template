@@ -9,8 +9,6 @@
 package addition
 
 import (
-	"fmt"
-
 	"github.com/2637309949/bulrush-template/conf"
 
 	"github.com/2637309949/bulrush-addition/mongo"
@@ -18,13 +16,7 @@ import (
 )
 
 // Mongo application mongo store
-var Mongo *mongo.Mongo
+var Mongo = mongo.New(conf.Cfg)
 
 // Redis application redis store
-var Redis *redis.Redis
-
-func init() {
-	fmt.Println(conf.Cfg)
-	Mongo = mongo.New(conf.Cfg)
-	Redis = redis.New(conf.Cfg)
-}
+var Redis = redis.New(conf.Cfg)
