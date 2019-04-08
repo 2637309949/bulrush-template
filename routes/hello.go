@@ -18,8 +18,8 @@ import (
 	"github.com/globalsign/mgo/bson"
 )
 
-func hello(r *gin.RouterGroup) {
-	r.GET("/ping", func(c *gin.Context) {
+func hello(router *gin.RouterGroup) {
+	router.GET("/ping", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
 			models.User{
 				Name:     "double",
@@ -42,13 +42,13 @@ func hello(r *gin.RouterGroup) {
 		 *        "message":    "ok"
 		 * }
 	*/
-	r.GET("/hello", func(c *gin.Context) {
+	router.GET("/hello", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "ok",
 		})
 	})
 
-	r.POST("/ptest", func(c *gin.Context) {
+	router.POST("/ptest", func(c *gin.Context) {
 		var json map[string]interface{}
 		if c.BindJSON(&json) == nil {
 			fmt.Print(json)
