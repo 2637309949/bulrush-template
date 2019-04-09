@@ -18,6 +18,7 @@ import (
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
 	logger "github.com/2637309949/bulrush-logger"
+	proxy "github.com/2637309949/bulrush-proxy"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/binds"
@@ -28,6 +29,13 @@ import (
 )
 
 func appUsePlugins(app bulrush.Bulrush) {
+	app.Use(&proxy.Proxy{
+		Host:  "https://k11-central.wosoft.me",
+		Match: "^/api/v1/SnapRanksStorePdf",
+		Map: func(reqPath string) string {
+			return reqPath
+		},
+	})
 	app.Use(
 		&delivery.Delivery{
 			URLPrefix: "/public",
@@ -70,6 +78,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	})
 	app.Use(&models.Model{}, &routes.Route{})
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
+		fmt.Println("####  PNQuick")
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
 				"message": testInject,
