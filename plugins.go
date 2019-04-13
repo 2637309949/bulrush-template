@@ -45,7 +45,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			URLPrefix: "/public/upload",
 			AssetPath: path.Join("assets/public/upload", ""),
 		},
-		&logger.LoggerWriter{},
+		&logger.Logger{},
 	)
 	app.Use(&identify.Identify{
 		Auth: func(c *gin.Context) (interface{}, error) {

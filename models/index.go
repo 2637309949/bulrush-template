@@ -9,8 +9,6 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/2637309949/bulrush"
 	"github.com/gin-gonic/gin"
 )
@@ -25,7 +23,6 @@ type (
 // Plugin -
 func (model *Model) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup) {
-		fmt.Println("###############2")
 		user(router)
 	}
 }
