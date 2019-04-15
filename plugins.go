@@ -18,7 +18,6 @@ import (
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
 	logger "github.com/2637309949/bulrush-logger"
-	proxy "github.com/2637309949/bulrush-proxy"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/binds"
@@ -29,13 +28,13 @@ import (
 )
 
 func appUsePlugins(app bulrush.Bulrush) {
-	app.Use(&proxy.Proxy{
-		Host:  "https://k11-central.wosoft.me",
-		Match: "^/api/v1/SnapRanksStorePdf",
-		Map: func(reqPath string) string {
-			return reqPath
-		},
-	})
+	// app.Use(&proxy.Proxy{
+	// 	Host:  "https://xxx.com",
+	// 	Match: "^/api/v1/SnapRanksStorePdf",
+	// 	Map: func(reqPath string) string {
+	// 		return reqPath
+	// 	},
+	// })
 	app.Use(
 		&delivery.Delivery{
 			URLPrefix: "/public",
