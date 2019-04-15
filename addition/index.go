@@ -9,10 +9,14 @@
 package addition
 
 import (
-	"github.com/2637309949/bulrush-template/conf"
+	"path"
 
+	"github.com/2637309949/bulrush-template/utils"
+
+	"github.com/2637309949/bulrush-addition/logger"
 	"github.com/2637309949/bulrush-addition/mongo"
 	"github.com/2637309949/bulrush-addition/redis"
+	"github.com/2637309949/bulrush-template/conf"
 )
 
 // Mongo application mongo store
@@ -20,3 +24,6 @@ var Mongo = mongo.New(conf.Cfg)
 
 // Redis application redis store
 var Redis = redis.New(conf.Cfg)
+
+// Logger application logger
+var Logger = logger.CreateLogger(path.Join(".", utils.Some(utils.LeftV(conf.Cfg.String("logs")), "logs").(string)))

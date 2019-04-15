@@ -15,3 +15,8 @@ func Some(target interface{}, initValue interface{}) interface{} {
 	}
 	return initValue
 }
+
+// LeftV get or a default value
+func LeftV(left interface{}, right interface{}) interface{} {
+	return left
+}
