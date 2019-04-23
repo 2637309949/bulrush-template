@@ -26,7 +26,7 @@ func main() {
 		} else {
 			name := config.GetString("name", "")
 			port := config.GetString("port", "")
-			fmt.Println("================================")
+			fmt.Println("\n\n================================")
 			fmt.Printf("App: %s\n", name)
 			fmt.Printf("Listen on %s\n", port)
 			fmt.Println("================================")
