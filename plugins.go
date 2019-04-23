@@ -14,10 +14,8 @@ import (
 	"net/http"
 	"path"
 
-	captcha "github.com/2637309949/bulrush-captcha"
-	"github.com/mojocn/base64Captcha"
-
 	"github.com/2637309949/bulrush"
+	captcha "github.com/2637309949/bulrush-captcha"
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
 	logger "github.com/2637309949/bulrush-logger"
@@ -29,6 +27,7 @@ import (
 	"github.com/2637309949/bulrush-template/routes"
 	upload "github.com/2637309949/bulrush-upload"
 	"github.com/gin-gonic/gin"
+	"github.com/mojocn/base64Captcha"
 )
 
 func appUsePlugins(app bulrush.Bulrush) {
