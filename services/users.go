@@ -16,7 +16,7 @@ import (
 // FindUsers users
 func FindUsers(match map[string]interface{}) []models.User {
 	var users []models.User
-	User, _ := addition.Mongo.Model("user")
+	User := addition.Mongo.Model("user")
 	err := User.Find(match).All(&users)
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func FindUsers(match map[string]interface{}) []models.User {
 
 // AddUsers users
 func AddUsers(users []interface{}) {
-	User, _ := addition.Mongo.Model("user")
+	User := addition.Mongo.Model("user")
 	err := User.Insert(users...)
 	if err != nil {
 		panic(err)
