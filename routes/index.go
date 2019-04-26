@@ -21,7 +21,7 @@ type (
 	}
 )
 
-// Plugin -
+// Plugin index
 func (route *Route) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup, event events.EventEmmiter) {
 		hello(router, event)
