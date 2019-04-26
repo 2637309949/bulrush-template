@@ -16,6 +16,7 @@ import (
 )
 
 func main() {
+	bulrush.DuckReflect = true
 	app := bulrush.Default()
 	app.Config(conf.CfgPath)
 	app.Inject("bulrushApp")

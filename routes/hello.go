@@ -19,9 +19,14 @@ import (
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
+	"github.com/kataras/go-events"
 )
 
-func hello(router *gin.RouterGroup) {
+func hello(router *gin.RouterGroup, event events.EventEmmiter) {
+	event.On("hello", func(payload ...interface{}) {
+		message := payload[0].(string)
+		fmt.Println(message)
+	})
 	store := persistence.NewInMemoryStore(time.Second)
 	/**
 	     * @api {get} /ping 数据库测试
