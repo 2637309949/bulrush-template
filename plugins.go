@@ -107,7 +107,6 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(&models.Model{}, &routes.Route{})
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
-			panic(errors.New("test"))
 			addition.Logger.Info("from bulrushApp %s", "info")
 			addition.Logger.Error("from bulrushApp %s", "error")
 			c.JSON(http.StatusOK, gin.H{
