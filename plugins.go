@@ -47,7 +47,9 @@ func appUsePlugins(app bulrush.Bulrush) {
 			URLPrefix: "/public/upload",
 			AssetPath: path.Join("assets/public/upload", ""),
 		},
-		&logger.Logger{},
+		&logger.Logger{
+			Path: "logs",
+		},
 		&captcha.Captcha{
 			URLPrefix: "/captcha",
 			Secret:    "7658388",
