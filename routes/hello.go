@@ -28,6 +28,7 @@ func hello(router *gin.RouterGroup, event events.EventEmmiter) {
 		fmt.Println(message)
 	})
 	store := persistence.NewInMemoryStore(time.Second)
+
 	/**
 	     * @api {get} /ping 数据库测试
 	     * @apiGroup Test
