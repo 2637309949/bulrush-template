@@ -46,7 +46,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 		},
 		&upload.Upload{
 			URLPrefix: "/public/upload",
-			AssetPath: path.Join("assets/public/upload", ""),
+			Path:      path.Join("assets/public/upload", ""),
 		},
 		&logger.Logger{
 			Path: "logs",
