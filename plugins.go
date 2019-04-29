@@ -32,6 +32,7 @@ import (
 )
 
 func appUsePlugins(app bulrush.Bulrush) {
+	// Proxy Plugin init
 	app.Use(&proxy.Proxy{
 		Host:  "https://xxx.com",
 		Match: "^/api/v1/proxyTest",
@@ -39,6 +40,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			return reqPath
 		},
 	})
+	// Delivery, Upload, Logger, Captcha Plugin init
 	app.Use(
 		&delivery.Delivery{
 			URLPrefix: "/public",
@@ -74,6 +76,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			},
 		},
 	)
+	// Identify Plugin init
 	app.Use(&identify.Identify{
 		Auth: func(ctx *gin.Context) (interface{}, error) {
 			var login binds.Login
@@ -95,6 +98,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 		FakeTokens: []interface{}{"DEBUG"},
 		FakeURLs:   []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
+	// Role Plugin init
 	app.Use(&role.Role{
 		FailureHandler: func(c *gin.Context, action string) {
 		},
@@ -104,7 +108,9 @@ func appUsePlugins(app bulrush.Bulrush) {
 			return true
 		},
 	})
+	// Model, Route Plugin init
 	app.Use(&models.Model{}, &routes.Route{})
+	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			addition.Logger.Info("from bulrushApp %s", "info")
