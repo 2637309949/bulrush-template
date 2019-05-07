@@ -6,7 +6,7 @@
  * @desc [description]
  */
 
-package routes
+package sys
 
 import (
 	"fmt"

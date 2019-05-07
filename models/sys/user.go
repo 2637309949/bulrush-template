@@ -20,17 +20,23 @@ type User struct {
 	Name        string `bson:"name" form:"name" json:"name" xml:"name"`
 	Password    string `bson:"password" form:"password" json:"password" xml:"password" `
 	Age         int    `bson:"age" form:"age" json:"age" xml:"age"`
+	IsActive    bool   `bson:"isActive" form:"isActive" json:"isActive" xml:"isActive" `
+	IsRepass    bool   `bson:"isRepass" form:"isRepass" json:"isRepass" xml:"isRepass" `
+	Avatar      string `bson:"avatar" form:"avatar" json:"avatar" xml:"avatar" `
+	Email       string `bson:"email" form:"email" json:"email" xml:"email" `
 }
 
-var manifest = map[string]interface{}{
-	"db":        "test",
-	"name":      "user",
-	"reflector": &User{},
+// Register model
+func init() {
+	addition.Mongo.Register(map[string]interface{}{
+		"db":        "test",
+		"name":      "user",
+		"reflector": &User{},
+	})
 }
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.Mongo.Register(manifest)
 	r.GET("/user", addition.Mongo.Hooks.List("user"))
 	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
 	r.POST("/user", addition.Mongo.Hooks.Create("user"))

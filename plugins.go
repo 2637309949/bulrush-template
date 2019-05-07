@@ -29,6 +29,7 @@ import (
 	"github.com/mojocn/base64Captcha"
 )
 
+// appUsePlugins add plugin to application
 func appUsePlugins(app bulrush.Bulrush) {
 	// Proxy Plugin init
 	app.Use(&proxy.Proxy{
