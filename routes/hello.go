@@ -13,7 +13,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/2637309949/bulrush-template/models"
+	"github.com/2637309949/bulrush-template/models/sys"
 	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-contrib/cache"
 	"github.com/gin-contrib/cache/persistence"
@@ -22,7 +22,8 @@ import (
 	"github.com/kataras/go-events"
 )
 
-func hello(router *gin.RouterGroup, event events.EventEmmiter) {
+// RegisterHello for routes
+func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter) {
 	event.On("hello", func(payload ...interface{}) {
 		message := payload[0].(string)
 		fmt.Println(message)
@@ -42,7 +43,7 @@ func hello(router *gin.RouterGroup, event events.EventEmmiter) {
 	*/
 	router.GET("/ping", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
-			models.User{
+			sys.User{
 				Name:     "double",
 				Password: "111111",
 				Age:      24,

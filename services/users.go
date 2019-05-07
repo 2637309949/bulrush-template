@@ -10,12 +10,12 @@ package services
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/2637309949/bulrush-template/models"
+	"github.com/2637309949/bulrush-template/models/sys"
 )
 
 // FindUsers users
-func FindUsers(match map[string]interface{}) []models.User {
-	var users []models.User
+func FindUsers(match map[string]interface{}) []sys.User {
+	var users []sys.User
 	User := addition.Mongo.Model("user")
 	err := User.Find(match).All(&users)
 	if err != nil {

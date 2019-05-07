@@ -6,10 +6,11 @@
  * @desc [description]
  */
 
-package models
+package main
 
 import (
 	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/models/sys"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,6 +24,6 @@ type (
 // Plugin -
 func (model *Model) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup) {
-		user(router)
+		sys.RegisterUser(router)
 	}
 }

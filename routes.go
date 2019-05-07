@@ -6,10 +6,11 @@
  * @desc [description]
  */
 
-package routes
+package main
 
 import (
 	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
 )
@@ -24,7 +25,7 @@ type (
 // Plugin index
 func (route *Route) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup, event events.EventEmmiter) {
-		hello(router, event)
+		routes.RegisterHello(router, event)
 		event.Emit("hello", "this is my payload to hello router")
 	}
 }

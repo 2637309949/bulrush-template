@@ -6,18 +6,20 @@
  * @desc [description]
  */
 
-package models
+package sys
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/models"
 	"github.com/gin-gonic/gin"
 )
 
 // User info
 type User struct {
-	Name     string `bson:"name" form:"name" json:"name" xml:"name"`
-	Password string `bson:"password" form:"password" json:"password" xml:"password" `
-	Age      int    `bson:"age" form:"age" json:"age" xml:"age"`
+	models.Base `bson:",inline"`
+	Name        string `bson:"name" form:"name" json:"name" xml:"name"`
+	Password    string `bson:"password" form:"password" json:"password" xml:"password" `
+	Age         int    `bson:"age" form:"age" json:"age" xml:"age"`
 }
 
 var manifest = map[string]interface{}{
@@ -26,8 +28,8 @@ var manifest = map[string]interface{}{
 	"reflector": &User{},
 }
 
-// user inject function
-func user(r *gin.RouterGroup) {
+// RegisterUser inject function
+func RegisterUser(r *gin.RouterGroup) {
 	addition.Mongo.Register(manifest)
 	r.GET("/user", addition.Mongo.Hooks.List("user"))
 	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
