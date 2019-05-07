@@ -16,13 +16,13 @@ import (
 )
 
 type (
-	// Route application routes
+	// Route for all routes register
 	Route struct {
 		bulrush.PNBase
 	}
 )
 
-// Plugin index
+// Plugin for all routes register
 func (route *Route) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup, event events.EventEmmiter) {
 		sys.RegisterHello(router, event)

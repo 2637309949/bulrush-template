@@ -15,13 +15,13 @@ import (
 )
 
 type (
-	// Model -
+	// Model for all model register
 	Model struct {
 		bulrush.PNBase
 	}
 )
 
-// Plugin -
+// Plugin for all model register
 func (model *Model) Plugin() bulrush.PNRet {
 	return func(router *gin.RouterGroup) {
 		sys.RegisterUser(router)
