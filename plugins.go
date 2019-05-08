@@ -91,7 +91,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			}
 			return nil, errors.New("user authentication failed")
 		},
-		Tokens: &identify.RedisTokensGroup{
+		Model: &identify.RedisModel{
 			Redis: addition.Redis,
 		},
 		FakeTokens: []interface{}{"DEBUG"},
