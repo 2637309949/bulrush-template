@@ -24,8 +24,8 @@ type (
 
 // Plugin for all routes register
 func (route *Route) Plugin() bulrush.PNRet {
-	return func(router *gin.RouterGroup, event events.EventEmmiter) {
-		sys.RegisterHello(router, event)
+	return func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+		ri.Register(sys.RegisterHello)
 		event.Emit("hello", "this is my payload to hello router")
 	}
 }

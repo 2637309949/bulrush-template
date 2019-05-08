@@ -23,7 +23,7 @@ type (
 
 // Plugin for all model register
 func (model *Model) Plugin() bulrush.PNRet {
-	return func(router *gin.RouterGroup) {
-		sys.RegisterUser(router)
+	return func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+		ri.Register(sys.RegisterUser)
 	}
 }
