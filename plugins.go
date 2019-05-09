@@ -19,6 +19,7 @@ import (
 	captcha "github.com/2637309949/bulrush-captcha"
 	delivery "github.com/2637309949/bulrush-delivery"
 	identify "github.com/2637309949/bulrush-identify"
+	limit "github.com/2637309949/bulrush-limit"
 	logger "github.com/2637309949/bulrush-logger"
 	proxy "github.com/2637309949/bulrush-proxy"
 	role "github.com/2637309949/bulrush-role"
@@ -31,6 +32,28 @@ import (
 
 // appUsePlugins add plugin to application
 func appUsePlugins(app bulrush.Bulrush) {
+	// Limit Plugin init
+	app.Use(&limit.Limit{
+		Frequency: &limit.Frequency{
+			Passages: []string{},
+			Rules: []limit.Rule{
+				limit.Rule{
+					Methods: []string{"GET"},
+					Match:   "/api/v1/user*",
+					Rate:    1,
+				},
+				limit.Rule{
+					Methods: []string{"GET"},
+					Match:   "/api/v1/role*",
+					Rate:    2,
+				},
+			},
+			Model: &limit.RedisModel{
+				Redis: addition.Redis,
+			},
+		},
+	})
+
 	// Proxy Plugin init
 	app.Use(&proxy.Proxy{
 		Host:  "https://xxx.com",
@@ -39,6 +62,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			return reqPath
 		},
 	})
+
 	// Delivery, Upload, Logger, Captcha Plugin init
 	app.Use(
 		&delivery.Delivery{
@@ -75,6 +99,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 			},
 		},
 	)
+
 	// Identify Plugin init
 	app.Use(&identify.Identify{
 		Auth: func(ctx *gin.Context) (interface{}, error) {
@@ -97,6 +122,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 		FakeTokens: []interface{}{"DEBUG"},
 		FakeURLs:   []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
 	})
+
 	// Role Plugin init
 	app.Use(&role.Role{
 		FailureHandler: func(c *gin.Context, action string) {
@@ -107,8 +133,10 @@ func appUsePlugins(app bulrush.Bulrush) {
 			return true
 		},
 	})
+
 	// Model, Route Plugin init
 	app.Use(&Model{}, &Route{})
+
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
