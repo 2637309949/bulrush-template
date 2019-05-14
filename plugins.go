@@ -135,7 +135,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	})
 
 	// Model, Route Plugin init
-	app.Use(&Model{}, &Route{})
+	app.Use(Model, Route)
 
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {

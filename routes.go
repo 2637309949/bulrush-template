@@ -15,17 +15,8 @@ import (
 	"github.com/kataras/go-events"
 )
 
-type (
-	// Route for all routes register
-	Route struct {
-		bulrush.PNBase
-	}
-)
-
-// Plugin for all routes register
-func (route *Route) Plugin() bulrush.PNRet {
-	return func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
-		ri.Register(sys.RegisterHello)
-		event.Emit("hello", "this is my payload to hello router")
-	}
-}
+// Route for all routes register
+var Route = bulrush.PNQuick(func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+	ri.Register(sys.RegisterHello)
+	event.Emit("hello", "this is my payload to hello router")
+})

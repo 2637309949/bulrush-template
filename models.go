@@ -14,19 +14,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type (
-	// Model for all model register
-	Model struct {
-		bulrush.PNBase
-	}
-)
-
-// Plugin for all model register
-func (model *Model) Plugin() bulrush.PNRet {
-	return func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
-		ri.Register(sys.RegisterUser)
-		ri.Register(sys.RegisterPermission)
-		ri.Register(sys.RegisterRole)
-		ri.Register(sys.RegisterParam)
-	}
-}
+// Model register
+var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+	ri.Register(sys.RegisterUser)
+	ri.Register(sys.RegisterPermission)
+	ri.Register(sys.RegisterRole)
+	ri.Register(sys.RegisterParam)
+})
