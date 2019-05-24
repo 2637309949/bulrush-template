@@ -11,7 +11,6 @@ package sys
 import (
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models"
-	"github.com/gin-gonic/gin"
 )
 
 // Param info
@@ -29,13 +28,4 @@ func init() {
 		"name":      "param",
 		"reflector": &Param{},
 	})
-}
-
-// RegisterParam inject function
-func RegisterParam(r *gin.RouterGroup) {
-	addition.Mongo.API.List(r, "param")
-	addition.Mongo.API.One(r, "param")
-	addition.Mongo.API.Create(r, "param")
-	addition.Mongo.API.Update(r, "param")
-	addition.Mongo.API.Delete(r, "param")
 }

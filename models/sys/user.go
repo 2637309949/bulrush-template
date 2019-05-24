@@ -36,6 +36,7 @@ func init() {
 		"db":        "test",
 		"name":      "user",
 		"reflector": &User{},
+		"autoHook":  false,
 	})
 }
 

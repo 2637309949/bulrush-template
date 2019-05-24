@@ -136,7 +136,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 
 	// Model, Route Plugin init
 	app.Use(Model, Route)
-
+	app.Use(addition.Mongo.AutoHook)
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {

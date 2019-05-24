@@ -11,7 +11,6 @@ package sys
 import (
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models"
-	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
 )
 
@@ -30,13 +29,4 @@ func init() {
 		"name":      "role",
 		"reflector": &Role{},
 	})
-}
-
-// RegisterRole inject function
-func RegisterRole(r *gin.RouterGroup) {
-	addition.Mongo.API.List(r, "role")
-	addition.Mongo.API.One(r, "role")
-	addition.Mongo.API.Create(r, "role")
-	addition.Mongo.API.Update(r, "role")
-	addition.Mongo.API.Delete(r, "role")
 }

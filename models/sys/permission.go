@@ -30,6 +30,7 @@ func init() {
 		"db":        "test",
 		"name":      "permission",
 		"reflector": &Permission{},
+		"autoHook":  false,
 	})
 }
 
