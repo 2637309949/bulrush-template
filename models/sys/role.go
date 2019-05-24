@@ -34,9 +34,9 @@ func init() {
 
 // RegisterRole inject function
 func RegisterRole(r *gin.RouterGroup) {
-	r.GET("/role", addition.Mongo.Hooks.List("role"))
-	r.GET("/role/:id", addition.Mongo.Hooks.One("role"))
-	r.POST("/role", addition.Mongo.Hooks.Create("role"))
-	r.PUT("/role", addition.Mongo.Hooks.Update("role"))
-	r.DELETE("/role", addition.Mongo.Hooks.Delete("role"))
+	addition.Mongo.API.List(r, "role")
+	addition.Mongo.API.One(r, "role")
+	addition.Mongo.API.Create(r, "role")
+	addition.Mongo.API.Update(r, "role")
+	addition.Mongo.API.Delete(r, "role")
 }

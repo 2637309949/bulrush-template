@@ -33,9 +33,9 @@ func init() {
 
 // RegisterParam inject function
 func RegisterParam(r *gin.RouterGroup) {
-	r.GET("/param", addition.Mongo.Hooks.List("param"))
-	r.GET("/param/:id", addition.Mongo.Hooks.One("param"))
-	r.POST("/param", addition.Mongo.Hooks.Create("param"))
-	r.PUT("/param", addition.Mongo.Hooks.Update("param"))
-	r.DELETE("/param", addition.Mongo.Hooks.Delete("param"))
+	addition.Mongo.API.List(r, "param")
+	addition.Mongo.API.One(r, "param")
+	addition.Mongo.API.Create(r, "param")
+	addition.Mongo.API.Update(r, "param")
+	addition.Mongo.API.Delete(r, "param")
 }

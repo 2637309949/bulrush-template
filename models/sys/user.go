@@ -9,6 +9,8 @@
 package sys
 
 import (
+	"fmt"
+
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models"
 	"github.com/gin-gonic/gin"
@@ -39,9 +41,13 @@ func init() {
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	r.GET("/user", addition.Mongo.Hooks.List("user"))
-	r.GET("/user/:id", addition.Mongo.Hooks.One("user"))
-	r.POST("/user", addition.Mongo.Hooks.Create("user"))
-	r.PUT("/user", addition.Mongo.Hooks.Update("user"))
-	r.DELETE("/user", addition.Mongo.Hooks.Delete("user"))
+	addition.Mongo.API.List(r, "user").Pre(func(c *gin.Context) {
+		fmt.Println("before")
+	}).Post(func(c *gin.Context) {
+		fmt.Println("after")
+	})
+	addition.Mongo.API.One(r, "user")
+	addition.Mongo.API.Create(r, "user")
+	addition.Mongo.API.Update(r, "user")
+	addition.Mongo.API.Delete(r, "user")
 }

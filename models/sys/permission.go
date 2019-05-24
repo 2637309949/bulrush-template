@@ -35,9 +35,5 @@ func init() {
 
 // RegisterPermission inject function
 func RegisterPermission(r *gin.RouterGroup) {
-	r.GET("/permission", addition.Mongo.Hooks.List("permission"))
-	r.GET("/permission/:id", addition.Mongo.Hooks.One("permission"))
-	r.POST("/permission", addition.Mongo.Hooks.Create("permission"))
-	r.PUT("/permission", addition.Mongo.Hooks.Update("permission"))
-	r.DELETE("/permission", addition.Mongo.Hooks.Delete("permission"))
+	addition.Mongo.API.ALL(r, "permission")
 }
