@@ -136,6 +136,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 
 	// Model, Route Plugin init
 	app.Use(Model, Route)
+	// mount models routers
 	app.Use(addition.Mongo.AutoHook)
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
