@@ -10,25 +10,19 @@ package services
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/2637309949/bulrush-template/models/sys"
 )
 
 // FindUsers users
-func FindUsers(match map[string]interface{}) []sys.User {
-	var users []sys.User
+func FindUsers(match map[string]interface{}) interface{} {
+	// users := []User{} 需要具体化时用Type去声明变量，否则直接用反射体
+	users := addition.Mongo.Vars("user")
 	User := addition.Mongo.Model("user")
-	err := User.Find(match).All(&users)
-	if err != nil {
-		panic(err)
-	}
+	User.Find(match).All(&users)
 	return users
 }
 
 // AddUsers users
 func AddUsers(users []interface{}) {
 	User := addition.Mongo.Model("user")
-	err := User.Insert(users...)
-	if err != nil {
-		panic(err)
-	}
+	User.Insert(users...)
 }

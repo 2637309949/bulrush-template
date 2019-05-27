@@ -13,6 +13,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/models/sys"
 	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-contrib/cache"
@@ -47,6 +48,10 @@ func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter) {
 				Name:     "double",
 				Password: "111111",
 				Age:      24,
+				Base: models.Base{
+					Creator:  bson.NewObjectId(),
+					Modifier: bson.NewObjectId(),
+				},
 			},
 		})
 		users := services.FindUsers(bson.M{"name": "double"})
