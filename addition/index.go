@@ -14,13 +14,13 @@ import (
 	"github.com/2637309949/bulrush-template/utils"
 
 	"github.com/2637309949/bulrush-addition/logger"
-	"github.com/2637309949/bulrush-addition/mongo"
+	"github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-addition/redis"
 	"github.com/2637309949/bulrush-template/conf"
 )
 
 // Mongo application mongo store
-var Mongo = mongo.New(conf.Cfg)
+var Mongo = mgo.New(conf.Cfg)
 
 // Redis application redis store
 var Redis = redis.New(conf.Cfg)
