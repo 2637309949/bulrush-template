@@ -11,12 +11,11 @@ package addition
 import (
 	"path"
 
-	"github.com/2637309949/bulrush-template/utils"
-
 	"github.com/2637309949/bulrush-addition/logger"
 	"github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-addition/redis"
 	"github.com/2637309949/bulrush-template/conf"
+	"github.com/2637309949/bulrush-template/utils"
 )
 
 // Mongo application mongo store

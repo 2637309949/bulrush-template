@@ -1,0 +1,108 @@
+hash: 2ef1de23f265159cac7b4875be1ee5082f6e33afe0969ecdefd36ab2f23eb74a
+updated: 2019-05-30T14:20:56.742344597+08:00
+imports:
+- name: github.com/2637309949/bulrush
+  version: 4993061f54608dda46f637d4e59bfa803e58b307
+- name: github.com/2637309949/bulrush-addition
+  version: 729d46d7edeca3590be48cf036eac35a584f687a
+  subpackages:
+  - logger
+  - mgo
+  - redis
+- name: github.com/2637309949/bulrush-captcha
+  version: 7cfbf636303272aa97aae28ce8ca0d7bcc2a41ef
+- name: github.com/2637309949/bulrush-delivery
+  version: 0883a50ca7b953b4d4dae588dd4b25e2cf31ca63
+- name: github.com/2637309949/bulrush-identify
+  version: a7cc38f8a3c84d9cd1cb19aa61214647817befbd
+- name: github.com/2637309949/bulrush-limit
+  version: b89120e04931f560debb8aed9d7c1609d62c9361
+- name: github.com/2637309949/bulrush-logger
+  version: 85c450efd59719548b6ce5a911130cd27fe376b3
+- name: github.com/2637309949/bulrush-proxy
+  version: cc80487d3edca0eae9ec37f9c506456b3e2d7040
+- name: github.com/2637309949/bulrush-role
+  version: fbba90e09b4bee87a06c7985294842927a26b861
+- name: github.com/2637309949/bulrush-upload
+  version: 07a5fd7f2fa24981eb8ef767a7be24264ec7be22
+- name: github.com/bradfitz/gomemcache
+  version: 551aad21a6682b95329c1f5bd62ee5060d64f7e8
+  subpackages:
+  - memcache
+- name: github.com/gin-contrib/cache
+  version: a69f0b45329b4261342e24178b03084d8b5cc7cf
+  subpackages:
+  - persistence
+  - utils
+- name: github.com/gin-contrib/sse
+  version: 5545eab6dad3bbbd6c5ae9186383c2a9d23c0dae
+- name: github.com/gin-gonic/gin
+  version: b75d67cd51eb53c3c3a2fc406524c940021ffbda
+  subpackages:
+  - binding
+  - internal/json
+  - render
+- name: github.com/globalsign/mgo
+  version: eeefdecb41b842af6dc652aaea4026e8403e62df
+  subpackages:
+  - bson
+  - internal/json
+  - internal/sasl
+  - internal/scram
+- name: github.com/go-redis/redis
+  version: e7f788704f5a5e72a697d716cc67694b523539f5
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+  - internal/util
+- name: github.com/golang/freetype
+  version: e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4
+  subpackages:
+  - raster
+  - truetype
+- name: github.com/golang/protobuf
+  version: b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
+  subpackages:
+  - proto
+- name: github.com/gomodule/redigo
+  version: 39e2c31b7ca38b521ceb836620a269e62c895dc9
+  subpackages:
+  - redis
+- name: github.com/jinzhu/now
+  version: 8ec929ed50c3ac25ce77ba4486e1f277c552c591
+- name: github.com/json-iterator/go
+  version: 0ff49de124c6f76f8494e194af75bde0f1a49a29
+- name: github.com/kataras/go-events
+  version: dd95ea65a58b9827e480150aa15471d2776d3e6c
+- name: github.com/mattn/go-isatty
+  version: 1311e847b0cb909da63b5fecfb5370aa66236465
+- name: github.com/memcachier/mc
+  version: 5d1620e2c6d86be00ea70065e3c1301ee1cb1894
+- name: github.com/modern-go/concurrent
+  version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+- name: github.com/modern-go/reflect2
+  version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
+- name: github.com/mojocn/base64Captcha
+  version: 7d0b78ad1685f79a0fea381c107d77ec1f812500
+- name: github.com/olebedev/config
+  version: 57f804269e64d41bfe46efb76232c47f49d40902
+- name: github.com/robfig/go-cache
+  version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
+- name: github.com/thoas/go-funk
+  version: c43409e2d5def27be9b081e316441108def35c8d
+- name: github.com/ugorji/go
+  version: 86ce10f27282a2dea0afc943adf213400d57895d
+  subpackages:
+  - codec
+- name: golang.org/x/image/font
+  version: f03afa92d3ffad9e5ff762aa549908afe674f01e
+- name: golang.org/x/sys/unix
+  version: 6a60838ec2595395fabc7b2e6c2ae9fb5a87722d
+- name: gopkg.in/go-playground/validator.v8
+  version: 5f1438d3fca68893a817e4a66806cea46a9e4ebf
+- name: gopkg.in/yaml.v2
+  version: 51d6538a90f86fe93ac480b35f37b2be17fef232
+testImports: []

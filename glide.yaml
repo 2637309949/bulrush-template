@@ -1,0 +1,34 @@
+package: github.com/2637309949/bulrush-template
+import:
+- package: github.com/2637309949/bulrush
+- package: github.com/2637309949/bulrush-addition
+  subpackages:
+  - logger
+  - mgo
+  - redis
+- package: github.com/2637309949/bulrush-captcha
+- package: github.com/2637309949/bulrush-delivery
+- package: github.com/2637309949/bulrush-identify
+- package: github.com/2637309949/bulrush-limit
+- package: github.com/2637309949/bulrush-logger
+- package: github.com/2637309949/bulrush-proxy
+- package: github.com/2637309949/bulrush-role
+- package: github.com/2637309949/bulrush-upload
+- package: github.com/gin-contrib/cache
+  version: ^1.1.0
+  subpackages:
+  - persistence
+- package: github.com/gin-gonic/gin
+  version: ^1.4.0
+- package: github.com/globalsign/mgo
+  subpackages:
+  - bson
+- package: github.com/kataras/go-events
+  version: ^0.0.2
+- package: github.com/mojocn/base64Captcha
+  version: ^1.9.0
+- package: github.com/thoas/go-funk
+  version: ^0.4.0
+- package: golang.org/x/image/math/fixed
+- package: github.com/json-iterator/go
+  version: v1.1.6
