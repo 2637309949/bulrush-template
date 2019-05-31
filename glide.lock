@@ -1,5 +1,5 @@
 hash: 2ef1de23f265159cac7b4875be1ee5082f6e33afe0969ecdefd36ab2f23eb74a
-updated: 2019-05-30T14:20:56.742344597+08:00
+updated: 2019-05-31T15:57:27.876130705+08:00
 imports:
 - name: github.com/2637309949/bulrush
   version: 4993061f54608dda46f637d4e59bfa803e58b307
@@ -98,6 +98,8 @@ imports:
   subpackages:
   - codec
 - name: golang.org/x/image/font
+  version: f03afa92d3ffad9e5ff762aa549908afe674f01e
+- name: golang.org/x/image/math/fixed
   version: f03afa92d3ffad9e5ff762aa549908afe674f01e
 - name: golang.org/x/sys/unix
   version: 6a60838ec2595395fabc7b2e6c2ae9fb5a87722d
