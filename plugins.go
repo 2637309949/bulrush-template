@@ -64,41 +64,39 @@ func appUsePlugins(app bulrush.Bulrush) {
 	})
 
 	// Delivery, Upload, Logger, Captcha Plugin init
-	app.Use(
-		&delivery.Delivery{
-			URLPrefix: "/public",
-			Path:      path.Join("assets/public", ""),
+	app.Use(&delivery.Delivery{
+		URLPrefix: "/public",
+		Path:      path.Join("assets/public", ""),
+	})
+	app.Use(&upload.Upload{
+		URLPrefix: "/public/upload",
+		Path:      path.Join("assets/public/upload", ""),
+	})
+	app.Use(&logger.Logger{
+		Path: "logs",
+		Format: func(p *logger.Payload, ctx *gin.Context) string {
+			if p.Type == logger.INT {
+				startTime := time.Unix(p.StartUnix, 0).Format("2006/01/02 15:04:05")
+				return fmt.Sprintf("[%v bulrush] => %s %6s %s", startTime, p.IP, p.Method, p.URL)
+			} else if p.Type == logger.OUT {
+				endOfTime := time.Unix(p.EndUnix, 0).Format("2006/01/02 15:04:05")
+				latency := float64(time.Unix(p.EndUnix, 0).Sub(time.Unix(p.StartUnix, 0)) / time.Millisecond)
+				return fmt.Sprintf("[%v bulrush] <= %.2fms %s %6s %s", endOfTime, latency, p.IP, p.Method, p.URL)
+			}
+			return "FROMAT ERROR"
 		},
-		&upload.Upload{
-			URLPrefix: "/public/upload",
-			Path:      path.Join("assets/public/upload", ""),
+	})
+	app.Use(&captcha.Captcha{
+		URLPrefix: "/captcha",
+		Secret:    "7658388",
+		Config: base64Captcha.ConfigDigit{
+			Height:     80,
+			Width:      240,
+			MaxSkew:    0.7,
+			DotCount:   80,
+			CaptchaLen: 5,
 		},
-		&logger.Logger{
-			Path: "logs",
-			Format: func(p *logger.Payload, ctx *gin.Context) string {
-				if p.Type == logger.INT {
-					startTime := time.Unix(p.StartUnix, 0).Format("2006/01/02 15:04:05")
-					return fmt.Sprintf("[%v bulrush] => %s %6s %s", startTime, p.IP, p.Method, p.URL)
-				} else if p.Type == logger.OUT {
-					endOfTime := time.Unix(p.EndUnix, 0).Format("2006/01/02 15:04:05")
-					latency := float64(time.Unix(p.EndUnix, 0).Sub(time.Unix(p.StartUnix, 0)) / time.Millisecond)
-					return fmt.Sprintf("[%v bulrush] <= %.2fms %s %6s %s", endOfTime, latency, p.IP, p.Method, p.URL)
-				}
-				return "FROMAT ERROR"
-			},
-		},
-		&captcha.Captcha{
-			URLPrefix: "/captcha",
-			Secret:    "7658388",
-			Config: base64Captcha.ConfigDigit{
-				Height:     80,
-				Width:      240,
-				MaxSkew:    0.7,
-				DotCount:   80,
-				CaptchaLen: 5,
-			},
-		},
-	)
+	})
 
 	// Identify Plugin init
 	app.Use(&identify.Identify{
