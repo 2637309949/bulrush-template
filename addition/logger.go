@@ -12,17 +12,9 @@ import (
 	"path"
 
 	"github.com/2637309949/bulrush-addition/logger"
-	"github.com/2637309949/bulrush-addition/mgo"
-	"github.com/2637309949/bulrush-addition/redis"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/utils"
 )
-
-// Mongo application mongo store
-var Mongo = mgo.New(conf.Cfg)
-
-// Redis application redis store
-var Redis = redis.New(conf.Cfg)
 
 // Logger application logger
 var Logger = logger.CreateLogger(path.Join(".", utils.Some(utils.LeftV(conf.Cfg.String("logs")), "logs").(string)))
