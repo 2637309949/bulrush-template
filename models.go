@@ -10,13 +10,13 @@ package main
 
 import (
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush-template/models/sys"
+	"github.com/2637309949/bulrush-template/models"
 	"github.com/gin-gonic/gin"
 )
 
 // Model register
 // Make sure all models are initialized here
 var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
-	ri.Register(sys.RegisterUser)
-	ri.Register(sys.RegisterPermission)
+	ri.Register(models.RegisterUser)
+	ri.Register(models.RegisterPermission)
 })

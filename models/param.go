@@ -6,19 +6,18 @@
  * @desc [description]
  */
 
-package sys
+package models
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/2637309949/bulrush-template/models"
 )
 
 // Param info
 type Param struct {
-	models.Base `bson:",inline"`
-	Code        string      `bson:"code" form:"code" json:"code" xml:"code"`
-	Desc        string      `bson:"desc" form:"desc" json:"desc" xml:"desc"`
-	Value       interface{} `bson:"value" form:"value" json:"value" xml:"value"`
+	Base  `bson:",inline"`
+	Code  string      `bson:"code" form:"code" json:"code" xml:"code"`
+	Desc  string      `bson:"desc" form:"desc" json:"desc" xml:"desc"`
+	Value interface{} `bson:"value" form:"value" json:"value" xml:"value"`
 }
 
 // Register model

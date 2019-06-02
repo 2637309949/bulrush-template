@@ -6,17 +6,16 @@
  * @desc [description]
  */
 
-package sys
+package models
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/2637309949/bulrush-template/models"
 	"github.com/globalsign/mgo/bson"
 )
 
 // Role info
 type Role struct {
-	models.Base `bson:",inline"`
+	Base        `bson:",inline"`
 	Name        string          `bson:"name" form:"name" json:"name" xml:"name"`
 	Type        string          `bson:"type" form:"type" json:"type" xml:"type"`
 	Permissions []bson.ObjectId `bson:"permissions" form:"permissions" json:"permissions" xml:"permissions" `
