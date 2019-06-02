@@ -17,11 +17,9 @@ import (
 
 // Role plugin init
 var Role = &role.Role{
-	FailureHandler: func(c *gin.Context, action string) {
-	},
 	RoleHandler: func(c *gin.Context, action string) bool {
 		actions := role.TransformAction(action)
 		fmt.Printf("actions: %s\n", actions)
-		return true
+		return false
 	},
 }

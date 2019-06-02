@@ -28,7 +28,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "routes/sys/hello.go",
+    "filename": "routes/hello.go",
     "groupTitle": "Test",
     "name": "GetChache"
   },
@@ -61,7 +61,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "routes/sys/hello.go",
+    "filename": "routes/hello.go",
     "groupTitle": "Test",
     "name": "GetPing"
   }
