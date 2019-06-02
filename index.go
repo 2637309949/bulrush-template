@@ -8,15 +8,7 @@
 
 package main
 
-import (
-	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush-template/conf"
-)
-
 func main() {
-	app := bulrush.Default()
-	app.Config(conf.CfgPath)
-	app.Inject("bulrushApp")
-	appUsePlugins(app)
+	app := InitApp()
 	app.RunImmediately()
 }
