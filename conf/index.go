@@ -53,6 +53,6 @@ func init() {
 		panic(fmt.Errorf("envFileName %s from env or flag has no been found", envFileName))
 	} else {
 		CfgPath = path.Join(".", dir, envFileName)
-		Cfg = bulrush.NewCfg(CfgPath)
+		Cfg = bulrush.LoadConfig(CfgPath)
 	}
 }

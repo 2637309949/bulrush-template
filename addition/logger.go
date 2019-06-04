@@ -17,4 +17,4 @@ import (
 )
 
 // Logger application logger
-var Logger = logger.CreateLogger(path.Join(".", utils.Some(utils.LeftV(conf.Cfg.String("logs")), "logs").(string)))
+var Logger = logger.CreateLogger(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)))
