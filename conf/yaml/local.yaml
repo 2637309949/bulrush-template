@@ -1,4 +1,5 @@
 name: 'bulrush-template'
+version: 2
 port: '8080'
 prefix: '/api/v1'
 mode: 'debug'
