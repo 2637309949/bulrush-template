@@ -9,8 +9,6 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
@@ -42,9 +40,9 @@ func init() {
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
 	addition.Mongo.API.List(r, "user").Pre(func(c *gin.Context) {
-		fmt.Println("before")
+		addition.Logger.Info("before")
 	}).Post(func(c *gin.Context) {
-		fmt.Println("after")
+		addition.Logger.Info("after")
 	})
 	addition.Mongo.API.One(r, "user")
 	addition.Mongo.API.Create(r, "user")

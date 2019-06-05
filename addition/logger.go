@@ -17,4 +17,22 @@ import (
 )
 
 // Logger application logger
-var Logger = logger.CreateLogger(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)))
+var Logger = logger.CreateLogger(
+	logger.INFOLevel,
+	nil,
+	[]*logger.Transport{
+		&logger.Transport{
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
+			Level:   logger.ERRORLevel,
+			Maxsize: logger.Maxsize,
+		},
+		&logger.Transport{
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
+			Level:   logger.INFOLevel,
+			Maxsize: logger.Maxsize,
+		},
+		&logger.Transport{
+			Level: logger.INFOLevel,
+		},
+	},
+)
