@@ -33,8 +33,14 @@
 
 #### For Dev
 ```shell
+# Hot-start 
 $ make -f Makefile.dep
 $ make -f Makefile.dev
+```
+
+```shell
+# Not Hot-start 
+$ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
 #### For Apidoc
