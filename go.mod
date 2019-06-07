@@ -1,4 +1,4 @@
-module github.com/2637309949/bulrush_template
+module github.com/2637309949/bulrush-template
 
 go 1.12
 
