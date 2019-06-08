@@ -13,7 +13,7 @@ require (
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
 	github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9
 	github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be
-	github.com/beego/bee v1.10.0 // indirect
+	
 
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea

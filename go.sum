@@ -18,8 +18,8 @@ github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9 h1:+YgKv0G
 github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9/go.mod h1:dyZ9Msda00ntgStVbixy/H4MGc4OGPcvUU1ulcvOxfA=
 github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be h1:y7CLlwdUM7Gu882ctPRle5D9E3dtjD3nHIQGvy5tnto=
 github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be/go.mod h1:C9WW8uia9KwAqnHWOUFA8d2glXuLUb2ZOUn/2Dfz+ZU=
-github.com/beego/bee v1.10.0 h1:zeQChi82U/Ta9akctg7KTSJQAQuHwENwEVM6ygqQwME=
-github.com/beego/bee v1.10.0/go.mod h1:0z6z9KcOHepE/HeYTmfjJWIFZfQ9bkKqsBdgcm/6etM=
+
+
 github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668 h1:U/lr3Dgy4WK+hNk4tyD+nuGjpVLPEHuJSFXMw11/HPA=
 github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668/go.mod h1:H0wQNHz2YrLsuXOZozoeDmnHXkNCRmMW0gwFWDfEZDA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
