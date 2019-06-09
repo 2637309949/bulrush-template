@@ -53,6 +53,15 @@ $ make -f Makefile.api
 $ make
 ```
 
+#### Run Test
+```shell
+/usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$"
+```
+Or run with log
+```shell
+/usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$" -v
+```
+
 ## MIT License
 Copyright (c) 2018-2020 Double
 

@@ -1,9 +1,10 @@
 name: 'bulrush-template'
-version: 2
+version: 1
 port: '8080'
 prefix: '/api/v1'
 mode: 'debug'
-logs: '/logs'
+logs:
+  path: '/logs'
 mongo:
   addrs:
     - '127.0.0.1:27017'

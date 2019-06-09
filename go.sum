@@ -1,7 +1,9 @@
-github.com/2637309949/bulrush v0.0.0-20190606074942-5320d75d1258 h1:PZRbO8ZHUa7PYnOVmGHdvsxfMS2lVHkuWeHnMTCxknI=
-github.com/2637309949/bulrush v0.0.0-20190606074942-5320d75d1258/go.mod h1:CMWxRsMFZunKHVqkLriuwekd1eW1fSKD9+582Ppw6tk=
-github.com/2637309949/bulrush-addition v0.0.0-20190605141653-01e70cd1cb76 h1:eQvp9ClgERxur3O/+8+DfpRI1m/wBND8MHiMcbbGkwE=
+github.com/2637309949/bulrush v0.0.0-20190607030313-28d446049b76/go.mod h1:qPR8dFYrIA6dfaRftuJv1Fb5qo25GDbdDQZRtHlxf1g=
+github.com/2637309949/bulrush v0.0.0-20190608112205-ae90cdcb7358 h1:YLNky2YxG7EQVGWJcto1NsN4Ejenhl8Zkes4Kz9roN0=
+github.com/2637309949/bulrush v0.0.0-20190608112205-ae90cdcb7358/go.mod h1:0LqTAK58wUHnxumAqF8R+S/qluqJP9rlB/nhBB6RTmg=
 github.com/2637309949/bulrush-addition v0.0.0-20190605141653-01e70cd1cb76/go.mod h1:Y/xV7WL+ym2DWmG86jxqrF6QMgY8SXkJMcvL4JJh8qA=
+github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e h1:lUuIaoZAN/9wtbEirlUsYn6BIN+KmJysqupEBgKzG4Q=
+github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e/go.mod h1:ZbbfzihQrv1AR64anFXLYhNWHKNzLFG8muQUnQ0T84w=
 github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7 h1:CLAF3eB2hu2PhMUkdMXsXgosy7N3b2n6PdQkMNTtVic=
 github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7/go.mod h1:dJ6jnKddwu48dAw4zcUesnEw9m4Ybgfz2IbzjMMa9Z8=
 github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372 h1:lFkxvsoZ3D7l25c0d8+1YNZmdolx7xdOgVi0pBKxbyY=
@@ -18,8 +20,7 @@ github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9 h1:+YgKv0G
 github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9/go.mod h1:dyZ9Msda00ntgStVbixy/H4MGc4OGPcvUU1ulcvOxfA=
 github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be h1:y7CLlwdUM7Gu882ctPRle5D9E3dtjD3nHIQGvy5tnto=
 github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be/go.mod h1:C9WW8uia9KwAqnHWOUFA8d2glXuLUb2ZOUn/2Dfz+ZU=
-
-
+github.com/beego/bee v1.10.0/go.mod h1:0z6z9KcOHepE/HeYTmfjJWIFZfQ9bkKqsBdgcm/6etM=
 github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668 h1:U/lr3Dgy4WK+hNk4tyD+nuGjpVLPEHuJSFXMw11/HPA=
 github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668/go.mod h1:H0wQNHz2YrLsuXOZozoeDmnHXkNCRmMW0gwFWDfEZDA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -37,8 +38,8 @@ github.com/gin-gonic/gin v1.4.0 h1:3tMoCCfM7ppqsR0ptz/wi1impNpT7/9wQtMZ8lr1mCQ=
 github.com/gin-gonic/gin v1.4.0/go.mod h1:OW2EZn3DO8Ln9oIKOvM++LBO+5UPHJJDH72/q/3rZdM=
 github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 h1:DujepqpGd1hyOd7aW59XpK7Qymp8iy83xq74fLr21is=
 github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8/go.mod h1:xkRDCp4j0OGD1HRkm4kmhM+pmpv3AKq5SU7GMg4oO/Q=
-github.com/go-redis/redis v0.0.0-20190526054928-e7f788704f5a h1:+uSPc4xWS6a2nOOAlcToYUQFIRaIAkBFz1F/3KgCaow=
-github.com/go-redis/redis v0.0.0-20190526054928-e7f788704f5a/go.mod h1:W2YCLaZryXHirdd9QqwkiVUxCQsrx8SbLq9Uqk7JS7A=
+github.com/go-redis/redis v6.15.2+incompatible h1:9SpNVG76gr6InJGxoZ6IuuxaCOQwDAhzyXg+Bs+0Sb4=
+github.com/go-redis/redis v6.15.2+incompatible/go.mod h1:NAIEuMOZ/fxfXJIrKDQDz8wamY7mA7PouImQ2Jvg6kA=
 github.com/golang/crypto v0.0.0-20190605123033-f99c8df09eb5/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 h1:DACJavvAHhabrF08vX0COfcOBJRhZ8lUbR+ZWIs0Y5g=
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
@@ -53,7 +54,6 @@ github.com/golang/protobuf v1.3.1 h1:YF8+flBXS5eO826T4nzqPrxfhQThhXl0YzfuUPu4SBg
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/sync v0.0.0-20180314180146-1d60e4601c6f/go.mod h1:YCHYtYb9c8Q7XgYVYjmJBPtFPKx5QvOcPxHZWjldabE=
 github.com/golang/sys v0.0.0-20180909124046-d0be0721c37e/go.mod h1:5JyrLPvD/ZdaYkT7IqKhsP5xt7aLjA99KXRtk4EIYDk=
-github.com/golang/sys v0.0.0-20190222072716-a9d3bda3a223 h1:ff594/MT5eW9mBDVHp4eJbG2PkPHZk1QoyZjnH4eoVU=
 github.com/golang/sys v0.0.0-20190222072716-a9d3bda3a223/go.mod h1:5JyrLPvD/ZdaYkT7IqKhsP5xt7aLjA99KXRtk4EIYDk=
 github.com/golang/sys v0.0.0-20190412213103-97732733099d h1:blRtD+FQOxZ6P7jigy+HS0R8zyGOMOv8TET4wCpzVwM=
 github.com/golang/sys v0.0.0-20190412213103-97732733099d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=

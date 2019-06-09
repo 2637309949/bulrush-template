@@ -1,11 +1,7 @@
 dependence:
 	@echo "\033[32mInstalling dependence\033[0m"
 	@npm install apidoc --global
-	@glide get  github.com/json-iterator/go
-	@glide mirror set https://golang.org/x/sys/unix https://github.com/golang/sys.git
-	@glide mirror set https://golang.org/x/image/font https://github.com/golang/image.git
-	@glide mirror set https://golang.org/x/image/math/fixed https://github.com/golang/image.git
-	@glide get  github.com/pilu/fresh
-	@glide install
+	@go get  github.com/json-iterator/go
+	@go get  github.com/pilu/fresh
 
 .PHONY: dependence
