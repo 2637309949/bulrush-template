@@ -3,13 +3,14 @@ module github.com/2637309949/bulrush-template
 go 1.12
 
 require (
-	github.com/2637309949/bulrush v0.0.0-20190608112205-ae90cdcb7358
+	github.com/2637309949/bulrush v0.0.0-20190609040432-559afa401090
 	github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
 	github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f
 	github.com/2637309949/bulrush-limit v0.0.0-20190604090049-8f1a94e98d64
 	github.com/2637309949/bulrush-logger v0.0.0-20190605130005-aa61b04c2689
+	github.com/2637309949/bulrush-openapi v0.0.0-00010101000000-000000000000
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
 	github.com/2637309949/bulrush-role v0.0.0-20190602153702-2558353660b9
 	github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be
@@ -25,6 +26,13 @@ require (
 	github.com/thoas/go-funk v0.4.0
 	golang.org/x/image v0.0.0-20190523035834-f03afa92d3ff // indirect
 )
+
+// ## just for dev
+replace github.com/2637309949/bulrush => ../bulrush
+
+replace github.com/2637309949/bulrush-openapi => ../bulrush-openapi
+
+// ## end
 
 replace golang.org/x/text v0.3.0 => github.com/golang/text v0.3.0
 

@@ -28,7 +28,8 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Captcha)
 	app.Use(plugins.Identify)
 	app.Use(plugins.Role)
-	app.Use(Model, Route)
+	app.Use(plugins.OpenAPI)
+	app.Use(Model, Route, OpenAPI)
 
 	// mount models routers
 	app.PostUse(addition.Mongo.AutoHook)
