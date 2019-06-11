@@ -9,9 +9,8 @@
 package plugins
 
 import (
-	"fmt"
-
 	role "github.com/2637309949/bulrush-role"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,7 +18,7 @@ import (
 var Role = &role.Role{
 	RoleHandler: func(c *gin.Context, action string) bool {
 		actions := role.TransformAction(action)
-		fmt.Printf("actions: %s\n", actions)
-		return false
+		addition.Logger.Debug("actions: %s\n", actions)
+		return true
 	},
 }

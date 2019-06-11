@@ -32,6 +32,8 @@ replace github.com/2637309949/bulrush => ../bulrush
 
 replace github.com/2637309949/bulrush-openapi => ../bulrush-openapi
 
+replace github.com/2637309949/bulrush-addition => ../bulrush-addition
+
 // ## end
 
 replace golang.org/x/text v0.3.0 => github.com/golang/text v0.3.0
