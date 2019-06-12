@@ -44,11 +44,21 @@ $ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
 #### For Apidoc
+
 ```shell
 $ make -f Makefile.api
 ```
 
 #### For Prod
+    // Remove those dev lines in go.mod file
+    // ## just for dev
+    replace github.com/2637309949/bulrush => ../bulrush
+    replace github.com/2637309949/bulrush-openapi => ../bulrush-openapi
+    replace github.com/2637309949/bulrush-addition => ../bulrush-addition
+    replace github.com/2637309949/bulrush-limit => ../bulrush-limit
+    ...
+    // ## end
+
 ```shell
 $ make
 ```
