@@ -3,7 +3,7 @@ module github.com/2637309949/bulrush-template
 go 1.12
 
 require (
-	github.com/2637309949/bulrush v0.0.0-20190609040432-559afa401090
+	github.com/2637309949/bulrush v0.0.0-20190611151459-bf0d063f6f83
 	github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
@@ -33,6 +33,8 @@ replace github.com/2637309949/bulrush => ../bulrush
 replace github.com/2637309949/bulrush-openapi => ../bulrush-openapi
 
 replace github.com/2637309949/bulrush-addition => ../bulrush-addition
+
+replace github.com/2637309949/bulrush-limit => ../bulrush-limit
 
 // ## end
 
