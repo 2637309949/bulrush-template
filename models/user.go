@@ -1,10 +1,6 @@
-/**
- * @author [author]
- * @email [example@mail.com]
- * @create date 2019-01-16 20:49:40
- * @modify date 2019-01-16 20:49:40
- * @desc [description]
- */
+// Copyright (c) 2018-2020 Double All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
 
 package models
 
@@ -43,6 +39,8 @@ func RegisterUser(r *gin.RouterGroup) {
 		addition.Logger.Info("before")
 	}).Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
+	}).Auth(func(c *gin.Context) bool {
+		return true
 	})
 	addition.Mongo.API.One(r, "user")
 	addition.Mongo.API.Create(r, "user")
