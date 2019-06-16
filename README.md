@@ -31,6 +31,36 @@
     ├── utils           # utils tools
     └── vendor          # dependence listing
 
+### Build structure
+
+    build
+    │
+    ├── assets
+    │   ├── flash.jpg
+    │   └── public
+    │       ├── index.html
+    │       └── upload
+    ├── conf
+    │   ├── index.go
+    │   └── yaml
+    │       ├── dev.yaml
+    │       ├── local.yaml
+    │       ├── prod.yaml
+    │       └── test.yaml
+    ├── Dockerfile
+    ├── docs
+    │   ├── docs.go
+    │   ├── swagger.json
+    │   └── swagger.yaml
+    ├── logs
+    │   ├── combined
+    │   │   └── 2019_06.05_04:51.log
+    │   ├── error
+    │   │   └── 2019_06.05_04:51.log
+    │   └── http
+    │       └── 2019_06.05_04:51.log
+    └── web
+
 #### For Dev
 ```shell
 # Hot-start 
