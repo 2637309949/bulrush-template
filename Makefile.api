@@ -1,4 +1,4 @@
 doc:
 	@echo "\033[32mBuilding doc file\033[0m"
-	@apidoc -i routes/ -o ./assets/public/apidoc
+	@swag init
 .PHONY: doc

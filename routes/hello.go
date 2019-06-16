@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/services"
 	"github.com/2637309949/bulrush_template/models/nosql"
 	"github.com/gin-contrib/cache"
@@ -18,26 +19,36 @@ import (
 	"github.com/kataras/go-events"
 )
 
-// RegisterHello for routes
-func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter) {
-	event.On("hello", func(payload ...interface{}) {
-		message := payload[0].(string)
-		fmt.Println(message)
-	})
+// @Summary 缓存路由
+// @Description 测试缓存路由
+// @Tags Cache
+// @Accept mpfd
+// @Produce json
+// @Param accessToken query string true "令牌"
+// @Success 200 {string} json "{"message": "ok"}"
+// @Failure 400 {string} json "{"message": "failure"}"
+// @Router /chache [get]
+func cachePage(router *gin.RouterGroup, event events.EventEmmiter) {
 	store := persistence.NewInMemoryStore(time.Second)
+	router.GET("/chache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
+		fmt.Println("no chache")
+		c.JSON(http.StatusOK, gin.H{
+			"message": "ok",
+		})
+	}))
+}
 
-	/**
-	     * @api {get} /ping 数据库测试
-	     * @apiGroup Test
-	     * @apiDescription 测试系统可用性
-	     * @apiParam {String} accessToken        认证令牌
-	     * @apiSuccessExample {json}             正常返回
-	     * HTTP/1.1 200 OK
-	     * {
-		 *        "message":    "ok"
-		 * }
-	*/
-	router.GET("/ping", func(c *gin.Context) {
+// @Summary MGO测试
+// @Description MGO测试
+// @Tags MGO
+// @Accept mpfd
+// @Produce json
+// @Param accessToken query string true "令牌"
+// @Success 200 {string} json "{"message": "ok"}"
+// @Failure 400 {string} json "{"message": "failure"}"
+// @Router /mgoTest [get]
+func ping(router *gin.RouterGroup, event events.EventEmmiter) {
+	router.GET("/mgoTest", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
 			nosql.User{
 				Name:     "double",
@@ -52,22 +63,18 @@ func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter) {
 		users := services.FindUsers(bson.M{"name": "double"})
 		c.JSON(http.StatusOK, users)
 	})
+}
 
-	/**
-	     * @api {get} /chache 缓存测试
-	     * @apiGroup Test
-	     * @apiDescription 测试系统可用性
-	     * @apiParam {String} accessToken        认证令牌
-	     * @apiSuccessExample {json}             正常返回
-	     * HTTP/1.1 200 OK
-	     * {
-		 *        "message":    "ok"
-		 * }
-	*/
-	router.GET("/chache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
-		fmt.Println("no chache")
-		c.JSON(http.StatusOK, gin.H{
-			"message": "ok",
-		})
-	}))
+func onHello(event events.EventEmmiter) {
+	event.On("hello", func(payload ...interface{}) {
+		message := payload[0].(string)
+		fmt.Println(message)
+	})
+}
+
+// RegisterHello defined hello routes
+func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+	ri.Register(onHello)
+	ri.Register(ping)
+	ri.Register(cachePage)
 }

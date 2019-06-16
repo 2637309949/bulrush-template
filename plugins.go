@@ -15,6 +15,7 @@ import (
 )
 
 // appUsePlugins add plugin to application
+// Just for test or app booster, remove apidoc
 func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Limit)
 	app.Use(plugins.Proxy)
@@ -26,7 +27,6 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(Model, Route, OpenAPI)
-
 	// mount models routers
 	app.PostUse(addition.Mongo)
 	// mount models routers

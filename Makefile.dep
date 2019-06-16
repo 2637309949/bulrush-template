@@ -1,7 +1,6 @@
 dependence:
 	@echo "\033[32mInstalling dependence\033[0m"
-	@npm install apidoc --global
 	@go get  github.com/json-iterator/go
 	@go get  github.com/pilu/fresh
-
+	
 .PHONY: dependence

@@ -4,7 +4,7 @@ target: dependence doc bin migration clean
 
 dependence:
 	@echo "\033[32mInstalling dependence\033[0m"
-	@npm install apidoc --global
+	@go get  github.com/json-iterator/go
 	@go mod tidy
 bin:
 	@echo "\033[32mBuilding bin file\033[0m"
@@ -12,7 +12,7 @@ bin:
 
 doc:
 	@echo "\033[32mBuilding doc file\033[0m"
-	@apidoc -i routes/ -o ./assets/public/apidoc
+	@swag init
 
 migration:
 	@echo "\033[32mMigrating files\033[0m"
@@ -20,6 +20,7 @@ migration:
 	@mkdir -p ./build/conf
 	@cp -rf Dockerfile ./build
 	@cp -rf assets ./build
+	@cp -rf docs ./build
 	@cp -rf conf ./build
 	@cd conf && cp -rf `ls | grep -v index.go | xargs` ../build/conf && cd ../
 	@cp -rf logs ./build

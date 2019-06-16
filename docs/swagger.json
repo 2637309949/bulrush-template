@@ -1,0 +1,136 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "bulrush web library template",
+        "title": "bulrush-template api",
+        "termsOfService": "https://github.com/2637309949/bulrush",
+        "contact": {
+            "name": "bulrush-template",
+            "url": "https://github.com/2637309949/bulrush",
+            "email": "2637309949@qq.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "127.0.0.1:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/chache": {
+            "get": {
+                "description": "测试缓存路由",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cache"
+                ],
+                "summary": "缓存路由",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "令牌",
+                        "name": "accessToken",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"message\": \"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "{\"message\": \"failure\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/mgoTest": {
+            "get": {
+                "description": "MGO测试",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "MGO"
+                ],
+                "summary": "MGO测试",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "令牌",
+                        "name": "accessToken",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"message\": \"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "{\"message\": \"failure\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testsql": {
+            "get": {
+                "description": "MGO测试",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GORM"
+                ],
+                "summary": "MGO测试",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "令牌",
+                        "name": "accessToken",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"message\": \"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "{\"message\": \"failure\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

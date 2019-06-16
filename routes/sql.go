@@ -8,13 +8,23 @@ import (
 	"net/http"
 	"reflect"
 
+	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush_template/addition"
 	"github.com/2637309949/bulrush_template/models/sql"
 	"github.com/gin-gonic/gin"
+	"github.com/kataras/go-events"
 )
 
-// RegisterSQL for routes
-func RegisterSQL(router *gin.RouterGroup) {
+// @Summary MGO测试
+// @Description MGO测试
+// @Tags GORM
+// @Accept mpfd
+// @Produce json
+// @Param accessToken query string true "令牌"
+// @Success 200 {string} json "{"message": "ok"}"
+// @Failure 400 {string} json "{"message": "failure"}"
+// @Router /testsql [get]
+func testsql(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/testsql", func(c *gin.Context) {
 		addition.GORM.DB.AutoMigrate(&sql.Product{})
 		addition.GORM.DB.Create(&sql.Product{Code: "L1212", Price: 1000})
@@ -22,4 +32,9 @@ func RegisterSQL(router *gin.RouterGroup) {
 		addition.GORM.DB.Find(products)
 		c.JSON(http.StatusOK, products)
 	})
+}
+
+// RegisterSQL for routes
+func RegisterSQL(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+	ri.Register(testsql)
 }

@@ -13,7 +13,7 @@ func FindUsers(match map[string]interface{}) interface{} {
 	// users := []User{} 需要具体化时用Type去声明变量，否则直接用反射体
 	users := addition.Mongo.Vars("user")
 	User := addition.Mongo.Model("user")
-	User.Find(match).All(&users)
+	User.Find(match).All(users)
 	return users
 }
 
