@@ -38,6 +38,7 @@ require (
 	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
 	github.com/stretchr/testify v1.3.0
 	github.com/thoas/go-funk v0.4.0
+	golang.org/x/image v0.0.0-20190616094056-33659d3de4f5 // indirect
 )
 
 replace cloud.google.com/go => github.com/googleapis/google-cloud-go v0.40.0
