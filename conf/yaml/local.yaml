@@ -31,3 +31,6 @@ redis:
   opts:
     password: ''
     db: 0
+sql:
+  dbType: 'mysql'
+  url: 'root:111111@/test?charset=utf8&parseTime=True&loc=Local'

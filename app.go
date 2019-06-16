@@ -7,6 +7,7 @@ package main
 import (
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/conf"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 // InitApp init applications

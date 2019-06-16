@@ -2,13 +2,13 @@
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
 
-package models
+package nosql
 
 import (
 	"github.com/2637309949/bulrush-template/addition"
 )
 
-// Param info
+// Param defined struct
 type Param struct {
 	Base  `bson:",inline"`
 	Code  string      `bson:"code" form:"code" json:"code" xml:"code"`

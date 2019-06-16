@@ -29,6 +29,8 @@ func appUsePlugins(app bulrush.Bulrush) {
 
 	// mount models routers
 	app.PostUse(addition.Mongo.AutoHook)
+	// mount models routers
+	app.PostUse(addition.GORM.AutoHook)
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
