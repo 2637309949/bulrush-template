@@ -6,6 +6,7 @@ package routes
 
 import (
 	"net/http"
+	"reflect"
 
 	"github.com/2637309949/bulrush_template/addition"
 	"github.com/2637309949/bulrush_template/models/sql"
@@ -17,9 +18,8 @@ func RegisterSQL(router *gin.RouterGroup) {
 	router.GET("/testsql", func(c *gin.Context) {
 		addition.GORM.DB.AutoMigrate(&sql.Product{})
 		addition.GORM.DB.Create(&sql.Product{Code: "L1212", Price: 1000})
-
-		var products []sql.Product
-		addition.GORM.DB.Find(&products)
+		products := reflect.New(reflect.SliceOf(reflect.ValueOf(sql.Product{}).Type())).Interface()
+		addition.GORM.DB.Find(products)
 		c.JSON(http.StatusOK, products)
 	})
 }

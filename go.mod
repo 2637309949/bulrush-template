@@ -13,7 +13,7 @@ replace github.com/2637309949/bulrush-limit => ../bulrush-limit
 
 replace github.com/2637309949/bulrush-template => ../bulrush-template
 
-replace github.com/jinzhu/gorm => /home/double/go/src/github.com/jinzhu/gorm
+// replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
 
 // ## end
 
@@ -33,13 +33,11 @@ require (
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
-	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
 	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
 	github.com/stretchr/testify v1.3.0
 	github.com/thoas/go-funk v0.4.0
-	golang.org/x/image v0.0.0-20190523035834-f03afa92d3ff // indirect
 )
 
 replace cloud.google.com/go => github.com/googleapis/google-cloud-go v0.40.0
