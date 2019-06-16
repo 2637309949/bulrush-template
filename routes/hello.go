@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/services"
+	"github.com/2637309949/bulrush_template/models/nosql"
 	"github.com/gin-contrib/cache"
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"
@@ -39,11 +39,11 @@ func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter) {
 	*/
 	router.GET("/ping", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
-			models.User{
+			nosql.User{
 				Name:     "double",
 				Password: "111111",
 				Age:      24,
-				Base: models.Base{
+				Base: nosql.Base{
 					Creator:  bson.NewObjectId(),
 					Modifier: bson.NewObjectId(),
 				},
