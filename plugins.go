@@ -26,7 +26,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Identify)
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
-	app.Use(Model, Route, OpenAPI)
+	app.Use(Model, Route, Task, OpenAPI)
 	// mount models routers
 	app.PostUse(addition.Mongo)
 	// mount models routers

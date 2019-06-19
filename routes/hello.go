@@ -72,9 +72,26 @@ func onHello(event events.EventEmmiter) {
 	})
 }
 
+// @Summary Task测试
+// @Description Task测试
+// @Tags TASK
+// @Accept mpfd
+// @Produce json
+// @Param accessToken query string true "令牌"
+// @Success 200 {string} json "{"message": "ok"}"
+// @Failure 400 {string} json "{"message": "failure"}"
+// @Router /mgoTest [get]
+func calltask(router *gin.RouterGroup, event events.EventEmmiter) {
+	router.GET("/calltask", func(c *gin.Context) {
+		event.Emit("reminderEmails", "hello 2019")
+		c.JSON(http.StatusOK, gin.H{"message": "ok"})
+	})
+}
+
 // RegisterHello defined hello routes
 func RegisterHello(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
 	ri.Register(onHello)
 	ri.Register(ping)
 	ri.Register(cachePage)
+	ri.Register(calltask)
 }

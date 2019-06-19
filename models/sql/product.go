@@ -13,8 +13,8 @@ import (
 // Product defined struct
 type Product struct {
 	gorm.Model
-	Code  string
-	Price uint
+	Code  string `bson:"code" form:"code" json:"code" xml:"code"`
+	Price uint   `bson:"price" form:"price" json:"price" xml:"price"`
 }
 
 // Register model

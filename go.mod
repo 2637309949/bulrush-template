@@ -34,6 +34,7 @@ require (
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
 	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
@@ -41,6 +42,7 @@ require (
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
 	github.com/thoas/go-funk v0.4.0
+	golang.org/x/image v0.0.0-20190618124811-92942e4437e2 // indirect
 )
 
 replace cloud.google.com/go => github.com/googleapis/google-cloud-go v0.40.0
