@@ -13,12 +13,12 @@ replace github.com/2637309949/bulrush-limit => ../bulrush-limit
 
 replace github.com/2637309949/bulrush-template => ../bulrush-template
 
-// replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
+replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
 
 // ## end
 
 require (
-	github.com/2637309949/bulrush v0.0.0-20190615094031-919971fe3950
+	github.com/2637309949/bulrush v0.0.0-20190621133632-29b80bf43136
 	github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
@@ -38,11 +38,13 @@ require (
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
 	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
+	github.com/robfig/cron v1.2.0
 	github.com/stretchr/testify v1.3.0
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
 	github.com/thoas/go-funk v0.4.0
 	golang.org/x/image v0.0.0-20190618124811-92942e4437e2 // indirect
+	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 )
 
 replace cloud.google.com/go => github.com/googleapis/google-cloud-go v0.40.0

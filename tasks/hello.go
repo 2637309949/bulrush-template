@@ -5,9 +5,9 @@
 package tasks
 
 import (
-	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush_template/addition"
 	"github.com/kataras/go-events"
+	"gopkg.in/robfig/cron.v2"
 )
 
 // RegisterHello defined hello routes
@@ -23,9 +23,9 @@ func (e reminderEmails) Run() {
 }
 
 // RegisterHello defined hello task
-func RegisterHello(job *bulrush.Jobrunner, emmiter events.EventEmmiter) {
-	emmiter.On("reminderEmails", func(payload ...interface{}) {
-		message := payload[0].(string)
-		job.Schedule("0/5 * * * * ?", reminderEmails{message})
+func RegisterHello(schedule *cron.Cron, emmiter events.EventEmmiter) {
+	schedule.AddFunc("@every 10s", func() {
+		addition.Logger.Info("Every 5 sec send reminder emails \n")
 	})
+	schedule.Start()
 }
