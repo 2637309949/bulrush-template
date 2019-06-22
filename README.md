@@ -136,7 +136,7 @@ var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInj
 ```go
 // Route for all routes register
 // Make sure all routes are initialized here
-var Route = bulrush.PNQuick(func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+var Route = bulrush.PNQuick(func(event events.EventEmmiter, ri *bulrush.ReverseInject) {
 	ri.Register(routes.RegisterHello)
 	ri.Register(routes.RegisterSQL)
 	ri.Register(routes.RegisterMq)
