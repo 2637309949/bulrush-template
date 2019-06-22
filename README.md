@@ -1,8 +1,6 @@
-# Bulrush Template
+# Project structure
 
-## Project structure
-
-### Code structure
+## Code structure
 
     bulrush-template
     │
@@ -29,7 +27,7 @@
     ├── utils           # utils tools
     └── vendor          # dependence listing
 
-### Builded structure
+## Builded structure
 
     build
     │
@@ -59,9 +57,9 @@
     │       └── 2019_06.05_04:51.log
     └── web
 
-## Usage
+# Usage
 
-### For Dev
+## For Dev
 ```shell
 # Hot-start 
 $ make -f Makefile.dep
@@ -73,13 +71,13 @@ $ make -f Makefile.dev
 $ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
-### For Apidoc
+## For Apidoc
 
 ```shell
 $ make -f Makefile.api
 ```
 
-### For Prod
+## For Prod
 
 ```shell
 $ make
@@ -94,7 +92,7 @@ $ make
     // ## end
 
 
-#### Run Test
+## Run Test
 
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$"
@@ -104,14 +102,14 @@ Or run with log
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$" -v
 ```
 
-### For Code Dev
+## For Code Dev
 
-#### Defined you model in below dir
+### Defined you model in below dir
     models
     ├── sql
     ├── nosql
 
-#### Register you model on db driver
+### Register you model on db driver
 
 ```go
 addition.GORM.Register(map[string]interface{}{
@@ -121,7 +119,7 @@ addition.GORM.Register(map[string]interface{}{
     "autoHook":  false,
 })
 ```
-#### Register you model to a global Model Plugin
+### Register you model to a global Model Plugin
 
 ```go
 // Model register
@@ -133,12 +131,11 @@ var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInj
 })
 ```
 
-#### Register global Model Plugin to bulrush
+### Register global Model Plugin to bulrush
 
 ```go
 app.Use(Model, Route, Task, OpenAPI)
 ```
-
 
 ## MIT License
 Copyright (c) 2018-2020 Double
