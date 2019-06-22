@@ -1,10 +1,8 @@
-# Bulrush Framework
+# Bulrush Template
 
-![Bulrush flash](./assets/flash.jpg)
+## Project structure
 
-## Usage
-
-### Project structure
+### Code structure
 
     bulrush-template
     │
@@ -31,7 +29,7 @@
     ├── utils           # utils tools
     └── vendor          # dependence listing
 
-### Build structure
+### Builded structure
 
     build
     │
@@ -61,7 +59,9 @@
     │       └── 2019_06.05_04:51.log
     └── web
 
-#### For Dev
+## Usage
+
+### For Dev
 ```shell
 # Hot-start 
 $ make -f Makefile.dep
@@ -73,13 +73,17 @@ $ make -f Makefile.dev
 $ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
-#### For Apidoc
+### For Apidoc
 
 ```shell
 $ make -f Makefile.api
 ```
 
-#### For Prod
+### For Prod
+
+```shell
+$ make
+```
     // Remove those dev lines in go.mod file
     // ## just for dev
     replace github.com/2637309949/bulrush => ../bulrush
@@ -89,11 +93,9 @@ $ make -f Makefile.api
     ...
     // ## end
 
-```shell
-$ make
-```
 
 #### Run Test
+
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$"
 ```
@@ -101,6 +103,42 @@ Or run with log
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$" -v
 ```
+
+### For Code Dev
+
+#### Defined you model in below dir
+    models
+    ├── sql
+    ├── nosql
+
+#### Register you model on db driver
+
+```go
+addition.GORM.Register(map[string]interface{}{
+    "db":        "test",
+    "name":      "product",
+    "reflector": &Product{},
+    "autoHook":  false,
+})
+```
+#### Register you model to a global Model Plugin
+
+```go
+// Model register
+// Make sure all models are initialized here
+var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+	ri.Register(nosql.RegisterUser)
+	ri.Register(nosql.RegisterPermission)
+	ri.Register(sql.RegisterProduct)
+})
+```
+
+#### Register global Model Plugin to bulrush
+
+```go
+app.Use(Model, Route, Task, OpenAPI)
+```
+
 
 ## MIT License
 Copyright (c) 2018-2020 Double
