@@ -16,5 +16,6 @@ import (
 var Route = bulrush.PNQuick(func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
 	ri.Register(routes.RegisterHello)
 	ri.Register(routes.RegisterSQL)
+	ri.Register(routes.RegisterMq)
 	event.Emit("hello", "this is my payload to hello router")
 })

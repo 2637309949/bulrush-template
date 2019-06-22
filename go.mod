@@ -13,18 +13,21 @@ replace github.com/2637309949/bulrush-limit => ../bulrush-limit
 
 replace github.com/2637309949/bulrush-template => ../bulrush-template
 
+replace github.com/2637309949/bulrush-mq => ../bulrush-mq
+
 replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
 
 // ## end
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190621133632-29b80bf43136
-	github.com/2637309949/bulrush-addition v0.0.0-20190608111855-725ea7bbda0e
+	github.com/2637309949/bulrush-addition v0.0.0-20190621152817-2fd3e1391a49
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
 	github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f
 	github.com/2637309949/bulrush-limit v0.0.0-20190604090049-8f1a94e98d64
 	github.com/2637309949/bulrush-logger v0.0.0-20190605130005-aa61b04c2689
+	github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3
 	github.com/2637309949/bulrush-openapi v0.0.0-00010101000000-000000000000
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
 	github.com/2637309949/bulrush-role v0.0.0-20190614132931-262fdeaab12d
@@ -34,14 +37,15 @@ require (
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
 	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
-	github.com/robfig/cron v1.2.0
 	github.com/stretchr/testify v1.3.0
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
 	github.com/thoas/go-funk v0.4.0
+	golang.org/x/image v0.0.0-20190622003408-7e034cad6442 // indirect
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 )
 
