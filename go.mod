@@ -17,6 +17,8 @@ replace github.com/2637309949/bulrush-mq => ../bulrush-mq
 
 replace github.com/2637309949/bulrush-role => ../bulrush-role
 
+replace github.com/2637309949/bulrush-captcha => ../bulrush-captcha
+
 replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
 
 // ## end
@@ -41,7 +43,7 @@ require (
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
-	github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685
+	github.com/mojocn/base64Captcha v0.0.0-20190509095025-87c9c59224d8
 	github.com/stretchr/testify v1.3.0
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
