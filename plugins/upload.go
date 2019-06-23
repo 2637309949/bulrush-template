@@ -5,13 +5,12 @@
 package plugins
 
 import (
-	"path"
-
 	upload "github.com/2637309949/bulrush-upload"
 )
 
-// Upload Plugin init
-var Upload = &upload.Upload{
-	URLPrefix: "/public/upload",
-	Path:      path.Join("assets/public/upload", ""),
+func initUpload() *upload.Upload {
+	return upload.New()
 }
+
+// Upload Plugin init
+var Upload = initUpload()

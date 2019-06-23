@@ -21,6 +21,8 @@ replace github.com/2637309949/bulrush-captcha => ../bulrush-captcha
 
 replace github.com/2637309949/bulrush-delivery => ../bulrush-delivery
 
+replace github.com/2637309949/bulrush-upload => ../bulrush-upload
+
 // ## end
 
 require (
