@@ -10,7 +10,7 @@ import (
 
 // Param defined struct
 type Param struct {
-	Base  `bson:",inline"`
+	Model `bson:",inline"`
 	Code  string      `bson:"code" form:"code" json:"code" xml:"code"`
 	Desc  string      `bson:"desc" form:"desc" json:"desc" xml:"desc"`
 	Value interface{} `bson:"value" form:"value" json:"value" xml:"value"`

@@ -12,7 +12,7 @@ import (
 
 // User info
 type User struct {
-	Base     `bson:",inline"`
+	Model    `bson:",inline"`
 	Name     string          `bson:"name" form:"name" json:"name" xml:"name"`
 	Password string          `bson:"password" form:"password" json:"password" xml:"password" `
 	Age      int             `bson:"age" form:"age" json:"age" xml:"age"`

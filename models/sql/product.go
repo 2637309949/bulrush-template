@@ -5,14 +5,13 @@
 package sql
 
 import (
-	agorm "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush_template/addition"
 	"github.com/gin-gonic/gin"
 )
 
 // Product defined struct
 type Product struct {
-	agorm.Model
+	Model
 	Code  string `bson:"code" form:"code" json:"code" xml:"code"`
 	Price uint   `bson:"price" form:"price" json:"price" xml:"price"`
 }

@@ -11,7 +11,7 @@ import (
 
 // Role info
 type Role struct {
-	Base        `bson:",inline"`
+	Model       `bson:",inline"`
 	Name        string          `bson:"name" form:"name" json:"name" xml:"name"`
 	Type        string          `bson:"type" form:"type" json:"type" xml:"type"`
 	Permissions []bson.ObjectId `bson:"permissions" form:"permissions" json:"permissions" xml:"permissions" `
