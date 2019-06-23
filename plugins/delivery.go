@@ -5,13 +5,8 @@
 package plugins
 
 import (
-	"path"
-
 	delivery "github.com/2637309949/bulrush-delivery"
 )
 
 // Delivery Upload, Logger, Captcha Plugin init
-var Delivery = &delivery.Delivery{
-	URLPrefix: "/public",
-	Path:      path.Join("assets/public", ""),
-}
+var Delivery = delivery.New()
