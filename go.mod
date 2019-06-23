@@ -15,6 +15,8 @@ replace github.com/2637309949/bulrush-template => ../bulrush-template
 
 replace github.com/2637309949/bulrush-mq => ../bulrush-mq
 
+replace github.com/2637309949/bulrush-role => ../bulrush-role
+
 replace github.com/jinzhu/gorm => /home/double/Work/K11/repo/gorm
 
 // ## end
@@ -30,7 +32,7 @@ require (
 	github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3
 	github.com/2637309949/bulrush-openapi v0.0.0-00010101000000-000000000000
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
-	github.com/2637309949/bulrush-role v0.0.0-20190614132931-262fdeaab12d
+	github.com/2637309949/bulrush-role v0.0.0-20190622185722-8ff98019ef88
 	github.com/2637309949/bulrush-template v0.0.0-20190616040306-f7afe6bedab8
 	github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
@@ -44,7 +46,6 @@ require (
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
 	github.com/thoas/go-funk v0.4.0
-	golang.org/x/image v0.0.0-20190622003408-7e034cad6442 // indirect
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 )
 
