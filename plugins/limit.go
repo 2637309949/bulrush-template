@@ -17,12 +17,12 @@ var Limit = &limit.Limit{
 			limit.Rule{
 				Methods: []string{"GET"},
 				Match:   "/api/v1/user*",
-				Rate:    1,
+				Rate:    15,
 			},
 			limit.Rule{
 				Methods: []string{"GET"},
 				Match:   "/api/v1/role*",
-				Rate:    2,
+				Rate:    5,
 			},
 		},
 		Model: &limit.RedisModel{
