@@ -30,9 +30,9 @@ func appUsePlugins(app bulrush.Bulrush) {
 
 	app.Use(Model, Route, Task, OpenAPI)
 	// mount models routers
-	app.PostUse(addition.Mongo)
+	app.PostUse(addition.MGOExt)
 	// mount models routers
-	app.PostUse(addition.GORM)
+	app.PostUse(addition.GORMExt)
 	// PNQuick Plugin init
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {

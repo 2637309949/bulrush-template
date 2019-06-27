@@ -18,7 +18,7 @@ type Product struct {
 
 // Register model
 func init() {
-	addition.GORM.Register(map[string]interface{}{
+	addition.GORMExt.Register(map[string]interface{}{
 		"db":        "test",
 		"name":      "product",
 		"reflector": &Product{},
@@ -28,15 +28,15 @@ func init() {
 
 // RegisterProduct inject function
 func RegisterProduct(r *gin.RouterGroup) {
-	addition.GORM.API.List(r, "product").Pre(func(c *gin.Context) {
+	addition.GORMExt.API.List(r, "product").Pre(func(c *gin.Context) {
 		addition.Logger.Info("before")
 	}).Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	})
-	addition.GORM.API.One(r, "product")
-	addition.GORM.API.Create(r, "product")
-	addition.GORM.API.Update(r, "product")
-	addition.GORM.API.Delete(r, "product")
+	addition.GORMExt.API.One(r, "product")
+	addition.GORMExt.API.Create(r, "product")
+	addition.GORMExt.API.Update(r, "product")
+	addition.GORMExt.API.Delete(r, "product")
 }

@@ -19,7 +19,7 @@ type Role struct {
 
 // Register model
 func init() {
-	addition.Mongo.Register(map[string]interface{}{
+	addition.MGOExt.Register(map[string]interface{}{
 		"db":        "test",
 		"name":      "role",
 		"reflector": &Role{},

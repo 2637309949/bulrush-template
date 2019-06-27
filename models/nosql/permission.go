@@ -21,7 +21,7 @@ type Permission struct {
 
 // Register model
 func init() {
-	addition.Mongo.Register(map[string]interface{}{
+	addition.MGOExt.Register(map[string]interface{}{
 		"db":        "test",
 		"name":      "permission",
 		"reflector": &Permission{},
@@ -31,5 +31,5 @@ func init() {
 
 // RegisterPermission inject function
 func RegisterPermission(r *gin.RouterGroup) {
-	addition.Mongo.API.ALL(r, "permission")
+	addition.MGOExt.API.ALL(r, "permission")
 }

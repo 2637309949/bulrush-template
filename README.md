@@ -112,7 +112,7 @@ Or run with log
 ### Register you model on db driver
 
 ```go
-addition.GORM.Register(map[string]interface{}{
+addition.GORMExt.Register(map[string]interface{}{
     "db":        "test",
     "name":      "product",
     "reflector": &Product{},

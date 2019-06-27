@@ -5,9 +5,9 @@
 package addition
 
 import (
-	"github.com/2637309949/bulrush-addition/gorm"
+	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/conf"
 )
 
-// GORM application mongo store
-var GORM = gorm.New(conf.Cfg)
+// GORMExt application mongo store
+var GORMExt = gormext.New(conf.Cfg)

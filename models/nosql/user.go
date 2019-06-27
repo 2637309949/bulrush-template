@@ -25,7 +25,7 @@ type User struct {
 
 // Register model
 func init() {
-	addition.Mongo.Register(map[string]interface{}{
+	addition.MGOExt.Register(map[string]interface{}{
 		"db":        "test",
 		"name":      "user",
 		"reflector": &User{},
@@ -35,15 +35,16 @@ func init() {
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.Mongo.API.List(r, "user").Pre(func(c *gin.Context) {
-		addition.Logger.Info("before")
-	}).Post(func(c *gin.Context) {
-		addition.Logger.Info("after")
-	}).Auth(func(c *gin.Context) bool {
-		return true
-	})
-	addition.Mongo.API.One(r, "user")
-	addition.Mongo.API.Create(r, "user")
-	addition.Mongo.API.Update(r, "user")
-	addition.Mongo.API.Delete(r, "user")
+	// addition.MGOExt.API.List(r, "user").Pre(func(c *gin.Context) {
+	// 	addition.Logger.Info("before")
+	// }).Post(func(c *gin.Context) {
+	// 	addition.Logger.Info("after")
+	// }).Auth(func(c *gin.Context) bool {
+	// 	return true
+	// })
+	addition.MGOExt.API.Feature("feature").List(r, "user")
+	addition.MGOExt.API.One(r, "user")
+	addition.MGOExt.API.Create(r, "user")
+	addition.MGOExt.API.Update(r, "user")
+	addition.MGOExt.API.Delete(r, "user")
 }

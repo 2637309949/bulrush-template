@@ -5,9 +5,9 @@
 package addition
 
 import (
-	"github.com/2637309949/bulrush-addition/mgo"
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/conf"
 )
 
-// Mongo application mongo store
-var Mongo = mgo.New(conf.Cfg)
+// MGOExt application mongo store
+var MGOExt = mgoext.New(conf.Cfg)
