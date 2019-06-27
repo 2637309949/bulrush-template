@@ -26,12 +26,12 @@ var Logger = logger.CreateLogger(
 		// combined all level
 		&logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
-			Level:   logger.INFOLevel,
+			Level:   logger.SILLYLevel,
 			Maxsize: logger.Maxsize,
 		},
 		// console level
 		&logger.Transport{
-			Level: logger.INFOLevel,
+			Level: logger.SILLYLevel,
 		},
 	},
 )
