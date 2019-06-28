@@ -35,6 +35,7 @@ func RegisterProduct(r *gin.RouterGroup) {
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	})
+	addition.GORMExt.API.Feature("subProduct").List(r, "product")
 	addition.GORMExt.API.One(r, "product")
 	addition.GORMExt.API.Create(r, "product")
 	addition.GORMExt.API.Update(r, "product")
