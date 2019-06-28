@@ -10,7 +10,11 @@ import (
 	"github.com/2637309949/bulrush"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush_template/addition"
+	"github.com/2637309949/bulrush_template/models"
+	"github.com/2637309949/bulrush_template/openapi"
 	"github.com/2637309949/bulrush_template/plugins"
+	"github.com/2637309949/bulrush_template/routes"
+	"github.com/2637309949/bulrush_template/tasks"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +32,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
 
-	app.Use(Model, Route, Task, OpenAPI)
+	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
 	// mount models routers
 	app.PostUse(addition.MGOExt)
 	// mount models routers
