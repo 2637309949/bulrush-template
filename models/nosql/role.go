@@ -17,11 +17,8 @@ type Role struct {
 	Permissions []bson.ObjectId `bson:"permissions" form:"permissions" json:"permissions" xml:"permissions" `
 }
 
-// Register model
-func init() {
-	addition.MGOExt.Register(map[string]interface{}{
-		"db":        "test",
-		"name":      "role",
-		"reflector": &Role{},
-	})
-}
+var _ = addition.MGOExt.Register(map[string]interface{}{
+	"db":        "test",
+	"name":      "role",
+	"reflector": &Role{},
+})

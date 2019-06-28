@@ -19,15 +19,12 @@ type Permission struct {
 	Type  string        `bson:"type" form:"type" json:"type" xml:"type"`
 }
 
-// Register model
-func init() {
-	addition.MGOExt.Register(map[string]interface{}{
-		"db":        "test",
-		"name":      "permission",
-		"reflector": &Permission{},
-		"autoHook":  false,
-	})
-}
+var _ = addition.MGOExt.Register(map[string]interface{}{
+	"db":        "test",
+	"name":      "permission",
+	"reflector": &Permission{},
+	"autoHook":  false,
+})
 
 // RegisterPermission inject function
 func RegisterPermission(r *gin.RouterGroup) {

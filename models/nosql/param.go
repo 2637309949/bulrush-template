@@ -16,11 +16,8 @@ type Param struct {
 	Value interface{} `bson:"value" form:"value" json:"value" xml:"value"`
 }
 
-// Register model
-func init() {
-	addition.MGOExt.Register(map[string]interface{}{
-		"db":        "test",
-		"name":      "param",
-		"reflector": &Param{},
-	})
-}
+var _ = addition.MGOExt.Register(map[string]interface{}{
+	"db":        "test",
+	"name":      "param",
+	"reflector": &Param{},
+})

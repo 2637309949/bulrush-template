@@ -16,15 +16,12 @@ type Product struct {
 	Price uint   `bson:"price" form:"price" json:"price" xml:"price"`
 }
 
-// Register model
-func init() {
-	addition.GORMExt.Register(map[string]interface{}{
-		"db":        "test",
-		"name":      "product",
-		"reflector": &Product{},
-		"autoHook":  false,
-	})
-}
+var _ = addition.GORMExt.Register(map[string]interface{}{
+	"db":        "test",
+	"name":      "product",
+	"reflector": &Product{},
+	"autoHook":  false,
+})
 
 // RegisterProduct inject function
 func RegisterProduct(r *gin.RouterGroup) {

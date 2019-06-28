@@ -23,15 +23,12 @@ type User struct {
 	Roles    []bson.ObjectId `bson:"roles" form:"roles" json:"roles" xml:"roles" `
 }
 
-// Register model
-func init() {
-	addition.MGOExt.Register(map[string]interface{}{
-		"db":        "test",
-		"name":      "user",
-		"reflector": &User{},
-		"autoHook":  false,
-	})
-}
+var _ = addition.MGOExt.Register(map[string]interface{}{
+	"db":        "test",
+	"name":      "user",
+	"reflector": &User{},
+	"autoHook":  false,
+})
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
