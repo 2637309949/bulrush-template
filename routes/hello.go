@@ -54,7 +54,7 @@ func ping(router *gin.RouterGroup, event events.EventEmmiter) {
 				Name:     "double",
 				Password: "111111",
 				Age:      24,
-				Model: nosql.Model{
+				Base: nosql.Base{
 					Creator:  bson.NewObjectId(),
 					Modifier: bson.NewObjectId(),
 				},
