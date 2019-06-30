@@ -9,5 +9,8 @@ import (
 	"github.com/2637309949/bulrush-template/conf"
 )
 
+var mgoConf = &mgoext.Config{}
+var _ = conf.Cfg.Unmarshal("mongo", mgoConf)
+
 // MGOExt application mongo store
-var MGOExt = mgoext.New(conf.Cfg)
+var MGOExt = mgoext.New(mgoConf)
