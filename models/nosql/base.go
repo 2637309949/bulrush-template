@@ -9,8 +9,8 @@ import (
 	"github.com/globalsign/mgo/bson"
 )
 
-// Model common fields
-type Model struct {
+// Base common fields
+type Base struct {
 	mgoext.Model `bson:",inline"`
 	Creator      bson.ObjectId `ref:"user;up(password,age)" bson:"_creator" form:"_creator" json:"_creator" xml:"_creator"`
 	Modifier     bson.ObjectId `ref:"user" bson:"_modifier" form:"_modifier" json:"_modifier" xml:"_modifier" `

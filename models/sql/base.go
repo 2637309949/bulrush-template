@@ -8,7 +8,7 @@ import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 )
 
-// Model common fields
-type Model struct {
+// Base common fields
+type Base struct {
 	gormext.Model
 }

@@ -5,6 +5,7 @@
 package nosql
 
 import (
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
@@ -12,18 +13,17 @@ import (
 
 // Permission info
 type Permission struct {
-	Model `bson:",inline"`
-	Code  string        `bson:"code" form:"code" json:"code" xml:"code"`
-	Name  string        `bson:"name" form:"name" json:"name" xml:"name"`
-	Pid   bson.ObjectId `bson:"pid" form:"pid" json:"pid" xml:"pid"`
-	Type  string        `bson:"type" form:"type" json:"type" xml:"type"`
+	Base `bson:",inline"`
+	Code string        `bson:"code" form:"code" json:"code" xml:"code"`
+	Name string        `bson:"name" form:"name" json:"name" xml:"name"`
+	Pid  bson.ObjectId `bson:"pid" form:"pid" json:"pid" xml:"pid"`
+	Type string        `bson:"type" form:"type" json:"type" xml:"type"`
 }
 
-var _ = addition.MGOExt.Register(map[string]interface{}{
-	"db":        "test",
-	"name":      "permission",
-	"reflector": &Permission{},
-	"autoHook":  false,
+var _ = addition.MGOExt.Register(&mgoext.Profile{
+	DB:        "test",
+	Name:      "permission",
+	Reflector: &Permission{},
 })
 
 // RegisterPermission inject function

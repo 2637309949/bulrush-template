@@ -5,22 +5,24 @@
 package sql
 
 import (
+	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush_template/addition"
+
 	"github.com/gin-gonic/gin"
 )
 
 // Product defined struct
 type Product struct {
-	Model
+	Base
 	Code  string `bson:"code" form:"code" json:"code" xml:"code"`
 	Price uint   `bson:"price" form:"price" json:"price" xml:"price"`
 }
 
-var _ = addition.GORMExt.Register(map[string]interface{}{
-	"db":        "test",
-	"name":      "product",
-	"reflector": &Product{},
-	"autoHook":  false,
+var _ = addition.GORMExt.Register(&gormext.Profile{
+	DB:        "test",
+	Name:      "product",
+	Reflector: &Product{},
+	BanHook:   true,
 })
 
 // RegisterProduct inject function

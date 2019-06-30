@@ -5,20 +5,21 @@
 package nosql
 
 import (
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/globalsign/mgo/bson"
 )
 
 // Role info
 type Role struct {
-	Model       `bson:",inline"`
+	Base        `bson:",inline"`
 	Name        string          `bson:"name" form:"name" json:"name" xml:"name"`
 	Type        string          `bson:"type" form:"type" json:"type" xml:"type"`
 	Permissions []bson.ObjectId `bson:"permissions" form:"permissions" json:"permissions" xml:"permissions" `
 }
 
-var _ = addition.MGOExt.Register(map[string]interface{}{
-	"db":        "test",
-	"name":      "role",
-	"reflector": &Role{},
+var _ = addition.MGOExt.Register(&mgoext.Profile{
+	DB:        "test",
+	Name:      "role",
+	Reflector: &Role{},
 })
