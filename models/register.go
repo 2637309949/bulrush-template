@@ -16,5 +16,5 @@ import (
 var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(nosql.RegisterUser)
 	ri.Register(nosql.RegisterPermission)
-	ri.Register(sql.RegisterProduct)
+	ri.Register(sql.RegisterUser)
 })

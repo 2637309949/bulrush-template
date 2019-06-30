@@ -26,9 +26,9 @@ import (
 // @Router /testsql [get]
 func testsql(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/testsql", func(c *gin.Context) {
-		addition.GORMExt.DB.AutoMigrate(&sql.Product{})
-		addition.GORMExt.DB.Create(&sql.Product{Code: "L1212", Price: 1000})
-		products := reflect.New(reflect.SliceOf(reflect.ValueOf(sql.Product{}).Type())).Interface()
+		addition.GORMExt.DB.AutoMigrate(&sql.User{})
+		addition.GORMExt.DB.Create(&sql.User{Name: "L1212", Age: 23})
+		products := reflect.New(reflect.SliceOf(reflect.ValueOf(sql.User{}).Type())).Interface()
 		addition.GORMExt.DB.Find(products)
 		c.JSON(http.StatusOK, products)
 	})

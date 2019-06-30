@@ -11,3 +11,4 @@ import (
 
 // GORMExt application mongo store
 var GORMExt = gormext.New(conf.Cfg)
+var _ = GORMExt.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")

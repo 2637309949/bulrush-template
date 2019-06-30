@@ -7,6 +7,7 @@ package sql
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush_template/addition"
+	"github.com/gin-gonic/gin"
 )
 
 // User defined struct
@@ -20,4 +21,21 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 	DB:        "test",
 	Name:      "user",
 	Reflector: &User{},
+	BanHook:   true,
 })
+
+// RegisterUser inject function
+func RegisterUser(r *gin.RouterGroup) {
+	addition.GORMExt.API.List(r, "user").Pre(func(c *gin.Context) {
+		addition.Logger.Info("before")
+	}).Post(func(c *gin.Context) {
+		addition.Logger.Info("after")
+	}).Auth(func(c *gin.Context) bool {
+		return true
+	})
+	addition.GORMExt.API.Feature("subUser").List(r, "user")
+	addition.GORMExt.API.One(r, "user")
+	addition.GORMExt.API.Create(r, "user")
+	addition.GORMExt.API.Update(r, "user")
+	addition.GORMExt.API.Delete(r, "user")
+}
