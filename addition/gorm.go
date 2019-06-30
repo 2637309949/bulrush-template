@@ -5,7 +5,7 @@
 package addition
 
 import (
-	gormext "github.com/2637309949/bulrush-addition/gorm"
+	"github.com/2637309949/bulrush-addition/gormext"
 	"github.com/2637309949/bulrush-template/conf"
 )
 
