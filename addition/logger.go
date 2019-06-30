@@ -14,24 +14,24 @@ import (
 
 // Logger application logger
 var Logger = logger.CreateLogger(
-	logger.INFOLevel,
+	logger.INFO,
 	nil,
 	[]*logger.Transport{
 		// only for error
 		&logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
-			Level:   logger.ERRORLevel,
+			Level:   logger.ERROR,
 			Maxsize: logger.Maxsize,
 		},
 		// combined all level
 		&logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
-			Level:   logger.SILLYLevel,
+			Level:   logger.SILLY,
 			Maxsize: logger.Maxsize,
 		},
 		// console level
 		&logger.Transport{
-			Level: logger.SILLYLevel,
+			Level: logger.SILLY,
 		},
 	},
 )

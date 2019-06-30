@@ -23,6 +23,8 @@ replace github.com/2637309949/bulrush-delivery => ../bulrush-delivery
 
 replace github.com/2637309949/bulrush-upload => ../bulrush-upload
 
+replace github.com/2637309949/bulrush-logger => ../bulrush-logger
+
 // ## end
 
 require (
