@@ -1,4 +1,7 @@
+
 # Project structure
+
+![template flash](./assets/home.png)
 
 ## Code structure
 
