@@ -9,8 +9,8 @@ import (
 	"reflect"
 
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush_template/addition"
-	"github.com/2637309949/bulrush_template/models/sql"
+	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/models/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
 )

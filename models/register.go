@@ -6,8 +6,8 @@ package models
 
 import (
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush_template/models/nosql"
-	"github.com/2637309949/bulrush_template/models/sql"
+	"github.com/2637309949/bulrush-template/models/nosql"
+	"github.com/2637309949/bulrush-template/models/sql"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,7 +15,6 @@ import (
 // Make sure all models are initialized here
 var Model = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(nosql.RegisterUser)
-	ri.Register(nosql.RegisterPermission)
 	ri.Register(nosql.RegisterRole)
 	ri.Register(sql.RegisterUser)
 })

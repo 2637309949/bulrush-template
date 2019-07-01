@@ -11,7 +11,7 @@ import (
 
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/services"
-	"github.com/2637309949/bulrush_template/models/nosql"
+	"github.com/2637309949/bulrush-template/models/nosql"
 	"github.com/gin-contrib/cache"
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"

@@ -1,4 +1,4 @@
-module github.com/2637309949/bulrush_template
+module github.com/2637309949/bulrush-template
 
 go 1.12
 
@@ -29,7 +29,7 @@ replace github.com/2637309949/bulrush-logger => ../bulrush-logger
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190622124305-103243648496
-	github.com/2637309949/bulrush-addition v0.0.0-20190630141035-fe1b22bf1ac9
+	github.com/2637309949/bulrush-addition v0.0.0-20190701092214-5dc89ee16a8a
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
 	github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f
@@ -39,7 +39,6 @@ require (
 	github.com/2637309949/bulrush-openapi v0.0.0-00010101000000-000000000000
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
 	github.com/2637309949/bulrush-role v0.0.0-20190622185722-8ff98019ef88
-	github.com/2637309949/bulrush-template v0.0.0-20190616040306-f7afe6bedab8
 	github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea

@@ -6,7 +6,7 @@ package sql
 
 import (
 	gormext "github.com/2637309949/bulrush-addition/gormext"
-	"github.com/2637309949/bulrush_template/addition"
+	"github.com/2637309949/bulrush-template/addition"
 )
 
 // Role defined struct

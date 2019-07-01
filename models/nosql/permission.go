@@ -7,7 +7,6 @@ package nosql
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgoext"
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
 )
 
@@ -25,8 +24,3 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 	Name:      "permission",
 	Reflector: &Permission{},
 })
-
-// RegisterPermission inject function
-func RegisterPermission(r *gin.RouterGroup) {
-	addition.MGOExt.API.ALL(r, "permission")
-}

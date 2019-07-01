@@ -5,7 +5,7 @@
 package tasks
 
 import (
-	"github.com/2637309949/bulrush_template/addition"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/kataras/go-events"
 	"gopkg.in/robfig/cron.v2"
 )

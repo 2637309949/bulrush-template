@@ -7,6 +7,8 @@ github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3/go.mod h1:iS
 github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076/go.mod h1:md5nbelzT+3N8uCDY0e/W2QMBicGaEOCu7fqmTTSrXc=
 github.com/2637309949/bulrush-role v0.0.0-20190614132931-262fdeaab12d/go.mod h1:M+bqt5bzvTyoxqF+yz0MbYlkHXODNhfDN0rAzYgTj6w=
 github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be/go.mod h1:C9WW8uia9KwAqnHWOUFA8d2glXuLUb2ZOUn/2Dfz+ZU=
+github.com/2637309949/bulrush-template v0.0.0-20190701092233-27d37d4610fb h1:FqZNllKHSZ8bXsbsRVdGpsk3U/0RVu64Owg5LeeCyzc=
+github.com/2637309949/bulrush-template v0.0.0-20190701092233-27d37d4610fb/go.mod h1:MR8Ty5fle4GS0bePmvNGNvK+ZcDM5DpYVchSwlKIlzg=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/PuerkitoBio/purell v1.1.0 h1:rmGxhojJlM0tuKtfdvliR84CFHljx9ag64t2xmVkjK4=
 github.com/PuerkitoBio/purell v1.1.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=

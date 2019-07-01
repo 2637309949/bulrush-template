@@ -9,9 +9,9 @@ package main
 
 import (
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush_template/addition"
-	_ "github.com/2637309949/bulrush_template/docs"
-	"github.com/2637309949/bulrush_template/plugins"
+	"github.com/2637309949/bulrush-template/addition"
+	_ "github.com/2637309949/bulrush-template/docs"
+	"github.com/2637309949/bulrush-template/plugins"
 	"github.com/kataras/go-events"
 )
 
