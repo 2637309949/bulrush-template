@@ -14,6 +14,8 @@ var _ = conf.Cfg.Unmarshal("mongo", mgoConf)
 
 // MGOExt application mongo store
 var MGOExt = mgoext.New(mgoConf)
+
+// MGOExt init config
 var _ = MGOExt.Init(func(ext *mgoext.Mongo) {
 	ext.API.Opts.Prefix = "/template/mgo"
 })

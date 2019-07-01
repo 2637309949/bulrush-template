@@ -17,7 +17,7 @@ type User struct {
 	Name     string          `bson:"name" form:"name" json:"name" xml:"name"`
 	Password string          `bson:"password" form:"password" json:"password" xml:"password" `
 	Age      int             `bson:"age" form:"age" json:"age" xml:"age"`
-	Roles    []bson.ObjectId `ref:"role" bson:"roles" form:"roles" json:"roles" xml:"roles" `
+	Roles    []bson.ObjectId `br:"ref:role;up(password,age)" bson:"roles" form:"roles" json:"roles" xml:"roles" `
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
