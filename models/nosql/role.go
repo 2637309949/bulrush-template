@@ -7,6 +7,7 @@ package nosql
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgoext"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
 )
 
@@ -22,4 +23,24 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 	DB:        "test",
 	Name:      "role",
 	Reflector: &Role{},
+	BanHook:   true,
+	Opts: &mgoext.Opts{
+		RouteHooks: &mgoext.RouteHooks{
+			List: &mgoext.ListHookOpts{
+				Auth: func(c *gin.Context) bool {
+					addition.Logger.Info("Role model auth hook")
+					return true
+				},
+			},
+		},
+	},
 })
+
+// RegisterRole inject function
+func RegisterRole(r *gin.RouterGroup) {
+	addition.MGOExt.API.ALL(r, "role").Pre(func(c *gin.Context) {
+		addition.Logger.Info("before")
+	}).Post(func(c *gin.Context) {
+		addition.Logger.Info("after")
+	})
+}

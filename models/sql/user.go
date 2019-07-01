@@ -22,13 +22,20 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "user",
 	Reflector: &User{},
 	BanHook:   true,
+	Opts: &gormext.Opts{
+		RouteHooks: &gormext.RouteHooks{
+			List: &gormext.ListHookOpts{
+				Pre: func(c *gin.Context) {
+					addition.Logger.Info("User model pre hook")
+				},
+			},
+		},
+	},
 })
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.GORMExt.API.List(r, "user").Pre(func(c *gin.Context) {
-		addition.Logger.Info("before")
-	}).Post(func(c *gin.Context) {
+	addition.GORMExt.API.List(r, "user").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true

@@ -29,7 +29,7 @@ replace github.com/2637309949/bulrush-logger => ../bulrush-logger
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190622124305-103243648496
-	github.com/2637309949/bulrush-addition v0.0.0-20190627073215-1d73bbb1aa0b
+	github.com/2637309949/bulrush-addition v0.0.0-20190630141035-fe1b22bf1ac9
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
 	github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f
