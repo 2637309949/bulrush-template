@@ -43,4 +43,9 @@ func RegisterRole(r *gin.RouterGroup) {
 	}).Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	})
+	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "role").Pre(func(c *gin.Context) {
+		addition.Logger.Info("before")
+	}).Auth(func(c *gin.Context) bool {
+		return false
+	})
 }
