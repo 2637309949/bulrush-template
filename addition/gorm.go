@@ -14,4 +14,9 @@ var _ = conf.Cfg.Unmarshal("sql", gormConf)
 
 // GORMExt application mongo store
 var GORMExt = gormext.New(gormConf)
-var _ = GORMExt.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
+
+// GORMExt init config
+var _ = GORMExt.Init(func(ext *gormext.GORM) {
+	ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
+	ext.API.Opts.Prefix = "/template/gorm"
+})
