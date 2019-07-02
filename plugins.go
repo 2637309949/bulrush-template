@@ -31,14 +31,15 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.MQ)
 	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
-	app.PostUse()
-	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
+	app.Use(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
-			addition.Logger.Info("from bulrushApp %s", "info")
-			addition.Logger.Error("from bulrushApp %s", "error")
+			addition.Logger.Info("1.from bulrushApp %s", "info")
+			addition.Logger.Error("1.from bulrushApp %s", "error")
 			c.JSON(http.StatusOK, gin.H{
 				"message": testInject,
 			})
 		})
-	}))
+	}, func(test string) {
+		addition.Logger.Info("2.from bulrushApp %s", test)
+	})
 }

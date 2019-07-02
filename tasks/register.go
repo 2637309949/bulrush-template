@@ -11,6 +11,6 @@ import (
 
 // Task register
 // Make sure all models are initialized here
-var Task = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+var Task = func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(RegisterHello)
-})
+}

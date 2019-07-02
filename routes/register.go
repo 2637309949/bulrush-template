@@ -12,9 +12,9 @@ import (
 
 // Route for all routes register
 // Make sure all routes are initialized here
-var Route = bulrush.PNQuick(func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+var Route = func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
 	ri.Register(RegisterHello)
 	ri.Register(RegisterSQL)
 	ri.Register(RegisterMq)
 	event.Emit("hello", "this is my payload to hello router")
-})
+}

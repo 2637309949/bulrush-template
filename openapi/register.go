@@ -11,6 +11,6 @@ import (
 
 // OpenAPI register
 // Make sure all models are initialized here
-var OpenAPI = bulrush.PNQuick(func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+var OpenAPI = func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(RegisterHello)
-})
+}

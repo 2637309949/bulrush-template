@@ -5,7 +5,7 @@
 package plugins
 
 import (
-	"github.com/2637309949/bulrush"
+
 	// github.com/2637309949/bulrush-template/docs
 	_ "github.com/2637309949/bulrush-template/docs"
 	"github.com/gin-gonic/gin"
@@ -14,9 +14,9 @@ import (
 )
 
 // APIDoc defined api docs
-var APIDoc = bulrush.PNQuick(func(httpProxy *gin.Engine) {
+var APIDoc = func(httpProxy *gin.Engine) {
 	cfg := &swagger.Config{
 		URL: "./docs/doc.json",
 	}
 	httpProxy.GET("/docs/*any", swagger.CustomWrapHandler(cfg, swaggerFiles.Handler))
-})
+}

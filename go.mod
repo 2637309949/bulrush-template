@@ -25,6 +25,10 @@ replace github.com/2637309949/bulrush-upload => ../bulrush-upload
 
 replace github.com/2637309949/bulrush-logger => ../bulrush-logger
 
+replace github.com/2637309949/bulrush-identify => ../bulrush-identify
+
+replace github.com/2637309949/bulrush-proxy => ../bulrush-proxy
+
 // ## end
 
 require (
