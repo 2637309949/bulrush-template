@@ -5,7 +5,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/2637309949/bulrush"
@@ -19,8 +18,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// appUsePlugins add plugin to application
-// Just for test or app booster, remove apidoc
 func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Limit)
 	app.Use(plugins.Proxy)
@@ -32,17 +29,9 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
-
 	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
-	// mount models routers
-	app.PostUse(addition.GORMExt)
-	// mount models routers
-	app.PostUse(addition.MGOExt)
-	fmt.Println("2----")
-	addition.MGOExt.Plugin()
-	fmt.Println("2----")
-
-	// PNQuick Plugin init
+	app.PostUse(addition.GORMExt, addition.MGOExt)
+	app.PostUse()
 	app.Use(bulrush.PNQuick(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			addition.Logger.Info("from bulrushApp %s", "info")
@@ -52,10 +41,4 @@ func appUsePlugins(app bulrush.Bulrush) {
 			})
 		})
 	}))
-}
-
-func init() {
-	fmt.Println("3----")
-	addition.MGOExt.Plugin()
-	fmt.Println("3----")
 }

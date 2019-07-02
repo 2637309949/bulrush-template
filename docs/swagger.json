@@ -58,7 +58,7 @@
         },
         "/mgoTest": {
             "get": {
-                "description": "MGO测试",
+                "description": "Task测试",
                 "consumes": [
                     "multipart/form-data"
                 ],
@@ -66,9 +66,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "MGO"
+                    "TASK"
                 ],
-                "summary": "MGO测试",
+                "summary": "Task测试",
                 "parameters": [
                     {
                         "type": "string",

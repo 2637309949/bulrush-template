@@ -6,7 +6,7 @@ package plugins
 
 import (
 	"github.com/2637309949/bulrush"
-	// import the docs package api compressor
+	// github.com/2637309949/bulrush-template/docs
 	_ "github.com/2637309949/bulrush-template/docs"
 	"github.com/gin-gonic/gin"
 	swagger "github.com/swaggo/gin-swagger"

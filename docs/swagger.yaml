@@ -42,7 +42,7 @@ paths:
     get:
       consumes:
       - multipart/form-data
-      description: MGO测试
+      description: Task测试
       parameters:
       - description: 令牌
         in: query
@@ -60,9 +60,9 @@ paths:
           description: '{"message": "failure"}'
           schema:
             type: string
-      summary: MGO测试
+      summary: Task测试
       tags:
-      - MGO
+      - TASK
   /testsql:
     get:
       consumes:

@@ -7,7 +7,6 @@ package main
 import (
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
-	_ "github.com/2637309949/bulrush-template/docs"
 	"github.com/2637309949/bulrush-template/plugins"
 	"github.com/kataras/go-events"
 )
