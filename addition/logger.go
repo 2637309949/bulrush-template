@@ -7,31 +7,29 @@ package addition
 import (
 	"path"
 
+	addition "github.com/2637309949/bulrush-addition"
+
 	"github.com/2637309949/bulrush-addition/logger"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/utils"
 )
 
 // Logger application logger
-var Logger = logger.CreateLogger(
-	logger.INFO,
-	nil,
-	[]*logger.Transport{
-		// only for error
-		&logger.Transport{
-			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
-			Level:   logger.ERROR,
-			Maxsize: logger.Maxsize,
-		},
-		// combined all level
-		&logger.Transport{
-			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
-			Level:   logger.SILLY,
-			Maxsize: logger.Maxsize,
-		},
-		// console level
-		&logger.Transport{
-			Level: logger.SILLY,
-		},
+var Logger = addition.RushLogger.AppendTransports([]*logger.Transport{
+	// only for error
+	&logger.Transport{
+		Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
+		Level:   logger.ERROR,
+		Maxsize: logger.Maxsize,
 	},
-)
+	// combined all level
+	&logger.Transport{
+		Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
+		Level:   logger.SILLY,
+		Maxsize: logger.Maxsize,
+	},
+	// console level
+	&logger.Transport{
+		Level: logger.SILLY,
+	},
+}...)

@@ -1,14 +1,3 @@
-github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7/go.mod h1:dJ6jnKddwu48dAw4zcUesnEw9m4Ybgfz2IbzjMMa9Z8=
-github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372/go.mod h1:qQf+4eu/09G1tr60mYZAcwAKUt7kvAnB5e1InIf17xM=
-github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f/go.mod h1:p6LEgzktLRrlC6O/qs3vJrszR7IH/PvSvJdSYOV6bTk=
-github.com/2637309949/bulrush-logger v0.0.0-20190605130005-aa61b04c2689/go.mod h1:ztLwbPRE/jAsbpkdWcAERm2Ox0VejNiWSZcMGHdzRzY=
-github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3 h1:A67TBmeEOKXawIv/lBmCgBU/3L3wfXguWRNCrqXgGIk=
-github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3/go.mod h1:iS7JBKdoYmEeI1QsQn7PFtuI3dSH5xpryypdUaXIn9o=
-github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076/go.mod h1:md5nbelzT+3N8uCDY0e/W2QMBicGaEOCu7fqmTTSrXc=
-github.com/2637309949/bulrush-role v0.0.0-20190614132931-262fdeaab12d/go.mod h1:M+bqt5bzvTyoxqF+yz0MbYlkHXODNhfDN0rAzYgTj6w=
-github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be/go.mod h1:C9WW8uia9KwAqnHWOUFA8d2glXuLUb2ZOUn/2Dfz+ZU=
-github.com/2637309949/bulrush-template v0.0.0-20190701092233-27d37d4610fb h1:FqZNllKHSZ8bXsbsRVdGpsk3U/0RVu64Owg5LeeCyzc=
-github.com/2637309949/bulrush-template v0.0.0-20190701092233-27d37d4610fb/go.mod h1:MR8Ty5fle4GS0bePmvNGNvK+ZcDM5DpYVchSwlKIlzg=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/PuerkitoBio/purell v1.1.0 h1:rmGxhojJlM0tuKtfdvliR84CFHljx9ag64t2xmVkjK4=
 github.com/PuerkitoBio/purell v1.1.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
@@ -103,7 +92,6 @@ github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsO
 github.com/memcachier/mc v2.0.1+incompatible/go.mod h1:7bkvFE61leUBvXz+yxsOnGBQSZpBSPIMUQSmmSHvuXc=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
-github.com/mojocn/base64Captcha v0.0.0-20180423022535-7d0b78ad1685/go.mod h1:szRUeNuJ2drEhc1jjccTMxFkIvk01XsxsYjkpCurQ3Y=
 github.com/mojocn/base64Captcha v0.0.0-20190509095025-87c9c59224d8/go.mod h1:tvKfN/4rWU9EvlCjWPEZnD6/M78Eg5dzYXWGaMQ8HOQ=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
@@ -137,8 +125,6 @@ golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c/go.mod h1:djNgcEr1/C05ACk
 golang.org/x/exp v0.0.0-20190121172915-509febef88a4/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/image v0.0.0-20190501045829-6d32002ffd75 h1:TbGuee8sSq15Iguxu4deQ7+Bqq/d2rsQejGcEtADAMQ=
 golang.org/x/image v0.0.0-20190501045829-6d32002ffd75/go.mod h1:kZ7UVZpmo3dzQBMxlp+ypCbDeSB+sBbTgSJuh5dn5js=
-golang.org/x/image v0.0.0-20190622003408-7e034cad6442 h1:KHkZ9SH+rcDwdj29lcYkks2agONXqNa8YkEGwGhY6Sg=
-golang.org/x/image v0.0.0-20190622003408-7e034cad6442/go.mod h1:FeLwcggjj3mMvU+oOTbSwawSJRM1uh48EjtB4UJZlP0=
 golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/lint v0.0.0-20190227174305-5b3e6a55c961/go.mod h1:wehouNa3lNwaWXcvxsM5YxQ5yQlVC4a0KAMCusXpPoU=
 golang.org/x/lint v0.0.0-20190313153728-d0100b6bd8b3/go.mod h1:6SW0HCj/g11FgYtHlgUYUwCkIfeOF89ocIRzGO/8vkc=

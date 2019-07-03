@@ -33,7 +33,7 @@ replace github.com/2637309949/bulrush-proxy => ../bulrush-proxy
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190622124305-103243648496
-	github.com/2637309949/bulrush-addition v0.0.0-20190701092214-5dc89ee16a8a
+	github.com/2637309949/bulrush-addition v0.0.0-20190703151256-ae2422dec4e3
 	github.com/2637309949/bulrush-captcha v0.0.0-20190530105249-dbc3036c68e7
 	github.com/2637309949/bulrush-delivery v0.0.0-20190530105510-8228540ca372
 	github.com/2637309949/bulrush-identify v0.0.0-20190531073415-116f7ee8683f
@@ -50,7 +50,6 @@ require (
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
-	github.com/mojocn/base64Captcha v0.0.0-20190509095025-87c9c59224d8
 	github.com/stretchr/testify v1.3.0
 	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
 	github.com/swaggo/swag v1.5.1
