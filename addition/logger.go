@@ -29,7 +29,7 @@ var Logger = addition.RushLogger.AppendTransports([]*logger.Transport{
 		Maxsize: logger.Maxsize,
 	},
 	// console level
-	&logger.Transport{
-		Level: logger.SILLY,
-	},
+	// &logger.Transport{
+	// 	Level: logger.SILLY,
+	// },
 }...)

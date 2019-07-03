@@ -24,7 +24,7 @@ func (e reminderEmails) Run() {
 
 // RegisterHello defined hello task
 func RegisterHello(schedule *cron.Cron, emmiter events.EventEmmiter) {
-	schedule.AddFunc("@every 30s", func() {
+	schedule.AddFunc("@every 300s", func() {
 		addition.Logger.Info("Every 30 sec send reminder emails \n")
 	})
 	schedule.Start()
