@@ -5,7 +5,7 @@
 package nosql
 
 import (
-	mgoext "github.com/2637309949/bulrush-addition/mgoext"
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"

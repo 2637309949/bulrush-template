@@ -5,7 +5,7 @@
 package addition
 
 import (
-	mgoext "github.com/2637309949/bulrush-addition/mgoext"
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/conf"
 )
 

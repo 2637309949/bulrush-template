@@ -5,7 +5,7 @@
 package sql
 
 import (
-	gormext "github.com/2637309949/bulrush-addition/gormext"
+	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/addition"
 )
 
