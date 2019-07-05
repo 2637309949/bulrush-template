@@ -14,15 +14,6 @@ import (
 	"github.com/kataras/go-events"
 )
 
-// @Summary MQ测试
-// @Description MQ测试
-// @Tags MQ
-// @Accept mpfd
-// @Produce json
-// @Param accessToken query string true "令牌"
-// @Success 200 {string} json "{"message": "ok"}"
-// @Failure 400 {string} json "{"message": "failure"}"
-// @Router /mgoTest [get]
 func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 	q.Register("mqTest", func(mess mq.Message) error {
 		fmt.Println(mess.Body)

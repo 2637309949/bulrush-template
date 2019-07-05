@@ -12,4 +12,8 @@ import (
 
 // APIDoc defined http rest api
 var APIDoc = apidoc.New()
-var _ = APIDoc.Config(path.Join("", "docs"))
+var _ = APIDoc.
+	Doc(path.Join("", "doc")).
+	Init(func(ctx *apidoc.APIDoc) {
+		ctx.Prefix = "/docs"
+	})

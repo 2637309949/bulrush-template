@@ -42,15 +42,6 @@ func cachePage(router *gin.RouterGroup, event events.EventEmmiter) {
 	}))
 }
 
-// @Summary MGO测试
-// @Description MGO测试
-// @Tags MGO
-// @Accept mpfd
-// @Produce json
-// @Param accessToken query string true "令牌"
-// @Success 200 {string} json "{"message": "ok"}"
-// @Failure 400 {string} json "{"message": "failure"}"
-// @Router /mgoTest [get]
 func ping(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/mgoTest", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
@@ -76,15 +67,6 @@ func onHello(event events.EventEmmiter) {
 	})
 }
 
-// @Summary Task测试
-// @Description Task测试
-// @Tags TASK
-// @Accept mpfd
-// @Produce json
-// @Param accessToken query string true "令牌"
-// @Success 200 {string} json "{"message": "ok"}"
-// @Failure 400 {string} json "{"message": "failure"}"
-// @Router /mgoTest [get]
 func calltask(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/calltask", func(c *gin.Context) {
 		event.Emit("reminderEmails", "hello 2019")

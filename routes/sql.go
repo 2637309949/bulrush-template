@@ -15,15 +15,6 @@ import (
 	"github.com/kataras/go-events"
 )
 
-// @Summary MGO测试
-// @Description MGO测试
-// @Tags GORM
-// @Accept mpfd
-// @Produce json
-// @Param accessToken query string true "令牌"
-// @Success 200 {string} json "{"message": "ok"}"
-// @Failure 400 {string} json "{"message": "failure"}"
-// @Router /testsql [get]
 func testsql(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/testsql", func(c *gin.Context) {
 		addition.GORMExt.DB.AutoMigrate(&sql.User{})

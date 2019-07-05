@@ -42,7 +42,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "routes/hello.go",
+    "filename": "./routes/hello.go",
     "groupTitle": "Cache",
     "name": "GetChache",
     "sampleRequest": [
