@@ -31,6 +31,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(plugins.MQ)
 	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
+	app.PostUse(addition.APIDoc)
 	app.Use(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			addition.Logger.Info("1.from bulrushApp %s", "info")

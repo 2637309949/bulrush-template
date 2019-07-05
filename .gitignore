@@ -14,4 +14,9 @@ node_modules
 /vendor/*
 !/vendor/vendor.json
 
+/docs/*
+!/docs/api_data.js
+!/docs/api_project.js
+
+
 tmp
