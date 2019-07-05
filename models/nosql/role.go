@@ -26,7 +26,7 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 	BanHook:   true,
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
-			List: &mgoext.ListHookOpts{
+			List: &mgoext.ListHook{
 				Auth: func(c *gin.Context) bool {
 					addition.Logger.Info("Role model auth hook")
 					return true

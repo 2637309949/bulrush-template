@@ -24,7 +24,7 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 	BanHook:   true,
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
-			List: &gormext.ListHookOpts{
+			List: &gormext.ListHook{
 				Pre: func(c *gin.Context) {
 					addition.Logger.Info("User model pre hook")
 				},

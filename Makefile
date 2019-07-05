@@ -20,7 +20,8 @@ migration:
 	@mkdir -p ./build/conf
 	@cp -rf Dockerfile ./build
 	@cp -rf assets ./build
-	@cp -rf docs ./build
+	@cp -rf doc/api_data.js ./build
+    @cp -rf doc/api_project.js ./build
 	@cp -rf conf ./build
 	@cd conf && cp -rf `ls | grep -v index.go | xargs` ../build/conf && cd ../
 	@cp -rf logs ./build
