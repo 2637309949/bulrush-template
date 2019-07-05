@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush-template/services"
 	"github.com/2637309949/bulrush-template/models/nosql"
+	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-contrib/cache"
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"
@@ -19,15 +19,19 @@ import (
 	"github.com/kataras/go-events"
 )
 
-// @Summary 缓存路由
-// @Description 测试缓存路由
-// @Tags Cache
-// @Accept mpfd
-// @Produce json
-// @Param accessToken query string true "令牌"
-// @Success 200 {string} json "{"message": "ok"}"
-// @Failure 400 {string} json "{"message": "failure"}"
-// @Router /chache [get]
+/**
+ * @api {get} /chache 测试缓存路由
+ * @apiGroup Cache
+ * @apiDescription DEMO: /chache
+ * @apiParam {String} accessToken    令牌
+ * @apiParam {String} ids            顶级评分项ID, 如果多个就用用","分割
+ * @apiParam {String} label          顶级评分项label, 如果多个就用用","分割
+ * @apiSuccessExample {json}         正常返回
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "ok"
+ * }
+**/
 func cachePage(router *gin.RouterGroup, event events.EventEmmiter) {
 	store := persistence.NewInMemoryStore(time.Second)
 	router.GET("/chache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
