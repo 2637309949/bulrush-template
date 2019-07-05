@@ -7,6 +7,7 @@ package addition
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/conf"
+	"github.com/gin-gonic/gin"
 )
 
 var gormConf = &gormext.Config{}
@@ -19,4 +20,11 @@ var GORMExt = gormext.New(gormConf)
 var _ = GORMExt.Init(func(ext *gormext.GORM) {
 	ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
 	ext.API.Opts.Prefix = "/template/gorm"
+	ext.API.Opts.RouteHooks = &gormext.RouteHooks{
+		List: &gormext.ListHook{
+			Pre: func(c *gin.Context) {
+				Logger.Info("all gormext before")
+			},
+		},
+	}
 })

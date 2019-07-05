@@ -25,13 +25,20 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 	Name:      "user",
 	Reflector: &User{},
 	BanHook:   true,
+	Opts: &mgoext.Opts{
+		RouteHooks: &mgoext.RouteHooks{
+			List: &mgoext.ListHook{
+				Pre: func(c *gin.Context) {
+					addition.Logger.Info("user before")
+				},
+			},
+		},
+	},
 })
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.MGOExt.API.List(r, "user").Pre(func(c *gin.Context) {
-		addition.Logger.Info("before")
-	}).Post(func(c *gin.Context) {
+	addition.MGOExt.API.List(r, "user").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
