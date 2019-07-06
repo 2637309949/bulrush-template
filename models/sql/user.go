@@ -13,8 +13,8 @@ import (
 // User defined struct
 type User struct {
 	Base
-	Name string `form:"name" json:"name" xml:"name"`
-	Age  uint   `form:"age" json:"age" xml:"age"`
+	Name string `gorm:"comment:'名称';"`
+	Age  uint   `gorm:"comment:'年龄';"`
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{

@@ -20,9 +20,12 @@ import (
 )
 
 /**
- * @api {get} /chache 测试缓存路由
+ * @api {get} /chache/xxx 测试缓存路由
  * @apiGroup Cache
- * @apiDescription DEMO: /chache
+ * @apiDescription xxxbbb
+ * @apiSuccess {Object[]} profiles       List of user profiles.
+ * @apiSuccess {Number}   profiles.age   Users age.
+ * @apiSuccess {String}   profiles.image Avatar-Image.
  * @apiParam {String} accessToken    令牌
  * @apiParam {String} ids            顶级评分项ID, 如果多个就用用","分割
  * @apiParam {String} label          顶级评分项label, 如果多个就用用","分割

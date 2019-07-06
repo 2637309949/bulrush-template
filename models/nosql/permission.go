@@ -13,10 +13,10 @@ import (
 // Permission info
 type Permission struct {
 	Base `bson:",inline"`
-	Code string        `bson:"code" form:"code" json:"code" xml:"code"`
-	Name string        `bson:"name" form:"name" json:"name" xml:"name"`
-	Pid  bson.ObjectId `bson:"pid" form:"pid" json:"pid" xml:"pid"`
-	Type string        `bson:"type" form:"type" json:"type" xml:"type"`
+	Code string        `bson:"code"`
+	Name string        `bson:"name"`
+	Pid  bson.ObjectId `bson:"pid"`
+	Type string        `bson:"type"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{

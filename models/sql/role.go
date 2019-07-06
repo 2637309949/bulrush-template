@@ -12,9 +12,9 @@ import (
 // Role defined struct
 type Role struct {
 	Base
-	Name        string        `gorm:"comment:'角色名称';" form:"name" json:"name" xml:"name"`
-	Type        uint          `gorm:"comment:'角色类型';" form:"type" json:"type" xml:"type"` // 1: '管理角色', 2: '业务角色'
-	Permissions []*Permission `gorm:"comment:'包含权限';many2many:role_permission;" form:"permissions" json:"permissions" xml:"permissions"`
+	Name        string        `gorm:"comment:'角色名称';"`
+	Type        uint          `gorm:"comment:'角色类型';"`
+	Permissions []*Permission `gorm:"comment:'包含权限';many2many:role_permission;"`
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{

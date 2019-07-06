@@ -12,11 +12,11 @@ import (
 // Permission defined struct
 type Permission struct {
 	Base
-	Code       string      `form:"code" json:"code" xml:"code"`
-	Name       string      `form:"name" json:"name" xml:"name"`
-	Type       uint        `form:"type" json:"type" xml:"type"` // 1:'一级菜单', 2:'二级菜单', 3:'三级菜单', 4:'按钮', 5:'自定义'
-	Pid        uint        `form:"pid" json:"pid" xml:"pid"`
-	Permission *Permission `gorm:"foreignkey:id;association_foreignkey:pid" form:"permission" json:"permission" xml:"permission"`
+	Code       string      `gorm:"comment:'编码';"`
+	Name       string      `gorm:"comment:'名称';"`
+	Type       uint        `gorm:"comment:'类型';enum(1:'一级菜单', 2:'二级菜单', 3:'三级菜单', 4:'按钮', 5:'自定义');"`
+	Pid        uint        `gorm:"comment:'父级ID';"`
+	Permission *Permission `gorm:"foreignkey:id;association_foreignkey:pid"`
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{

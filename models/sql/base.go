@@ -11,8 +11,8 @@ import (
 // Base common fields
 type Base struct {
 	gormext.Model
-	Creator    *User `form:"creator" json:"creator" xml:"creator"`
-	CreatorID  uint  `form:"_creator" json:"_creator" xml:"_creator"`
-	Modifier   *User `form:"modifier" json:"modifier" xml:"modifier"`
-	ModifierID uint  `form:"_modifier" json:"_modifier" xml:"_modifier"`
+	Creator    *User
+	CreatorID  uint `gorm:"comment:'创建人ID';"`
+	Modifier   *User
+	ModifierID uint `gorm:"comment:'修改人ID';"`
 }
