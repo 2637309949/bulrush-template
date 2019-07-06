@@ -12,10 +12,10 @@ import (
 // Permission defined struct
 type Permission struct {
 	Base
-	Code       string      `gorm:"comment:'编码';"`
-	Name       string      `gorm:"comment:'名称';"`
-	Type       uint        `gorm:"comment:'类型';enum(1:'一级菜单', 2:'二级菜单', 3:'三级菜单', 4:'按钮', 5:'自定义');"`
-	Pid        uint        `gorm:"comment:'父级ID';"`
+	Code       string      `gorm:"comment:编码;"`
+	Name       string      `gorm:"comment:名称;"`
+	Type       uint        `gorm:"comment:类型;enum:一级菜单=1 二级菜单=2 三级菜单=3 按钮=4 自定义=5;"`
+	Pid        uint        `gorm:"comment:父级ID;"`
 	Permission *Permission `gorm:"foreignkey:id;association_foreignkey:pid"`
 }
 

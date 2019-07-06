@@ -14,9 +14,9 @@ import (
 // Role info
 type Role struct {
 	Base        `bson:",inline"`
-	Name        string          `bson:"name" form:"name" json:"name" xml:"name"`
-	Type        string          `bson:"type" form:"type" json:"type" xml:"type"`
-	Permissions []bson.ObjectId `bson:"permissions" form:"permissions" json:"permissions" xml:"permissions" `
+	Name        string          `bson:"name,comment:编码,"`
+	Type        string          `bson:"type,comment:类别,"`
+	Permissions []bson.ObjectId `bson:"permissions,comment:权限ID,"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{

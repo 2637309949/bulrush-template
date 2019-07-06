@@ -12,7 +12,7 @@ import (
 type Base struct {
 	gormext.Model
 	Creator    *User
-	CreatorID  uint `gorm:"comment:'创建人ID';"`
+	CreatorID  uint `gorm:"comment:创建人ID;"`
 	Modifier   *User
-	ModifierID uint `gorm:"comment:'修改人ID';"`
+	ModifierID uint `gorm:"comment:修改人ID;"`
 }

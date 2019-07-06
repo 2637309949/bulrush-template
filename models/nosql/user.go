@@ -14,10 +14,10 @@ import (
 // User info
 type User struct {
 	Base     `bson:",inline"`
-	Name     string          `br:"up" bson:"name" form:"name" json:"name" xml:"name"`
-	Password string          `br:"up" bson:"password" form:"password" json:"password" xml:"password" `
-	Age      int             `br:"up" bson:"age" form:"age" json:"age" xml:"age"`
-	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles" form:"roles" json:"roles" xml:"roles" `
+	Name     string          `br:"up" bson:"name,comment:名称,"`
+	Password string          `br:"up" bson:"password,comment:密码,"`
+	Age      int             `br:"up" bson:"age,comment:年龄"`
+	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles,comment:角色ID,"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{

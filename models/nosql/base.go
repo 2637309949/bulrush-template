@@ -12,6 +12,6 @@ import (
 // Base common fields
 type Base struct {
 	mgoext.Model `bson:",inline"`
-	Creator      bson.ObjectId `ref:"user;up(password,age)" bson:"_creator"`
-	Modifier     bson.ObjectId `ref:"user" bson:"_modifier"`
+	Creator      bson.ObjectId `ref:"user;up(password,age)" bson:"_creator,comment:创建人,"`
+	Modifier     bson.ObjectId `ref:"user" bson:"_modifier,comment:修改人,"`
 }
