@@ -12,8 +12,14 @@ import (
 
 // APIDoc defined http rest api
 var APIDoc = apidoc.New()
-var _ = APIDoc.
-	Doc(path.Join("", "doc")).
-	Init(func(ctx *apidoc.APIDoc) {
-		ctx.Prefix = "/docs"
-	})
+
+// Init after mgo and gorm
+func init() {
+	APIDoc.
+		Doc(path.Join("", "doc")).
+		Init(func(api *apidoc.APIDoc) {
+			api.Prefix = "/docs"
+			api.GORMExt = GORMExt
+			api.MGOExt = MGOExt
+		})
+}
