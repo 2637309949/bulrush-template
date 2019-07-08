@@ -13,11 +13,11 @@ import (
 
 // User info
 type User struct {
-	Base     `bson:",inline"`
-	Name     string          `br:"up" bson:"name,comment:名称,"`
-	Password string          `br:"up" bson:"password,comment:密码,"`
-	Age      int             `br:"up" bson:"age,comment:年龄"`
-	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles,comment:角色ID,"`
+	Model    `bson:",inline"`
+	Name     string          `br:"up" bson:"name" br:"comment:'类别'"`
+	Password string          `br:"up" bson:"password" br:"comment:'类别'"`
+	Age      uint            `br:"up" bson:"age"`
+	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles" br:"comment:'类别'"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{

@@ -15,7 +15,7 @@ func init() {
 	tx.Exec("SET FOREIGN_KEY_CHECKS = 0;")
 	tx.Exec("DROP DATABASE IF EXISTS TEST;")
 	tx.Exec("CREATE DATABASE TEST;")
-	tx.DropTable(&User{})
+	tx.DropTableIfExists(&User{})
 	tx.CreateTable(&User{})
 	first := &User{
 		Name: "L1212",
@@ -25,14 +25,14 @@ func init() {
 	second := &User{
 		Name: "L1212",
 		Age:  24,
-		Base: Base{
+		Model: Model{
 			CreatorID: first.ID,
 		},
 	}
 	tx.Create(second)
 
 	// 2. create permission
-	tx.DropTable(&Permission{})
+	tx.DropTableIfExists(&Permission{})
 	tx.CreateTable(&Permission{})
 	tx.Create(&Permission{
 		Code: "ER5T12",
@@ -47,7 +47,7 @@ func init() {
 	})
 
 	// 3. create role
-	tx.DropTable(&Role{})
+	tx.DropTableIfExists(&Role{})
 	tx.CreateTable(&Role{})
 	tx.Create(&Role{
 		Name: "FINANCE1",

@@ -40,19 +40,16 @@ require (
 	github.com/2637309949/bulrush-limit v0.0.0-20190604090049-8f1a94e98d64
 	github.com/2637309949/bulrush-logger v0.0.0-20190605130005-aa61b04c2689
 	github.com/2637309949/bulrush-mq v0.0.0-20190622020010-4030450a92b3
-	github.com/2637309949/bulrush-openapi v0.0.0-00010101000000-000000000000
+	github.com/2637309949/bulrush-openapi v0.0.0-20190702143810-94a392180fe3
 	github.com/2637309949/bulrush-proxy v0.0.0-20190530120941-f91dc1645076
 	github.com/2637309949/bulrush-role v0.0.0-20190622185722-8ff98019ef88
 	github.com/2637309949/bulrush-upload v0.0.0-20190531070413-49b362a188be
-	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/jinzhu/gorm v1.9.9
 	github.com/kataras/go-events v0.0.2
 	github.com/stretchr/testify v1.3.0
-	github.com/swaggo/gin-swagger v1.1.1-0.20190613072437-ddb15761267c
-	github.com/swaggo/swag v1.5.1
 	github.com/thoas/go-funk v0.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 )

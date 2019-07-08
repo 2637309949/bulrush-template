@@ -13,10 +13,10 @@ import (
 
 // Role info
 type Role struct {
-	Base        `bson:",inline"`
-	Name        string          `bson:"name,comment:编码,"`
-	Type        string          `bson:"type,comment:类别,"`
-	Permissions []bson.ObjectId `bson:"permissions,comment:权限ID,"`
+	Model       `bson:",inline"`
+	Name        string          `bson:"name" br:"comment:'编码'"`
+	Type        string          `bson:"type" br:"comment:'类别'"`
+	Permissions []bson.ObjectId `bson:"permissions" br:"comment:'权限ID'"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{

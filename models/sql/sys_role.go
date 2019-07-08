@@ -11,10 +11,10 @@ import (
 
 // Role defined struct
 type Role struct {
-	Base
-	Name        string        `gorm:"comment:角色名称;"`
-	Type        uint          `gorm:"comment:角色类型;"`
-	Permissions []*Permission `gorm:"comment:包含权限;many2many:role_permission;"`
+	Model
+	Name        string        `gorm:"comment:'name of role';"`
+	Type        uint          `gorm:"comment:'type of role';"`
+	Permissions []*Permission `gorm:"comment:'permissions in role';many2many:role_permission;"`
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{

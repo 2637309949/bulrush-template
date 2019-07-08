@@ -12,11 +12,12 @@ import (
 
 // Permission info
 type Permission struct {
-	Base `bson:",inline"`
-	Code string        `bson:"code,comment:编码,"`
-	Name string        `bson:"name,comment:名称,"`
-	Pid  bson.ObjectId `bson:"pid,comment:父级ID,"`
-	Type uint          `bson:"type,comment:类型,enum:一级菜单=1 二级菜单=2 三级菜单=3 按钮=4 自定义=5,"`
+	Model      `bson:",inline"`
+	Code       string        `bson:"code" br:"comment:'编码'"`
+	Name       string        `bson:"name" br:"comment:'名称'"`
+	Pid        bson.ObjectId `bson:"pid" br:"comment:'父级ID'"`
+	Permission *Permission
+	Type       uint `bson:"type" br:"comment:'类型',enum:'一级菜单=1 二级菜单=2 三级菜单=3 按钮=4 自定义=5'"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
