@@ -18,10 +18,11 @@ type test struct {
 // User info
 type User struct {
 	Model    `bson:",inline"`
-	Name     string          `br:"up" bson:"name" br:"comment:'类别'"`
-	Password string          `br:"up" bson:"password" br:"comment:'类别'"`
-	Age      uint            `br:"up" bson:"age"`
-	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles" br:"comment:'类别'"`
+	Name     string          `bson:"name" br:"comment:'类别'"`
+	Password string          `bson:"password" br:"comment:'类别'"`
+	Age      uint            `bson:"age"`
+	RoleIds  []bson.ObjectId `bson:"role_ids" br:"comment:'类别'"`
+	Roles    *[]Role         `bson:"roles,omitempty" br:"ref(role,role_ids,_id)'"`
 	Test1    *test           `bson:"test1" br:"comment:'测试1'"`
 	Test2    *test
 }
