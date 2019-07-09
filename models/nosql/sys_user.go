@@ -11,6 +11,10 @@ import (
 	"github.com/globalsign/mgo/bson"
 )
 
+type test struct {
+	Info1 string `bson:"indo1" br:"comment:'测试1'"`
+}
+
 // User info
 type User struct {
 	Model    `bson:",inline"`
@@ -18,6 +22,8 @@ type User struct {
 	Password string          `br:"up" bson:"password" br:"comment:'类别'"`
 	Age      uint            `br:"up" bson:"age"`
 	Roles    []bson.ObjectId `br:"ref:role;up" bson:"roles" br:"comment:'类别'"`
+	Test1    *test           `bson:"test1" br:"comment:'测试1'"`
+	Test2    *test
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
