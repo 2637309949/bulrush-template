@@ -19,6 +19,7 @@ var GORMExt = gormext.New(gormConf)
 // GORMExt init config
 var _ = GORMExt.Init(func(ext *gormext.GORM) {
 	ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
+	ext.DB.LogMode(true)
 	ext.API.Opts.Prefix = "/template/gorm"
 	ext.API.Opts.RouteHooks = &gormext.RouteHooks{
 		List: &gormext.ListHook{
