@@ -19,6 +19,7 @@ import (
 )
 
 func appUsePlugins(app bulrush.Bulrush) {
+	app.PreUse(addition.I18N)
 	app.Use(plugins.Limit)
 	app.Use(plugins.Proxy)
 	app.Use(plugins.Delivery)

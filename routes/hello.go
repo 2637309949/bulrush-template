@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/nosql"
 	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-contrib/cache"
@@ -38,9 +39,8 @@ import (
 func cachePage(router *gin.RouterGroup, event events.EventEmmiter) {
 	store := persistence.NewInMemoryStore(time.Second)
 	router.GET("/chache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
-		fmt.Println("no chache")
 		c.JSON(http.StatusOK, gin.H{
-			"message": "ok",
+			"message": addition.I18N.I18NLocale("sys_hello"),
 		})
 	}))
 }
