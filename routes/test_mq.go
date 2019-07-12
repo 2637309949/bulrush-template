@@ -14,12 +14,20 @@ import (
 	"github.com/kataras/go-events"
 )
 
+/**
+ * @api {get} /test/mq/hello                  队列路由
+ * @apiGroup Test
+ * @apiDescription                            队列路由
+ * @apiSuccess        {Object}  Mess		  实体类
+ * @apiSuccess        {String}  Mess.message  消息内容
+ * @apiSuccessExample {json}                  正常返回
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "ok"
+ * }
+**/
 func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
-	q.Register("mqTest", func(mess mq.Message) error {
-		fmt.Println(mess.Body)
-		return nil
-	})
-	router.GET("/mqTest", func(c *gin.Context) {
+	router.GET("/test/mq/hello", func(c *gin.Context) {
 		q.Push(mq.Message{
 			Type: "mqTest",
 			Body: map[string]interface{}{
@@ -27,6 +35,10 @@ func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 			},
 		})
 		c.JSON(http.StatusOK, gin.H{"message": "ok"})
+	})
+	q.Register("mqTest", func(mess mq.Message) error {
+		fmt.Println(mess.Body)
+		return nil
 	})
 }
 

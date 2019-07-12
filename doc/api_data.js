@@ -1,10 +1,53 @@
 define({ "api": [
   {
     "type": "get",
-    "url": "/chache/xxx",
-    "title": "测试缓存路由",
-    "group": "Cache",
-    "description": "<p>xxxbbb</p>",
+    "url": "/test/chache",
+    "title": "缓存路由",
+    "group": "Test",
+    "description": "<p>缓存路由</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Mess",
+            "description": "<p>实体类</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Mess.message",
+            "description": "<p>消息内容</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"hello\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/test_cache.go",
+    "groupTitle": "Test",
+    "name": "GetTestChache",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/v1/test/chache"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/test/mgo/adduser",
+    "title": "添加用户",
+    "group": "Test",
+    "description": "<p>添加用户</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -12,22 +55,65 @@ define({ "api": [
             "group": "Success 200",
             "type": "Object[]",
             "optional": false,
-            "field": "profiles",
-            "description": "<p>List of user profiles.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "profiles.age",
-            "description": "<p>Users age.</p>"
+            "field": "Users",
+            "description": "<p>实体类数组</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "profiles.image",
-            "description": "<p>Avatar-Image.</p>"
+            "field": "Users.Name",
+            "description": "<p>名称</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Users.Password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n    \"ID\": \"5d064cc213756cdb0f662607\",\n    \"Created\": null,\n    \"Modified\": null,\n    \"Deleted\": null,\n    \"CreatorID\": \"5d064cc2e8cd7d3029885465\",\n    \"Creator\": null,\n    \"ModifierID\": \"5d064cc2e8cd7d3029885466\",\n    \"Modifier\": null,\n    \"DeleterID\": \"\",\n    \"Deleter\": null,\n    \"Name\": \"double\",\n    \"Password\": \"111111\",\n    \"Age\": 24,\n    \"RoleIds\": null,\n    \"Roles\": [],\n    \"Test1\": null,\n    \"Test2\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/test_mgo.go",
+    "groupTitle": "Test",
+    "name": "GetTestMgoAdduser",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/v1/test/mgo/adduser"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/test/mq/hello",
+    "title": "队列路由",
+    "group": "Test",
+    "description": "<p>队列路由</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Mess",
+            "description": "<p>实体类</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Mess.message",
+            "description": "<p>消息内容</p>"
           }
         ]
       },
@@ -39,40 +125,63 @@ define({ "api": [
         }
       ]
     },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "accessToken",
-            "description": "<p>令牌</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "ids",
-            "description": "<p>顶级评分项ID, 如果多个就用用&quot;,&quot;分割</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "label",
-            "description": "<p>顶级评分项label, 如果多个就用用&quot;,&quot;分割</p>"
-          }
-        ]
-      }
-    },
     "version": "0.0.0",
-    "filename": "./routes/hello.go",
-    "groupTitle": "Cache",
-    "name": "GetChacheXxx",
+    "filename": "./routes/test_mq.go",
+    "groupTitle": "Test",
+    "name": "GetTestMqHello",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/chache/xxx"
+        "url": "http://127.0.0.1:8080/api/v1/test/mq/hello"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/test/seq/users",
+    "title": "查询用户",
+    "group": "Test",
+    "description": "<p>查询用户</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "Users",
+            "description": "<p>实体类数组</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Users.Name",
+            "description": "<p>名称</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Users.Password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n    \"ID\": 1,\n    \"CreatedAt\": \"2019-07-12T20:59:57+08:00\",\n    \"UpdatedAt\": \"2019-07-12T20:59:57+08:00\",\n    \"DeletedAt\": null,\n    \"Creator\": null,\n    \"CreatorID\": 0,\n    \"Modifier\": null,\n    \"ModifierID\": 0,\n    \"Deleter\": null,\n    \"DeleterID\": 0,\n    \"Name\": \"L1212\",\n    \"Age\": 23\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/test_seq.go",
+    "groupTitle": "Test",
+    "name": "GetTestSeqUsers",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/v1/test/seq/users"
       }
     ]
   },

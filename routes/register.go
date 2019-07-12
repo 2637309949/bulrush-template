@@ -13,8 +13,10 @@ import (
 // Route for all routes register
 // Make sure all routes are initialized here
 var Route = func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
-	ri.Register(RegisterHello)
-	ri.Register(RegisterSQL)
+	ri.Register(RegisterMgo)
+	ri.Register(RegisterCache)
+	ri.Register(RegisterSeq)
 	ri.Register(RegisterMq)
+	ri.Register(RegisterEvent)
 	event.Emit("hello", "this is my payload to hello router")
 }
