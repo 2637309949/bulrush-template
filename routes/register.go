@@ -18,5 +18,6 @@ var Route = func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush
 	ri.Register(RegisterSeq)
 	ri.Register(RegisterMq)
 	ri.Register(RegisterEvent)
+	ri.Register(RegisterMock)
 	event.Emit("hello", "this is my payload to hello router")
 }
