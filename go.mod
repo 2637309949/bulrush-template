@@ -29,6 +29,8 @@ replace github.com/2637309949/bulrush-identify => ../bulrush-identify
 
 replace github.com/2637309949/bulrush-proxy => ../bulrush-proxy
 
+replace github.com/2637309949/bulrush-utils => ../bulrush-utils
+
 // ## end
 
 require (

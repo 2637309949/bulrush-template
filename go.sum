@@ -1,3 +1,5 @@
+github.com/2637309949/bulrush-utils v0.0.0-20190713031957-0a43e2c4a4e6 h1:lz85+sX7qxXU3EHaIuuTLrsj3IoV7uig1deMjsDXMGE=
+github.com/2637309949/bulrush-utils v0.0.0-20190713031957-0a43e2c4a4e6/go.mod h1:vPokdMdNi8X8e59c24pngRNoMR3eiYpCd/3V/Rqj/E0=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/bamzi/jobrunner v0.0.0-20161019143021-273175f8b6eb h1:FqF6MRJSUw9TPww3Byhk8OvQ9kUhzJCuLwth+MtaG6g=
 github.com/bamzi/jobrunner v0.0.0-20161019143021-273175f8b6eb/go.mod h1:hbN8iwOALqzoHEUsnpWKLY2WI2djW8Qhu3fuboMpsOg=
