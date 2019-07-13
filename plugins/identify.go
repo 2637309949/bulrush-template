@@ -14,24 +14,26 @@ import (
 )
 
 // Identify plugin init
-var Identify = &identify.Identify{
-	Auth: func(ctx *gin.Context) (interface{}, error) {
-		var login binds.Login
-		// captcha := ctx.GetString("captcha")
-		if err := ctx.ShouldBind(&login); err != nil {
-			return nil, err
+var Identify = identify.
+	New().
+	Init(func(iden *identify.Identify) {
+		iden.Auth = func(ctx *gin.Context) (interface{}, error) {
+			var login binds.Login
+			// captcha := ctx.GetString("captcha")
+			if err := ctx.ShouldBind(&login); err != nil {
+				return nil, err
+			}
+			if login.Password == "xx" && login.UserName == "xx" {
+				return map[string]interface{}{
+					"id":       "3e4r56u80a55",
+					"username": login.UserName,
+				}, nil
+			}
+			return nil, errors.New("user authentication failed")
 		}
-		if login.Password == "xx" && login.UserName == "xx" {
-			return map[string]interface{}{
-				"id":       "3e4r56u80a55",
-				"username": login.UserName,
-			}, nil
+		iden.Model = &identify.RedisModel{
+			Redis: addition.Redis,
 		}
-		return nil, errors.New("user authentication failed")
-	},
-	Model: &identify.RedisModel{
-		Redis: addition.Redis,
-	},
-	FakeTokens: []interface{}{"DEBUG"},
-	FakeURLs:   []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`},
-}
+		iden.FakeTokens = []interface{}{"DEBUG"}
+		iden.FakeURLs = []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`}
+	})
