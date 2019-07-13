@@ -21,12 +21,13 @@ func mockLogin(router *gin.RouterGroup) {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
-		if ret := plugins.Identify.ObtainToken(user); ret != nil {
-			info := ret.(map[string]interface{})
-			token := info["accessToken"].(string)
-			c.SetCookie("accessToken", token, 60*60*24, "/", "*", false, true)
-			c.JSON(http.StatusOK, token)
+		token, err := plugins.Identify.ObtainToken(user)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+			return
 		}
+		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "*", false, true)
+		c.JSON(http.StatusOK, token.AccessToken)
 	})
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
 		user := addition.GORMExt.Var("user")
@@ -34,12 +35,13 @@ func mockLogin(router *gin.RouterGroup) {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
-		if ret := plugins.Identify.ObtainToken(user); ret != nil {
-			info := ret.(map[string]interface{})
-			token := info["accessToken"].(string)
-			c.SetCookie("accessToken", token, 60*60*24, "/", "*", false, true)
-			c.JSON(http.StatusOK, token)
+		token, err := plugins.Identify.ObtainToken(user)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+			return
 		}
+		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "*", false, true)
+		c.JSON(http.StatusOK, token.AccessToken)
 	})
 }
 

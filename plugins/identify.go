@@ -9,7 +9,6 @@ import (
 
 	identify "github.com/2637309949/bulrush-identify"
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/2637309949/bulrush-template/binds"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,7 +17,11 @@ var Identify = identify.
 	New().
 	Init(func(iden *identify.Identify) {
 		iden.Auth = func(ctx *gin.Context) (interface{}, error) {
-			var login binds.Login
+			login := struct {
+				UserName string `form:"username" json:"username" xml:"username" binding:"required"`
+				Password string `form:"password" json:"password" xml:"password" binding:"required"`
+				Type     string `form:"type" json:"type" xml:"type"`
+			}{}
 			// captcha := ctx.GetString("captcha")
 			if err := ctx.ShouldBind(&login); err != nil {
 				return nil, err
@@ -34,6 +37,6 @@ var Identify = identify.
 		iden.Model = &identify.RedisModel{
 			Redis: addition.Redis,
 		}
-		iden.FakeTokens = []interface{}{"DEBUG"}
-		iden.FakeURLs = []interface{}{`^/api/v1/ignore$`, `^/api/v1/docs/*`, `^/public/*`, `^/api/v1/ptest$`}
+		iden.FakeTokens = []string{"DEBUG"}
+		iden.FakeURLs = []string{`^/api/v1/ignore$`, `^/api/v1/ptest$`, `^/api/v1/gorm/mock`}
 	})
