@@ -21,7 +21,6 @@ type Permission struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	DB:        "test",
-	Name:      "permission",
+	Name:      "Permission",
 	Reflector: &Permission{},
 })

@@ -21,8 +21,7 @@ type Role struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	DB:        "test",
-	Name:      "role",
+	Name:      "Role",
 	Reflector: &Role{},
 	BanHook:   true,
 	Opts: &mgoext.Opts{
@@ -39,12 +38,12 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // RegisterRole inject function
 func RegisterRole(r *gin.RouterGroup) {
-	addition.MGOExt.API.ALL(r, "role").Pre(func(c *gin.Context) {
+	addition.MGOExt.API.ALL(r, "Role").Pre(func(c *gin.Context) {
 		addition.Logger.Info("before")
 	}).Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	})
-	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "role").Pre(func(c *gin.Context) {
+	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "Role").Pre(func(c *gin.Context) {
 		addition.Logger.Info("before")
 	}).Auth(func(c *gin.Context) bool {
 		return false

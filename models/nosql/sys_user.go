@@ -28,8 +28,7 @@ type User struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	DB:        "test",
-	Name:      "user",
+	Name:      "User",
 	Reflector: &User{},
 	BanHook:   true,
 	Opts: &mgoext.Opts{
@@ -45,14 +44,14 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.MGOExt.API.List(r, "user").Post(func(c *gin.Context) {
+	addition.MGOExt.API.List(r, "User").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	})
-	addition.MGOExt.API.Feature("feature").List(r, "user")
-	addition.MGOExt.API.One(r, "user")
-	addition.MGOExt.API.Create(r, "user")
-	addition.MGOExt.API.Update(r, "user")
-	addition.MGOExt.API.Delete(r, "user")
+	addition.MGOExt.API.Feature("feature").List(r, "User")
+	addition.MGOExt.API.One(r, "User")
+	addition.MGOExt.API.Create(r, "User")
+	addition.MGOExt.API.Update(r, "User")
+	addition.MGOExt.API.Delete(r, "User")
 }

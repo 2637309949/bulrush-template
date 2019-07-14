@@ -8,7 +8,7 @@ import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 )
 
-// Model common fields
+// Model defined common field
 type Model struct {
 	gormext.Model
 	Creator    *User `gorm:"foreignkey:id;association_foreignkey:creator_id"`

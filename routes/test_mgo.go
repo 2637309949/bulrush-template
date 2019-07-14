@@ -22,6 +22,16 @@ import (
  * @apiSuccess        {Object[]}  Users		      实体类数组
  * @apiSuccess        {String}    Users.Name      名称
  * @apiSuccess        {String}    Users.Password  密码
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "cond": { "age": { $gte: 1 } },
+ *       "range": "page",
+ *       "page": 1,
+ *       "size": 10,
+ *       "project": "_id,name",
+ *       "preload": "Creator",
+ *       "order": "-_created",
+ *     }
  * @apiSuccessExample {json}                      正常返回
  * HTTP/1.1 200 OK
  * {

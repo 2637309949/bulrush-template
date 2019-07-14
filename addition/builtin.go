@@ -44,7 +44,7 @@ var GORMExt = gormext.
 		}
 		ext.Conf(cfg)
 		ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
-		ext.DB.LogMode(true)
+		// ext.DB.LogMode(true)
 		ext.API.Opts.Prefix = "/template/gorm"
 		ext.API.Opts.RouteHooks = &gormext.RouteHooks{
 			List: &gormext.ListHook{

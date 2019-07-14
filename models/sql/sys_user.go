@@ -18,8 +18,7 @@ type User struct {
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{
-	DB:        "test",
-	Name:      "user",
+	Name:      "User",
 	Reflector: &User{},
 	BanHook:   true,
 	Opts: &gormext.Opts{
@@ -35,14 +34,14 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup) {
-	addition.GORMExt.API.List(r, "user").Post(func(c *gin.Context) {
+	addition.GORMExt.API.List(r, "User").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	})
-	addition.GORMExt.API.Feature("subUser").List(r, "user")
-	addition.GORMExt.API.One(r, "user")
-	addition.GORMExt.API.Create(r, "user")
-	addition.GORMExt.API.Update(r, "user")
-	addition.GORMExt.API.Delete(r, "user")
+	addition.GORMExt.API.Feature("subUser").List(r, "User")
+	addition.GORMExt.API.One(r, "User")
+	addition.GORMExt.API.Create(r, "User")
+	addition.GORMExt.API.Update(r, "User")
+	addition.GORMExt.API.Delete(r, "User")
 }

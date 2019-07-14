@@ -82,6 +82,15 @@ define({ "api": [
         }
       ]
     },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"cond\": { \"age\": { $gte: 1 } },\n  \"range\": \"page\",\n  \"page\": 1,\n  \"size\": 10,\n  \"project\": \"_id,name\",\n  \"preload\": \"Creator\",\n  \"order\": \"-_created\",\n}",
+          "type": "json"
+        }
+      ]
+    },
     "version": "0.0.0",
     "filename": "./routes/test_mgo.go",
     "groupTitle": "Test",
@@ -176,7 +185,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./routes/test_seq.go",
+    "filename": "./routes/test_gorm.go",
     "groupTitle": "Test",
     "name": "GetTestSeqUsers",
     "sampleRequest": [

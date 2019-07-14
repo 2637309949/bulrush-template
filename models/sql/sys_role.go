@@ -18,7 +18,6 @@ type Role struct {
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{
-	DB:        "test",
-	Name:      "role",
+	Name:      "Role",
 	Reflector: &Role{},
 })

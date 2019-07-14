@@ -20,7 +20,6 @@ type Permission struct {
 }
 
 var _ = addition.GORMExt.Register(&gormext.Profile{
-	DB:        "test",
-	Name:      "permission",
+	Name:      "Permission",
 	Reflector: &Permission{},
 })
