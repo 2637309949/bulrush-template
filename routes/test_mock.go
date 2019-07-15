@@ -27,7 +27,7 @@ func mockMgoLogin(router *gin.RouterGroup) {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
-		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "*", false, true)
+		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "", false, true)
 		c.JSON(http.StatusOK, token.AccessToken)
 	})
 }
@@ -35,7 +35,7 @@ func mockMgoLogin(router *gin.RouterGroup) {
 func mockGormLogin(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
 		user := addition.GORMExt.Var("User")
-		if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": "L1212"}).Error; err != nil {
+		if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": "L1211"}).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
@@ -44,7 +44,7 @@ func mockGormLogin(router *gin.RouterGroup) {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
-		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "*", false, true)
+		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "", false, true)
 		c.JSON(http.StatusOK, token.AccessToken)
 	})
 }
@@ -55,12 +55,13 @@ func mockInit(router *gin.RouterGroup) {
 		// 1. create user
 		tx := addition.GORMExt.DB.Begin()
 		tx.Exec("SET FOREIGN_KEY_CHECKS = 0;")
-		tx.Exec("DROP DATABASE IF EXISTS TEST;")
-		tx.Exec("CREATE DATABASE TEST;")
+		tx.Exec("DROP DATABASE IF EXISTS bulrush;")
+		tx.Exec("CREATE DATABASE bulrush;")
+		tx.Exec("USE bulrush;")
 		tx.DropTableIfExists(&sql.User{})
 		tx.CreateTable(&sql.User{})
 		first := &sql.User{
-			Name: "L1212",
+			Name: "L1211",
 			Age:  23,
 		}
 		tx.Create(first)

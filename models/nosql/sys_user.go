@@ -6,6 +6,7 @@ package nosql
 
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
+	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
@@ -43,14 +44,14 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 })
 
 // RegisterUser inject function
-func RegisterUser(r *gin.RouterGroup) {
+func RegisterUser(r *gin.RouterGroup, role *role.Role) {
 	addition.MGOExt.API.List(r, "User").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
-	})
+	}).AuthByOwn("Creator")
 	addition.MGOExt.API.Feature("feature").List(r, "User")
-	addition.MGOExt.API.One(r, "User")
+	addition.MGOExt.API.One(r, "User", role.Can("r1,r2@p1,p3,p4;r4"))
 	addition.MGOExt.API.Create(r, "User")
 	addition.MGOExt.API.Update(r, "User")
 	addition.MGOExt.API.Delete(r, "User")

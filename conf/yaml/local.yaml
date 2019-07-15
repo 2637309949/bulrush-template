@@ -9,7 +9,7 @@ mongo:
   addrs:
     - '127.0.0.1:27017'
   timeout: 0
-  database: 'test'
+  database: 'bulrush'
   replicaSetName: ''
   source: ''
   service: ''
@@ -33,4 +33,4 @@ redis:
     db: 0
 sql:
   dbType: 'mysql'
-  url: 'root:111111@/test?charset=utf8mb4&parseTime=True&loc=Local'
+  url: 'root:111111@/bulrush?charset=utf8mb4&parseTime=True&loc=Local'

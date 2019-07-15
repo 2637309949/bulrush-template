@@ -26,17 +26,15 @@ var Identify = identify.
 			if err := ctx.ShouldBind(&login); err != nil {
 				return nil, err
 			}
-			if login.Password == "xx" && login.UserName == "xx" {
-				return map[string]interface{}{
-					"id":       "3e4r56u80a55",
-					"username": login.UserName,
-				}, nil
+			user := addition.GORMExt.Var("User")
+			if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": login.UserName}).Error; err != nil {
+				return nil, errors.New("user authentication failed")
 			}
-			return nil, errors.New("user authentication failed")
+			return user, nil
 		}
 		iden.Model = &identify.RedisModel{
 			Redis: addition.Redis,
 		}
-		iden.FakeTokens = []string{"DEBUG"}
-		iden.FakeURLs = []string{`^/api/v1/ignore$`, `^/api/v1/ptest$`, `^/api/v1/gorm/mock`}
+		iden.FakeTokens = []string{}
+		iden.FakeURLs = []string{`^/api/v1/ignore$`, `^/api/v1/gorm/mock`}
 	})
