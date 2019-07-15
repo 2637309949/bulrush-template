@@ -49,7 +49,7 @@ func RegisterUser(r *gin.RouterGroup, role *role.Role) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
-	}).AuthByOwn("Creator")
+	})
 	addition.MGOExt.API.Feature("feature").List(r, "User")
 	addition.MGOExt.API.One(r, "User", role.Can("r1,r2@p1,p3,p4;r4"))
 	addition.MGOExt.API.Create(r, "User")

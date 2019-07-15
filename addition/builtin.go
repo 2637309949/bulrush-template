@@ -9,7 +9,6 @@ import (
 	"github.com/2637309949/bulrush-addition/logger"
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-addition/redis"
-	identify "github.com/2637309949/bulrush-identify"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/utils"
 	"github.com/gin-gonic/gin"
@@ -47,19 +46,6 @@ var GORMExt = gormext.
 		ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
 		ext.DB.LogMode(true)
 		ext.API.Opts.Prefix = "/template/gorm"
-		ext.API.Opts.AuthIden = func(c *gin.Context) *gormext.Iden {
-			if data, exists := c.Get("identify"); data != nil && exists == true {
-				token := data.(*identify.Token)
-				if token.Extra != nil {
-					extra := token.Extra.(map[string]interface{})
-					return &gormext.Iden{
-						ID:   extra["ID"],
-						Name: extra["Name"].(string),
-					}
-				}
-			}
-			return nil
-		}
 		ext.API.Opts.RouteHooks = &gormext.RouteHooks{
 			List: &gormext.ListHook{
 				Pre: func(c *gin.Context) {
@@ -81,20 +67,6 @@ var MGOExt = mgoext.
 		}
 		ext.Conf(cfg)
 		ext.API.Opts.Prefix = "/template/mgo"
-		// ext.API.Opts.AuthIden = func(c *gin.Context) *mgoext.Iden {
-		// 	data, exists := c.Get("identify")
-		// 	if data != nil && exists == true {
-		// 		token := data.(*identify.Token)
-		// 		if token.Extra != nil {
-		// 			extra := token.Extra.(map[string]interface{})
-		// 			return &mgoext.Iden{
-		// 				ID:       extra["ID"],
-		// 				Name:     extra["Name"].(string),
-		// 			}
-		// 		}
-		// 	}
-		// 	return nil
-		// }
 		ext.API.Opts.RouteHooks = &mgoext.RouteHooks{
 			List: &mgoext.ListHook{
 				Pre: func(c *gin.Context) {

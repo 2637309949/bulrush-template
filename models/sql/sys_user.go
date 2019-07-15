@@ -38,10 +38,10 @@ func RegisterUser(r *gin.RouterGroup) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
-	}).AuthByOwn("creator_id")
+	})
 	addition.GORMExt.API.Feature("subUser").List(r, "User")
 
-	addition.GORMExt.API.One(r, "User").AuthByOwn("creator_id")
+	addition.GORMExt.API.One(r, "User")
 	addition.GORMExt.API.Create(r, "User")
 	addition.GORMExt.API.Update(r, "User")
 	addition.GORMExt.API.Delete(r, "User")
