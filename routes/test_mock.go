@@ -18,7 +18,7 @@ func mockMgoLogin(router *gin.RouterGroup) {
 	router.GET("/mgo/mock/login", func(c *gin.Context) {
 		User := addition.MGOExt.Model("User")
 		user := addition.MGOExt.Var("User")
-		if err := User.Find(map[string]interface{}{"name": "double"}).One(user); err != nil {
+		if err := User.Find(map[string]interface{}{"name": "preset"}).One(user); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
@@ -35,7 +35,7 @@ func mockMgoLogin(router *gin.RouterGroup) {
 func mockGormLogin(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
 		user := addition.GORMExt.Var("User")
-		if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": "L1211"}).Error; err != nil {
+		if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": "root"}).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
 		}
@@ -80,12 +80,12 @@ func mockInit(router *gin.RouterGroup) {
 		tx.Create(&sql.Permission{
 			Code: "ER5T12",
 			Name: "FINANCE MENU",
-			Type: 2,
+			Type: "102",
 		})
 		tx.Create(&sql.Permission{
 			Code: "ER5T15",
 			Name: "MENU",
-			Type: 1,
+			Type: "101",
 			Pid:  1,
 		})
 
@@ -94,14 +94,14 @@ func mockInit(router *gin.RouterGroup) {
 		tx.CreateTable(&sql.Role{})
 		tx.Create(&sql.Role{
 			Name: "FINANCE1",
-			Type: 1,
+			Type: "101",
 		})
 
 		p1 := &sql.Permission{}
 		p1.ID = 1
 		tx.Create(&sql.Role{
 			Name:        "FINANCE1",
-			Type:        1,
+			Type:        "101",
 			Permissions: []*sql.Permission{p1},
 		})
 

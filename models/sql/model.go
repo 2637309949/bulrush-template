@@ -5,16 +5,31 @@
 package sql
 
 import (
+	"time"
+
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 )
 
 // Model defined common field
 type Model struct {
 	gormext.Model
-	Creator   *User `gorm:"foreignkey:id;association_foreignkey:creator_id"`
 	CreatorID uint  `gorm:"comment:'创建人ID'"`
-	Updator   *User `gorm:"foreignkey:id;association_foreignkey:updator_id"`
+	Creator   *User `gorm:"foreignkey:id;association_foreignkey:creator_id"`
 	UpdatorID uint  `gorm:"comment:'修改人ID'"`
-	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:deleter_id"`
+	Updator   *User `gorm:"foreignkey:id;association_foreignkey:updator_id"`
 	DeleterID uint  `gorm:"comment:'删除人ID'"`
+	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:deleter_id"`
+}
+
+// PresetModel defined Preset User
+func PresetModel() Model {
+	now := time.Now()
+	return Model{
+		Model: gormext.Model{
+			UpdatedAt: &now,
+			CreatedAt: &now,
+		},
+		CreatorID: 101,
+		UpdatorID: 101,
+	}
 }

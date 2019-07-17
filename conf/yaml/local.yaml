@@ -33,4 +33,5 @@ redis:
     db: 0
 sql:
   dbType: 'mysql'
-  url: 'root:111111@/bulrush?charset=utf8mb4&parseTime=True&loc=Local'
+  automigrate: true
+  url: 'root:111111@/bulrush?charset=utf8&parseTime=True&loc=Local'

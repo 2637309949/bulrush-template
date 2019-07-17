@@ -43,7 +43,8 @@ var GORMExt = gormext.
 			panic(err)
 		}
 		ext.Conf(cfg)
-		ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4")
+		// 建议在数据库创建时指定CHARSET, 这里设置后看gorm log并不起效
+		ext.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8")
 		ext.DB.LogMode(true)
 		ext.API.Opts.Prefix = "/template/gorm"
 		ext.API.Opts.RouteHooks = &gormext.RouteHooks{
