@@ -19,18 +19,22 @@ import (
 // Two Transport has been added
 // 1: RotateFile
 // 2: Console
-var Logger = addition.RushLogger.AppendTransports([]*logger.Transport{
-	&logger.Transport{
-		Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
-		Level:   logger.ERROR,
-		Maxsize: logger.Maxsize,
-	},
-	&logger.Transport{
-		Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
-		Level:   logger.SILLY,
-		Maxsize: logger.Maxsize,
-	},
-}...)
+var Logger = addition.RushLogger.
+	AppendTransports([]*logger.Transport{
+		&logger.Transport{
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
+			Level:   logger.ERROR,
+			Maxsize: logger.Maxsize,
+		},
+		&logger.Transport{
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
+			Level:   logger.SILLY,
+			Maxsize: logger.Maxsize,
+		},
+	}...).
+	Init(func(j *logger.Journal) {
+		j.SetFlags((logger.LstdFlags | logger.Lshortfile))
+	})
 
 // GORMExt defined ext for gorm
 // .API use default api routes
