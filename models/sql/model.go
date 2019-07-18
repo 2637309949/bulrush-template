@@ -22,6 +22,7 @@ type Model struct {
 }
 
 // PresetModel defined Preset User
+// 系统内置数据时的默认参数
 func PresetModel() Model {
 	now := time.Now()
 	return Model{

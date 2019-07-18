@@ -5,6 +5,8 @@
 package nosql
 
 import (
+	"time"
+
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/globalsign/mgo/bson"
 )
@@ -18,4 +20,18 @@ type Model struct {
 	Updator      *User         `bson:"modifier,omitempty" br:"ref(user,_updator,_id),comment:'修改人',up(password)"`
 	DeleterID    bson.ObjectId `bson:"_deleter,omitempty" br:"comment:'删除人ID'"`
 	Deleter      *User         `bson:"deleter,omitempty"  br:"ref(user,_deleter,_id),comment:'删除人',up(password)"`
+}
+
+// PresetModel defined Preset User
+// 系统内置数据时的默认参数
+func PresetModel() Model {
+	now := time.Now()
+	return Model{
+		Model: mgoext.Model{
+			UpdatedAt: &now,
+			CreatedAt: &now,
+		},
+		CreatorID: bson.ObjectIdHex("5d2fdc047dead1c7924b3a52"),
+		UpdatorID: bson.ObjectIdHex("5d2fdc047dead1c7924b3a52"),
+	}
 }

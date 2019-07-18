@@ -15,13 +15,13 @@ import (
 type Role struct {
 	Model         `bson:",inline"`
 	Name          string          `bson:"name" br:"comment:'编码'"`
-	Type          string          `bson:"type" br:"comment:'类别'"`
+	Type          string          `bson:"type" br:"comment:'类别', enum:'管理=101 业务=102'"`
 	PermissionIDs []bson.ObjectId `bson:"permission_ids" br:"comment:'权限ID'"`
 	Permissions   *[]Permission   `bson:"permissions,omitempty" br:"ref(permission,permission_ids,_id)'"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	Name:      "Role",
+	Name:      "role",
 	Reflector: &Role{},
 	BanHook:   true,
 	Opts: &mgoext.Opts{
@@ -34,16 +34,28 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 			},
 		},
 	},
+}).Init(func(ext *mgoext.Mongo) {
+	(&Param{}).
+		AddEnum("role", "Type", []Value{
+			Value{
+				Key:   "管理",
+				Value: "101",
+			},
+			Value{
+				Key:   "业务",
+				Value: "102",
+			},
+		})
 })
 
 // RegisterRole inject function
 func RegisterRole(r *gin.RouterGroup) {
-	addition.MGOExt.API.ALL(r, "Role").Pre(func(c *gin.Context) {
+	addition.MGOExt.API.ALL(r, "role").Pre(func(c *gin.Context) {
 		addition.Logger.Info("before")
 	}).Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	})
-	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "Role").Pre(func(c *gin.Context) {
+	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "role").Pre(func(c *gin.Context) {
 		addition.Logger.Info("before")
 	}).Auth(func(c *gin.Context) bool {
 		return false

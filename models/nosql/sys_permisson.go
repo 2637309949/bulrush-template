@@ -17,10 +17,34 @@ type Permission struct {
 	Name        string        `bson:"name" br:"comment:'名称'"`
 	Pid         bson.ObjectId `bson:"pid,omitempty" br:"comment:'父级ID'"`
 	PPermission *Permission   `bson:"ppermission,omitempty" br:"ref(permission,pid,_id)'"`
-	Type        uint          `bson:"type" br:"comment:'类型',enum:'一级菜单=1 二级菜单=2 三级菜单=3 按钮=4 自定义=5'"`
+	Type        uint          `bson:"type" br:"comment:'类型',enum:'一级菜单=101 二级菜单=102 三级菜单=103 按钮=104 自定义=105'"`
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	Name:      "Permission",
+	Name:      "permission",
 	Reflector: &Permission{},
+}).Init(func(ext *mgoext.Mongo) {
+	(&Param{}).
+		AddEnum("permission", "Type", []Value{
+			Value{
+				Key:   "一级菜单",
+				Value: "101",
+			},
+			Value{
+				Key:   "二级菜单",
+				Value: "102",
+			},
+			Value{
+				Key:   "三级菜单",
+				Value: "103",
+			},
+			Value{
+				Key:   "按钮",
+				Value: "104",
+			},
+			Value{
+				Key:   "自定义",
+				Value: "105",
+			},
+		})
 })

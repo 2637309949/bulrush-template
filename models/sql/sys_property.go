@@ -15,7 +15,7 @@ type Property struct {
 	ParamID     uint   `gorm:"comment:'Param外键'"`
 	Category    string `gorm:"comment:'类别'"`
 	SubCategory string `gorm:"comment:'子类别'"`
-	Key         string `gorm:"comment:'编码'"`
+	Key         string `gorm:"comment:'属性'"`
 	Value       string `gorm:"comment:'属性值'"`
 }
 
