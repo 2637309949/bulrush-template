@@ -1,35 +1,30 @@
-## Project structure
+## Usage
 
-## Code structure
+```go
+// Copyright (c) 2018-2020 Double All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
 
-    bulrush-template
-    │
-    ├── addition        # global reference module
-    ├── assets          # assets
-    │   └── public
-    │       ├── apidoc  # apidoc assets
-    │       └── upload  # upload assets
-    ├── bin             # bin execScript 
-    ├── binds           # bind models for jsonMap
-    ├── build           # files assets after build
-    │   ├── assets
-    │   │   └── public
-    │   │       ├── apidoc
-    │   │       └── upload
-    │   ├── conf
-    │   └── logs
-    ├── conf            # project conf
-    ├── logs            # logs files
-    ├── models          # project models defined
-    ├── routes          # http routes
-    ├── services        # services layers
-    ├── tmp             # tmp file for fresh
-    ├── utils           # utils tools
-    └── vendor          # dependence listing
+package main
 
-# Usage
+import (
+	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/addition"
+	"github.com/kataras/go-events"
+)
 
-## For Dev
+func main() {
+	app := InitApp()
+	app.Use(func(event events.EventEmmiter) {
+		event.On(bulrush.EventSysBulrushPluginRunImmediately, func(message ...interface{}) {
+			addition.Logger.Info("EventSysBulrushPluginRunImmediately %v", message)
+		})
+	})
+	app.RunImmediately()
+}
+```
+
+### 1. For Dev
 ```shell
 # Hot-start 
 $ make -f Makefile.dep
@@ -41,13 +36,7 @@ $ make -f Makefile.dev
 $ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
-## For Apidoc
-
-```shell
-$ make -f Makefile.api
-```
-
-## For Prod
+### 2. For Prod
 
 ```shell
 $ make
@@ -62,7 +51,13 @@ $ make
     // ## end
 
 
-## Run Test
+### 3. For Apidoc
+
+```shell
+$ make -f Makefile.api
+```
+
+### 4. Run Test
 
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$"
@@ -72,55 +67,8 @@ Or run with log
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$" -v
 ```
 
-## For Code Dev
-
-### Defined you model in below dir
-    models
-    ├── sql
-    ├── nosql
-
-### Register you model on db driver
-
-```go
-addition.GORMExt.Register(map[string]interface{}{
-    "db":        "test",
-    "name":      "product",
-    "reflector": &Product{},
-    "autoHook":  false,
-})
-```
-### Register you model to a global Model Plugin
-
-```go
-// Model register
-// Make sure all models are initialized here
-var Model = func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
-	ri.Register(nosql.RegisterUser)
-	ri.Register(nosql.RegisterPermission)
-	ri.Register(sql.RegisterProduct)
-}
-```
-
-### Register you routes to a global Routes Plugin
-
-```go
-// Route for all routes register
-// Make sure all routes are initialized here
-var Route = func(event events.EventEmmiter, ri *bulrush.ReverseInject) {
-	ri.Register(routes.RegisterHello)
-	ri.Register(routes.RegisterSQL)
-	ri.Register(routes.RegisterMq)
-	event.Emit("hello", "this is my payload to hello router")
-}
-```
-
-### Register global Model Plugin to bulrush
-
-```go
-app.Use(Model, Route, Task, OpenAPI)
-```
-
 ## MIT License
+
 Copyright (c) 2018-2020 Double
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

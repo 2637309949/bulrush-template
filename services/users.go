@@ -11,14 +11,14 @@ import (
 // FindUsers users
 func FindUsers(match map[string]interface{}) interface{} {
 	// users := []User{} 需要具体化时用Type去声明变量，否则直接用反射体
-	users := addition.MGOExt.Vars("user")
-	User := addition.MGOExt.Model("user")
+	users := addition.MGOExt.Vars("User")
+	User := addition.MGOExt.Model("User")
 	User.Find(match).All(users)
 	return users
 }
 
 // AddUsers users
 func AddUsers(users []interface{}) {
-	User := addition.MGOExt.Model("user")
+	User := addition.MGOExt.Model("User")
 	User.Insert(users...)
 }

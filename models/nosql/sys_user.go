@@ -24,7 +24,7 @@ type User struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	Name:      "user",
+	Name:      "User",
 	Reflector: &User{},
 	BanHook:   true,
 	Opts: &mgoext.Opts{
@@ -37,7 +37,7 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 		},
 	},
 }).Init(func(ext *mgoext.Mongo) {
-	Model := addition.MGOExt.Model("user")
+	Model := addition.MGOExt.Model("User")
 	for _, key := range []string{"name"} {
 		index := mgo.Index{
 			Key:    []string{key},
@@ -49,7 +49,7 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 	}
 }).Init(func(ext *mgoext.Mongo) {
 	// 添加预置账号, 用户存储预置数据
-	Model := addition.MGOExt.Model("user")
+	Model := addition.MGOExt.Model("User")
 	id := bson.ObjectIdHex("5d2fdc047dead1c7924b3a52")
 	preset := &User{Model: PresetModel(), Name: "preset"}
 	if err := Model.Find(bson.M{"name": "preset"}).One(preset); err == mgo.ErrNotFound {
@@ -73,14 +73,14 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup, role *role.Role) {
-	addition.MGOExt.API.List(r, "user").Post(func(c *gin.Context) {
+	addition.MGOExt.API.List(r, "User").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	})
-	addition.MGOExt.API.Feature("feature").List(r, "user")
-	addition.MGOExt.API.One(r, "user", role.Can("r1,r2@p1,p3,p4;r4"))
-	addition.MGOExt.API.Create(r, "user")
-	addition.MGOExt.API.Update(r, "user")
-	addition.MGOExt.API.Delete(r, "user")
+	addition.MGOExt.API.Feature("feature").List(r, "User")
+	addition.MGOExt.API.One(r, "User", role.Can("r1,r2@p1,p3,p4;r4"))
+	addition.MGOExt.API.Create(r, "User")
+	addition.MGOExt.API.Update(r, "User")
+	addition.MGOExt.API.Delete(r, "User")
 }

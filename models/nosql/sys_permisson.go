@@ -21,11 +21,11 @@ type Permission struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	Name:      "permission",
+	Name:      "Permission",
 	Reflector: &Permission{},
 }).Init(func(ext *mgoext.Mongo) {
 	(&Param{}).
-		AddEnum("permission", "Type", []Value{
+		AddEnum("Permission", "Type", []Value{
 			Value{
 				Key:   "一级菜单",
 				Value: "101",

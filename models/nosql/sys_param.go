@@ -29,10 +29,10 @@ type Param struct {
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
-	Name:      "param",
+	Name:      "Param",
 	Reflector: &Param{},
 }).Init(func(ext *mgoext.Mongo) {
-	Model := addition.MGOExt.Model("param")
+	Model := addition.MGOExt.Model("Param")
 	for _, key := range []string{"code", "name"} {
 		index := mgo.Index{
 			Key:    []string{key},
@@ -46,7 +46,7 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // AddEnum defined add enum type
 func (p *Param) AddEnum(model string, key string, value []Value) *Param {
-	Model := addition.MGOExt.Model("param")
+	Model := addition.MGOExt.Model("Param")
 	enum := &Param{Model: PresetModel(), Code: "enum"}
 	if err := Model.Find(bson.M{"code": "enum"}).One(enum); err == mgo.ErrNotFound {
 		if err := Model.Insert(enum); err != nil {

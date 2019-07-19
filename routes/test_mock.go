@@ -16,8 +16,8 @@ import (
 
 func mockMgoLogin(router *gin.RouterGroup) {
 	router.GET("/mgo/mock/login", func(c *gin.Context) {
-		User := addition.MGOExt.Model("user")
-		user := addition.MGOExt.Var("user")
+		User := addition.MGOExt.Model("User")
+		user := addition.MGOExt.Var("User")
 		if err := User.Find(map[string]interface{}{"name": "preset"}).One(user); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			return
