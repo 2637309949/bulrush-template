@@ -52,6 +52,7 @@ $ make
 
 
 ### 3. For Apidoc
+![Bulrush flash](./assets/apidoc.png)
 
 ```shell
 $ make -f Makefile.api
