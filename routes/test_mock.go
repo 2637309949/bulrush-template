@@ -61,16 +61,15 @@ func mockInit(router *gin.RouterGroup) {
 		tx.DropTableIfExists(&sql.User{})
 		tx.CreateTable(&sql.User{})
 		first := &sql.User{
-			Name: "L1211",
-			Age:  23,
+			Model: sql.PresetModel(),
+			Name:  "L1211",
+			Age:   23,
 		}
 		tx.Create(first)
 		second := &sql.User{
-			Name: "L1212",
-			Age:  24,
-			Model: sql.Model{
-				CreatorID: first.ID,
-			},
+			Model: sql.PresetModel(),
+			Name:  "L1212",
+			Age:   24,
 		}
 		tx.Create(second)
 
@@ -78,28 +77,32 @@ func mockInit(router *gin.RouterGroup) {
 		tx.DropTableIfExists(&sql.Permission{})
 		tx.CreateTable(&sql.Permission{})
 		tx.Create(&sql.Permission{
-			Code: "ER5T12",
-			Name: "FINANCE MENU",
-			Type: "102",
+			Model: sql.PresetModel(),
+			Code:  "ER5T12",
+			Name:  "FINANCE MENU",
+			Type:  "102",
 		})
 		tx.Create(&sql.Permission{
-			Code: "ER5T15",
-			Name: "MENU",
-			Type: "101",
-			Pid:  1,
+			Model: sql.PresetModel(),
+			Code:  "ER5T15",
+			Name:  "MENU",
+			Type:  "101",
+			Pid:   1,
 		})
 
 		// 3. create role
 		tx.DropTableIfExists(&sql.Role{})
 		tx.CreateTable(&sql.Role{})
 		tx.Create(&sql.Role{
-			Name: "FINANCE1",
-			Type: "101",
+			Model: sql.PresetModel(),
+			Name:  "FINANCE1",
+			Type:  "101",
 		})
 
 		p1 := &sql.Permission{}
 		p1.ID = 1
 		tx.Create(&sql.Role{
+			Model:       sql.PresetModel(),
 			Name:        "FINANCE1",
 			Type:        "101",
 			Permissions: []*sql.Permission{p1},
