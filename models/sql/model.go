@@ -14,11 +14,11 @@ import (
 type Model struct {
 	gormext.Model
 	CreatorID uint  `gorm:"comment:'创建人ID'"`
-	Creator   *User `gorm:"foreignkey:id;association_foreignkey:creator_id"`
+	Creator   *User `gorm:"foreignkey:id;association_foreignkey:CreatorID"`
 	UpdatorID uint  `gorm:"comment:'修改人ID'"`
-	Updator   *User `gorm:"foreignkey:id;association_foreignkey:updator_id"`
+	Updator   *User `gorm:"foreignkey:id;association_foreignkey:UpdatorID"`
 	DeleterID uint  `gorm:"comment:'删除人ID'"`
-	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:deleter_id"`
+	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:DeleterID"`
 }
 
 // PresetModel defined Preset User
