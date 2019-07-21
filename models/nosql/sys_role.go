@@ -15,7 +15,8 @@ import (
 // Role info
 type Role struct {
 	Model         `bson:",inline"`
-	Name          string          `bson:"name" br:"comment:'编码'"`
+	Name          string          `bson:"name" br:"comment:'名称'"`
+	Code          string          `bson:"code" br:"comment:'编码'"`
 	Type          string          `bson:"type" br:"comment:'类别', enum:'管理=101 业务=102'"`
 	PermissionIDs []bson.ObjectId `bson:"permission_ids" br:"comment:'权限ID'"`
 	Permissions   *[]Permission   `bson:"permissions,omitempty" br:"ref(permission,permission_ids,_id)'"`
