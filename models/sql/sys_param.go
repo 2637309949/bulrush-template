@@ -19,7 +19,8 @@ type Param struct {
 
 // AddEnum defined add enum type
 func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
-	tx := addition.GORMExt.DB.Begin()
+	DB := addition.GORMExt.Model("Param")
+	tx := DB.Begin()
 	enum := &Param{Model: PresetModel(), Code: "enum", Name: "枚举类型"}
 	if err := tx.FirstOrCreate(enum, &Param{Code: "enum"}).Error; err != nil {
 		tx.Rollback()

@@ -39,10 +39,11 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 	},
 }).Init(func(ext *gormext.GORM) {
 	// 添加预置账号, 用户存储预置数据
+	DB := addition.GORMExt.Model("User")
 	preset := PresetModel()
 	preset.ID = 101
 	// 注意关联类型的更新: https://github.com/jinzhu/gorm/issues/535
-	ext.DB.Where("ID=101").Assign(&User{Name: "preset"}).
+	DB.Where("ID=101").Assign(&User{Name: "preset"}).
 		FirstOrCreate(&User{
 			Model:    preset,
 			Name:     "preset",
