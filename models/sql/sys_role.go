@@ -24,10 +24,9 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 }).Init(func(ext *gormext.GORM) {
 	DB := addition.GORMExt.Model("Role")
 	// 预置管理员角色
-	preset := PresetModel()
-	preset.ID = 101
-	DB.Where("ID=101").Assign(&Role{Name: "管理员", Type: "101"}).FirstOrCreate(&Role{
-		Model: preset,
+	role := PresetRole()
+	DB.Where("ID=?", role.ID).Assign(&role).FirstOrCreate(&Role{
+		Model: PresetModel(),
 		Name:  "管理员",
 		Type:  "101",
 	})

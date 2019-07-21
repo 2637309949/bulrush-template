@@ -40,17 +40,13 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 }).Init(func(ext *gormext.GORM) {
 	// 添加预置账号, 用户存储预置数据
 	DB := addition.GORMExt.Model("User")
-	preset := PresetModel()
-	preset.ID = 101
+	user := PresetUser()
+	role := PresetRole()
 	// 注意关联类型的更新: https://github.com/jinzhu/gorm/issues/535
-	DB.Where("ID=101").Assign(&User{Name: "preset"}).
-		FirstOrCreate(&User{
-			Model:    preset,
-			Name:     "preset",
-			Password: "123456",
-		}).
+	DB.Where("ID=?", user.ID).Assign(&User{Name: "preset"}).
+		FirstOrCreate(&user).
 		Association("Roles").
-		Append(Role{Model: preset})
+		Append(role)
 })
 
 // RegisterUser inject function

@@ -35,3 +35,27 @@ func PresetModel() Model {
 		UpdatorID: bson.ObjectIdHex("5d2fdc047dead1c7924b3a52"),
 	}
 }
+
+// PresetUser defined Preset User
+// 系统内置数据时的默认参数
+func PresetUser() User {
+	model := PresetModel()
+	model.ID = bson.ObjectIdHex("5d2fdc047dead1c7924b3a52")
+	return User{
+		Model:    model,
+		Name:     "preset",
+		Password: "123456",
+	}
+}
+
+// PresetRole defined Preset Role
+// 系统内置数据时的默认参数
+func PresetRole() Role {
+	model := PresetModel()
+	model.ID = bson.ObjectIdHex("4d2fdc047dead2c7924b3a21")
+	return Role{
+		Model: model,
+		Name:  "管理员",
+		Type:  "101",
+	}
+}

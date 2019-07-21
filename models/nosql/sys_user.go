@@ -50,21 +50,19 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 }).Init(func(ext *mgoext.Mongo) {
 	// 添加预置账号, 用户存储预置数据
 	Model := addition.MGOExt.Model("User")
-	id := bson.ObjectIdHex("5d2fdc047dead1c7924b3a52")
-	preset := &User{Model: PresetModel(), Name: "preset"}
-	if err := Model.Find(bson.M{"name": "preset"}).One(preset); err == mgo.ErrNotFound {
-		preset.ID = id
-		if err := Model.Insert(preset); err != nil {
+	user := PresetUser()
+	user.RoleIds = []bson.ObjectId{PresetRole().ID}
+	if err := Model.Find(bson.M{"name": "preset"}).One(&user); err == mgo.ErrNotFound {
+		if err := Model.Insert(&user); err != nil {
 			addition.Logger.Error(err.Error())
 		}
 	}
-	if preset.ID.Hex() != id.Hex() {
-		if err := Model.RemoveId(preset.ID); err != nil {
+	if PresetUser().ID.Hex() != user.ID.Hex() {
+		if err := Model.RemoveId(user.ID); err != nil {
 			addition.Logger.Error(err.Error())
 		} else {
-			preset.ID = id
-			preset.Password = "123456"
-			if err := Model.Insert(preset); err != nil {
+			user.ID = PresetUser().ID
+			if err := Model.Insert(&user); err != nil {
 				addition.Logger.Error(err.Error())
 			}
 		}

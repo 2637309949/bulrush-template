@@ -21,7 +21,7 @@ type Model struct {
 	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:DeleterID"`
 }
 
-// PresetModel defined Preset User
+// PresetModel defined Preset Model
 // 系统内置数据时的默认参数
 func PresetModel() Model {
 	now := time.Now()
@@ -32,5 +32,29 @@ func PresetModel() Model {
 		},
 		CreatorID: 101,
 		UpdatorID: 101,
+	}
+}
+
+// PresetUser defined Preset User
+// 系统内置数据时的默认参数
+func PresetUser() User {
+	model := PresetModel()
+	model.ID = 101
+	return User{
+		Model:    model,
+		Name:     "preset",
+		Password: "123456",
+	}
+}
+
+// PresetRole defined Preset Role
+// 系统内置数据时的默认参数
+func PresetRole() Role {
+	model := PresetModel()
+	model.ID = 101
+	return Role{
+		Model: model,
+		Name:  "管理员",
+		Type:  "101",
 	}
 }
