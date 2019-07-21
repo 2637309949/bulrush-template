@@ -55,6 +55,7 @@ func PresetRole() Role {
 	model.ID = bson.ObjectIdHex("4d2fdc047dead2c7924b3a21")
 	return Role{
 		Model: model,
+		Code:  "XV76HN",
 		Name:  "管理员",
 		Type:  "101",
 	}

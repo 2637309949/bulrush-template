@@ -55,6 +55,7 @@ func PresetRole() Role {
 	return Role{
 		Model: model,
 		Name:  "管理员",
+		Code:  "8JN6GH",
 		Type:  "101",
 	}
 }
