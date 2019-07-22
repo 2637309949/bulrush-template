@@ -9,6 +9,7 @@ import (
 	"github.com/2637309949/bulrush-addition/logger"
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-addition/redis"
+	identify "github.com/2637309949/bulrush-identify"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/utils"
 	"github.com/gin-gonic/gin"
@@ -33,7 +34,7 @@ var Logger = addition.RushLogger.
 		},
 	}...).
 	Init(func(j *logger.Journal) {
-		j.SetFlags((logger.LstdFlags | logger.Lshortfile))
+		j.SetFlags((logger.LstdFlags | logger.Llongfile))
 	})
 
 // GORMExt defined ext for gorm
@@ -52,9 +53,26 @@ var GORMExt = gormext.
 		ext.DB.LogMode(true)
 		ext.API.Opts.Prefix = "/template/gorm"
 		ext.API.Opts.RouteHooks = &gormext.RouteHooks{
+			// only list creator data
 			List: &gormext.ListHook{
-				Pre: func(c *gin.Context) {
-					Logger.Info("all gormext before")
+				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+					iden, _ := c.Get("identify")
+					if iden != nil {
+						token := iden.(*identify.Token)
+						cond["creator_id"] = token.Extra.(map[string]interface{})["ID"]
+					}
+					return cond
+				},
+			},
+			// only list creator data
+			One: &gormext.OneHook{
+				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+					iden, _ := c.Get("identify")
+					if iden != nil {
+						token := iden.(*identify.Token)
+						cond["creator_id"] = token.Extra.(map[string]interface{})["ID"]
+					}
+					return cond
 				},
 			},
 		}
