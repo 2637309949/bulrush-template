@@ -14,24 +14,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func mockMgoLogin(router *gin.RouterGroup) {
-	router.GET("/mgo/mock/login", func(c *gin.Context) {
-		User := addition.MGOExt.Model("User")
-		user := addition.MGOExt.Var("User")
-		if err := User.Find(map[string]interface{}{"name": "preset"}).One(user); err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
-			return
-		}
-		token, err := plugins.Identify.ObtainToken(user)
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
-			return
-		}
-		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "", false, true)
-		c.JSON(http.StatusOK, token.AccessToken)
-	})
-}
-
+/**
+ * @api {get} /gorm/mock/login                模拟登录
+ * @apiGroup Test
+ * @apiDescription                            队列路由
+ * @apiSuccess        {Object}  Mess		  实体类
+ * @apiSuccess        {String}  Mess.message  消息内容
+ * @apiSuccessExample {json}                  正常返回
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "ok"
+ * }
+**/
 func mockGormLogin(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
 		user := addition.GORMExt.Var("User")
@@ -49,6 +43,18 @@ func mockGormLogin(router *gin.RouterGroup) {
 	})
 }
 
+/**
+ * @api {get} /gorm/mock/init                 GORM测试数据
+ * @apiGroup Test
+ * @apiDescription                            队列路由
+ * @apiSuccess        {Object}  Mess		  实体类
+ * @apiSuccess        {String}  Mess.message  消息内容
+ * @apiSuccessExample {json}                  正常返回
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "ok"
+ * }
+**/
 func mockInit(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/init", func(c *gin.Context) {
 		addition.GORMExt.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8")
@@ -118,7 +124,6 @@ func mockInit(router *gin.RouterGroup) {
 
 // RegisterMock defined hello routes
 func RegisterMock(ri *bulrush.ReverseInject) {
-	ri.Register(mockMgoLogin)
 	ri.Register(mockGormLogin)
 	ri.Register(mockInit)
 }

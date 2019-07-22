@@ -1,6 +1,92 @@
 define({ "api": [
   {
     "type": "get",
+    "url": "/gorm/mock/init",
+    "title": "GORM测试数据",
+    "group": "Test",
+    "description": "<p>队列路由</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Mess",
+            "description": "<p>实体类</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Mess.message",
+            "description": "<p>消息内容</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/test_mock.go",
+    "groupTitle": "Test",
+    "name": "GetGormMockInit",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/v1/gorm/mock/init"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/gorm/mock/login",
+    "title": "模拟登录",
+    "group": "Test",
+    "description": "<p>队列路由</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Mess",
+            "description": "<p>实体类</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Mess.message",
+            "description": "<p>消息内容</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/test_mock.go",
+    "groupTitle": "Test",
+    "name": "GetGormMockLogin",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/v1/gorm/mock/login"
+      }
+    ]
+  },
+  {
+    "type": "get",
     "url": "/test/chache",
     "title": "缓存路由",
     "group": "Test",
