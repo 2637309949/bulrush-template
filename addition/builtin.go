@@ -59,7 +59,7 @@ var GORMExt = gormext.
 					iden, _ := c.Get("identify")
 					if iden != nil {
 						token := iden.(*identify.Token)
-						cond["creator_id"] = token.Extra.(map[string]interface{})["ID"]
+						cond["CreatorID"] = token.Extra.(map[string]interface{})["ID"]
 					}
 					return cond
 				},
@@ -70,7 +70,7 @@ var GORMExt = gormext.
 					iden, _ := c.Get("identify")
 					if iden != nil {
 						token := iden.(*identify.Token)
-						cond["creator_id"] = token.Extra.(map[string]interface{})["ID"]
+						cond["CreatorID"] = token.Extra.(map[string]interface{})["ID"]
 					}
 					return cond
 				},

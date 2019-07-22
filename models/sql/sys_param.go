@@ -7,6 +7,7 @@ package sql
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/gin-gonic/gin"
 )
 
 // Param defined struct
@@ -16,6 +17,21 @@ type Param struct {
 	Name  string     `gorm:"comment:'名称'"`
 	Value []Property `gorm:"foreignkey:ParamID"`
 }
+
+var _ = addition.GORMExt.Register(&gormext.Profile{
+	Name:      "Param",
+	Reflector: &Param{},
+	Opts: &gormext.Opts{
+		RouteHooks: &gormext.RouteHooks{
+			// overide global
+			List: &gormext.ListHook{
+				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+					return cond
+				},
+			},
+		},
+	},
+})
 
 // AddEnum defined add enum type
 func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
@@ -43,8 +59,3 @@ func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
 	}
 	return p
 }
-
-var _ = addition.GORMExt.Register(&gormext.Profile{
-	Name:      "Param",
-	Reflector: &Param{},
-})

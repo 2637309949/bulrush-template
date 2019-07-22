@@ -7,7 +7,6 @@ package sql
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/addition"
-	"github.com/gin-gonic/gin"
 )
 
 // Role defined struct
@@ -22,16 +21,6 @@ type Role struct {
 var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "Role",
 	Reflector: &Role{},
-	Opts: &gormext.Opts{
-		RouteHooks: &gormext.RouteHooks{
-			// overide global
-			List: &gormext.ListHook{
-				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
-					return cond
-				},
-			},
-		},
-	},
 }).Init(func(ext *gormext.GORM) {
 	DB := addition.GORMExt.Model("Role")
 	// 预置管理员角色
