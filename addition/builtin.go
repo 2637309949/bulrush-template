@@ -21,7 +21,7 @@ import (
 // 1: RotateFile
 // 2: Console
 var Logger = addition.RushLogger.
-	AppendTransports([]*logger.Transport{
+	AppendTransports(
 		&logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
 			Level:   logger.ERROR,
@@ -32,7 +32,7 @@ var Logger = addition.RushLogger.
 			Level:   logger.SILLY,
 			Maxsize: logger.Maxsize,
 		},
-	}...).
+	).
 	Init(func(j *logger.Journal) {
 		j.SetFlags((logger.LstdFlags | logger.Llongfile))
 	})
