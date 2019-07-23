@@ -75,6 +75,28 @@ var GORMExt = gormext.
 					return cond
 				},
 			},
+			// only update creator data
+			Update: &gormext.UpdateHook{
+				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+					iden, _ := c.Get("identify")
+					if iden != nil {
+						token := iden.(*identify.Token)
+						cond["CreatorID"] = token.Extra.(map[string]interface{})["ID"]
+					}
+					return cond
+				},
+			},
+			// only delete creator data
+			Delete: &gormext.DeleteHook{
+				Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+					iden, _ := c.Get("identify")
+					if iden != nil {
+						token := iden.(*identify.Token)
+						cond["CreatorID"] = token.Extra.(map[string]interface{})["ID"]
+					}
+					return cond
+				},
+			},
 		}
 	})
 
