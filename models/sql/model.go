@@ -7,55 +7,26 @@ package sql
 import (
 	"time"
 
-	gormext "github.com/2637309949/bulrush-addition/gorm"
+	"github.com/2637309949/bulrush-template/utils"
 )
 
 // Model defined common field
 type Model struct {
-	gormext.Model
-	CreatorID uint  `gorm:"comment:'创建人ID'"`
-	Creator   *User `gorm:"foreignkey:id;association_foreignkey:CreatorID"`
-	UpdatorID uint  `gorm:"comment:'修改人ID'"`
-	Updator   *User `gorm:"foreignkey:id;association_foreignkey:UpdatorID"`
-	DeleterID uint  `gorm:"comment:'删除人ID'"`
-	Deleter   *User `gorm:"foreignkey:id;association_foreignkey:DeleterID"`
+	ID        uint       `gorm:"comment:'模型ID';primary_key"`
+	CreatorID uint       `gorm:"comment:'创建人ID'"`
+	Creator   *User      `gorm:"foreignkey:id;association_foreignkey:CreatorID"`
+	CreatedAt *time.Time `gorm:"comment:'创建时间'"`
+
+	UpdatorID uint       `gorm:"comment:'修改人ID'"`
+	Updator   *User      `gorm:"foreignkey:id;association_foreignkey:UpdatorID"`
+	UpdatedAt *time.Time `gorm:"comment:'更新时间'"`
+
+	DeleterID uint       `gorm:"comment:'删除人ID'"`
+	Deleter   *User      `gorm:"foreignkey:id;association_foreignkey:DeleterID"`
+	DeletedAt *time.Time `sql:"index" gorm:"comment:'删除时间'"`
 }
 
-// PresetModel defined Preset Model
-// 系统内置数据时的默认参数
-func PresetModel() Model {
-	now := time.Now()
-	return Model{
-		Model: gormext.Model{
-			UpdatedAt: &now,
-			CreatedAt: &now,
-		},
-		CreatorID: 101,
-		UpdatorID: 101,
-	}
-}
-
-// PresetUser defined Preset User
-// 系统内置数据时的默认参数
-func PresetUser() User {
-	model := PresetModel()
-	model.ID = 101
-	return User{
-		Model:    model,
-		Name:     "preset",
-		Password: "123456",
-	}
-}
-
-// PresetRole defined Preset Role
-// 系统内置数据时的默认参数
-func PresetRole() Role {
-	model := PresetModel()
-	model.ID = 101
-	return Role{
-		Model: model,
-		Name:  "管理员",
-		Code:  "8JN6GH",
-		Type:  "101",
-	}
+// DefaultModel defined DefaultModel
+func DefaultModel() Model {
+	return Model{CreatedAt: utils.Now(), UpdatedAt: utils.Now()}
 }

@@ -28,11 +28,16 @@ import (
 **/
 func mockGormLogin(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
-		user := addition.GORMExt.Var("User")
-		if err := addition.GORMExt.DB.Find(user, map[string]interface{}{"name": "preset"}).Error; err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
-			return
+		user := &sql.User{
+			Name:  "test",
+			Model: sql.DefaultModel(),
 		}
+		if addition.GORMExt.DB.Where(map[string]interface{}{"name": "test"}).Find(user).RecordNotFound() {
+			addition.GORMExt.DB.Create(user)
+		}
+		user.CreatorID = user.ID
+		user.UpdatorID = user.ID
+		addition.GORMExt.DB.Save(user)
 		token, err := plugins.Identify.ObtainToken(user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
@@ -67,29 +72,40 @@ func mockInit(router *gin.RouterGroup) {
 		tx.DropTableIfExists(&sql.User{})
 		tx.CreateTable(&sql.User{})
 		first := &sql.User{
-			Model: sql.PresetModel(),
+			Model: sql.DefaultModel(),
 			Name:  "L1211",
 			Age:   23,
 		}
 		tx.Create(first)
+		first.CreatorID = first.ID
+		first.UpdatorID = first.ID
+		tx.Save(first)
+
 		second := &sql.User{
-			Model: sql.PresetModel(),
+			Model: sql.DefaultModel(),
 			Name:  "L1212",
 			Age:   24,
 		}
 		tx.Create(second)
+		second.CreatorID = second.ID
+		second.UpdatorID = second.ID
+		tx.Save(second)
+
+		model := sql.DefaultModel()
+		model.CreatorID = first.ID
+		model.UpdatorID = first.ID
 
 		// 2. create permission
 		tx.DropTableIfExists(&sql.Permission{})
 		tx.CreateTable(&sql.Permission{})
 		tx.Create(&sql.Permission{
-			Model: sql.PresetModel(),
+			Model: model,
 			Code:  "ER5T12",
 			Name:  "FINANCE MENU",
 			Type:  "102",
 		})
 		tx.Create(&sql.Permission{
-			Model: sql.PresetModel(),
+			Model: model,
 			Code:  "ER5T15",
 			Name:  "MENU",
 			Type:  "101",
@@ -100,20 +116,18 @@ func mockInit(router *gin.RouterGroup) {
 		tx.DropTableIfExists(&sql.Role{})
 		tx.CreateTable(&sql.Role{})
 		tx.Create(&sql.Role{
-			Model: sql.PresetModel(),
+			Model: model,
 			Name:  "FINANCE1",
 			Type:  "101",
 		})
 
 		p1 := &sql.Permission{}
-		p1.ID = 1
 		tx.Create(&sql.Role{
-			Model:       sql.PresetModel(),
+			Model:       model,
 			Name:        "FINANCE1",
 			Type:        "101",
 			Permissions: []*sql.Permission{p1},
 		})
-
 		tx.Exec("SET FOREIGN_KEY_CHECKS = 1;")
 		err := tx.Commit().Error
 		if err != nil {

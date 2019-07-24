@@ -37,21 +37,25 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
 	DB := addition.GORMExt.Model("Param")
 	tx := DB.Begin()
-	enum := &Param{Model: PresetModel(), Code: "enum", Name: "枚举类型"}
-	if err := tx.FirstOrCreate(enum, &Param{Code: "enum"}).Error; err != nil {
-		tx.Rollback()
-		addition.Logger.Error(err.Error())
-		return p
+	enum := &Param{Model: DefaultModel(), Code: "enum", Name: "枚举类型"}
+	if tx.Where(&Param{Code: "enum"}).Find(enum).RecordNotFound() {
+		if err := tx.Save(&enum).Error; err != nil {
+			tx.Rollback()
+			addition.Logger.Error(err.Error())
+			return p
+		}
 	}
 	for _, v := range *value {
 		v.ParamID = enum.ID
 		v.Category = model
 		v.SubCategory = key
-		v.Model = PresetModel()
-		if err := tx.FirstOrCreate(&v, &Property{Category: v.Category, SubCategory: v.SubCategory, Key: v.Key}).Error; err != nil {
-			tx.Rollback()
-			addition.Logger.Error(err.Error())
-			return p
+		if tx.Where(&Property{Category: v.Category, SubCategory: v.SubCategory, Key: v.Key}).Find(&v).RecordNotFound() {
+			v.Model = DefaultModel()
+			if err := tx.Save(&v).Error; err != nil {
+				tx.Rollback()
+				addition.Logger.Error(err.Error())
+				return p
+			}
 		}
 	}
 	if err := tx.Commit().Error; err != nil {
