@@ -10,11 +10,6 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-// InitApp init applications
-func InitApp() bulrush.Bulrush {
-	app := bulrush.Default()
-	app.Config(conf.CfgPath)
-	app.Inject("bulrushApp")
-	appUsePlugins(app)
-	return app
+func app() bulrush.Bulrush {
+	return addPlugin(bulrush.Default().Config(conf.CPath))
 }

@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	app := InitApp()
+	app := app()
 	app.Use(func(event events.EventEmmiter) {
 		event.On(bulrush.EventSysBulrushPluginRunImmediately, func(message ...interface{}) {
 			addition.Logger.Info("EventSysBulrushPluginRunImmediately %v", message)

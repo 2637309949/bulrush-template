@@ -16,24 +16,26 @@ import (
 	"github.com/thoas/go-funk"
 )
 
+// var declare
 var (
 	dir     = "conf/yaml"
 	eFlag   = flag.String("e", "", "specify environment variables")
 	envFlag = flag.String("env", "", "specify environment variables")
-	// ENV APP ENV
-	ENV = utils.Some(utils.Some(os.Getenv("ENV"), os.Getenv("env")), "local")
-	// CfgPath PATH
-	CfgPath string
-	// Cfg app cgf
-	Cfg *bulrush.Config
+	ENV     = utils.Some(utils.Some(os.Getenv("ENV"), os.Getenv("env")), "local")
+	CPath   string
+	Conf    *bulrush.Config
 )
 
 func init() {
+	var (
+		files []string
+		err   error
+	)
 	flag.Parse()
 	ENV = utils.Some(utils.Some(*eFlag, *envFlag), ENV)
-	envFileName := fmt.Sprintf("%s.yaml", ENV)
-	files, err := filepath.Glob(dir + "/**.yaml")
-	if err != nil {
+	fileName := fmt.Sprintf("%s.yaml", ENV)
+
+	if files, err = filepath.Glob(dir + "/**.yaml"); err != nil {
 		panic(err)
 	}
 	envFiles := funk.Map(files, func(file string) string {
@@ -41,14 +43,11 @@ func init() {
 		return base
 	}).([]string)
 
-	findFrom := funk.Find(envFiles, func(file string) bool {
-		return file == envFileName
-	})
-
-	if findFrom == nil {
-		panic(fmt.Errorf("envFileName %s from env or flag has no been found", envFileName))
-	} else {
-		CfgPath = path.Join(".", dir, envFileName)
-		Cfg = bulrush.LoadConfig(CfgPath)
+	if exist := funk.Find(envFiles, func(file string) bool {
+		return file == fileName
+	}); exist == nil {
+		panic(fmt.Errorf("envFileName %s from env or flag has no been found", fileName))
 	}
+	CPath = path.Join(".", dir, fileName)
+	Conf = bulrush.LoadConfig(CPath)
 }

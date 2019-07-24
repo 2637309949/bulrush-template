@@ -17,7 +17,7 @@ import (
 
 func setupRouter() *gin.Engine {
 	var proxy *gin.Engine
-	app := InitApp()
+	app := app()
 	gin.SetMode("release")
 	app.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
 		proxy = httpProxy

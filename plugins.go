@@ -18,7 +18,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func appUsePlugins(app bulrush.Bulrush) {
+func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 	app.PreUse(addition.I18N)
 	app.Use(plugins.Limit)
 	app.Use(plugins.Proxy)
@@ -33,6 +33,7 @@ func appUsePlugins(app bulrush.Bulrush) {
 	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
 	app.PostUse(addition.APIDoc)
+	app.Inject("bulrushApp")
 	app.Use(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
 			addition.Logger.Info("1.from bulrushApp %s", "info")
@@ -44,4 +45,5 @@ func appUsePlugins(app bulrush.Bulrush) {
 	}, func(test string) {
 		addition.Logger.Info("2.from bulrushApp %s", test)
 	})
+	return app
 }

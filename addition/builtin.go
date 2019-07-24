@@ -23,12 +23,12 @@ import (
 var Logger = addition.RushLogger.
 	AppendTransports(
 		&logger.Transport{
-			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "error"),
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Conf.Log.Path, "logs").(string)), "error"),
 			Level:   logger.ERROR,
 			Maxsize: logger.Maxsize,
 		},
 		&logger.Transport{
-			Dirname: path.Join(path.Join(".", utils.Some(conf.Cfg.Log.Path, "logs").(string)), "combined"),
+			Dirname: path.Join(path.Join(".", utils.Some(conf.Conf.Log.Path, "logs").(string)), "combined"),
 			Level:   logger.SILLY,
 			Maxsize: logger.Maxsize,
 		},
@@ -44,7 +44,7 @@ var GORMExt = gormext.
 	New().
 	Init(func(ext *gormext.GORM) {
 		cfg := &gormext.Config{}
-		if err := conf.Cfg.Unmarshal("sql", cfg); err != nil {
+		if err := conf.Conf.Unmarshal("sql", cfg); err != nil {
 			panic(err)
 		}
 		ext.Conf(cfg)
@@ -107,7 +107,7 @@ var MGOExt = mgoext.
 	New().
 	Init(func(ext *mgoext.Mongo) {
 		cfg := &mgo.DialInfo{}
-		if err := conf.Cfg.Unmarshal("mongo", cfg); err != nil {
+		if err := conf.Conf.Unmarshal("mongo", cfg); err != nil {
 			panic(err)
 		}
 		ext.Conf(cfg)
@@ -153,4 +153,4 @@ var I18N = addition.
 	})
 
 // Redis application redis store
-var Redis = redis.New(conf.Cfg)
+var Redis = redis.New(conf.Conf)
