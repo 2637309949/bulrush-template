@@ -47,8 +47,9 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 // AddEnum defined add enum type
 func (p *Param) AddEnum(model string, key string, value []Value) *Param {
 	Model := addition.MGOExt.Model("Param")
-	enum := &Param{Model: PresetModel(), Code: "enum"}
+	enum := &Param{Code: "enum"}
 	if err := Model.Find(bson.M{"code": "enum"}).One(enum); err == mgo.ErrNotFound {
+		enum.Model = DefaultModel()
 		if err := Model.Insert(enum); err != nil {
 			addition.Logger.Error(err.Error())
 			return p

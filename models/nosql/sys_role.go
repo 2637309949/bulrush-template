@@ -8,7 +8,6 @@ import (
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
-	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 )
 
@@ -37,13 +36,6 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 		},
 	},
 }).Init(func(ext *mgoext.Mongo) {
-	Model := addition.MGOExt.Model("Role")
-	role := PresetRole()
-	if err := Model.Find(bson.M{"_id": role.ID}).One(&role); err == mgo.ErrNotFound {
-		if err := Model.Insert(&role); err != nil {
-			addition.Logger.Error(err.Error())
-		}
-	}
 	(&Param{}).
 		AddEnum("Role", "Type", []Value{
 			Value{

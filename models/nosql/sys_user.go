@@ -47,26 +47,6 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 			addition.Logger.Error(err.Error())
 		}
 	}
-}).Init(func(ext *mgoext.Mongo) {
-	// 添加预置账号, 用户存储预置数据
-	Model := addition.MGOExt.Model("User")
-	user := PresetUser()
-	user.RoleIds = []bson.ObjectId{PresetRole().ID}
-	if err := Model.Find(bson.M{"name": "preset"}).One(&user); err == mgo.ErrNotFound {
-		if err := Model.Insert(&user); err != nil {
-			addition.Logger.Error(err.Error())
-		}
-	}
-	if PresetUser().ID.Hex() != user.ID.Hex() {
-		if err := Model.RemoveId(user.ID); err != nil {
-			addition.Logger.Error(err.Error())
-		} else {
-			user.ID = PresetUser().ID
-			if err := Model.Insert(&user); err != nil {
-				addition.Logger.Error(err.Error())
-			}
-		}
-	}
 })
 
 // RegisterUser inject function
