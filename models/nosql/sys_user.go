@@ -51,7 +51,7 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // RegisterUser inject function
 func RegisterUser(r *gin.RouterGroup, role *role.Role) {
-	addition.MGOExt.API.List(r, "User").Post(func(c *gin.Context) {
+	addition.MGOExt.API.List(r, "User").Pre(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true

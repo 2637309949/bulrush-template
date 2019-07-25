@@ -1,12 +1,6 @@
 ## Usage
-
 ```go
-// Copyright (c) 2018-2020 Double All rights reserved.
-// Use of this source code is governed by a MIT style
-// license that can be found in the LICENSE file.
-
 package main
-
 import (
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
@@ -24,7 +18,7 @@ func main() {
 }
 ```
 
-### 1. For Dev
+### For Dev
 ```shell
 # Hot-start 
 $ make -f Makefile.dep
@@ -36,36 +30,69 @@ $ make -f Makefile.dev
 $ go run $(ls -1 *.go | grep -v _test.go)
 ```
 
-### 2. For Prod
-
+### For Prod
 ```shell
 $ make
 ```
-    // Remove those dev lines in go.mod file
-    // ## just for dev
-    replace github.com/2637309949/bulrush => ../bulrush
-    replace github.com/2637309949/bulrush-openapi => ../bulrush-openapi
-    replace github.com/2637309949/bulrush-addition => ../bulrush-addition
-    replace github.com/2637309949/bulrush-limit => ../bulrush-limit
-    ...
-    // ## end
 
-
-### 3. For Apidoc
+### For Apidoc
 ![Bulrush flash](./assets/apidoc.png)
 
 ```shell
 $ make -f Makefile.api
 ```
 
-### 4. Run Test
-
+### Run Test
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$"
 ```
 Or run with log
 ```shell
 /usr/local/go/bin/go test -timeout 30s github.com/2637309949/bulrush-template -run "^(TestCache)$" -v
+```
+
+##  Standard
+### Http status and Http reponse
+#### Reponse Success
+```go
+c.JSON(http.StatusOK, users)
+```
+
+#### Reponse Error
+```go
+c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+	"message": "Internal Server Error",
+	"stack":   "no id found",
+})
+```
+
+### Global object
+```go
+//./addition
+func Request(method string, url string, payload io.Reader) (*http.Response, error) {
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		return nil, err
+	}
+	return client.Do(req)
+}
+```
+
+### Logger
+```go
+func RegisterUser(r *gin.RouterGroup, role *role.Role) {
+	addition.MGOExt.API.List(r, "User").Pre(func(c *gin.Context) {
+		addition.Logger.Info("after")
+	}).Auth(func(c *gin.Context) bool {
+		return true
+	})
+	addition.MGOExt.API.Feature("feature").List(r, "User")
+	addition.MGOExt.API.One(r, "User", role.Can("r1,r2@p1,p3,p4;r4"))
+	addition.MGOExt.API.Create(r, "User")
+	addition.MGOExt.API.Update(r, "User")
+	addition.MGOExt.API.Delete(r, "User")
+}
 ```
 
 ## MIT License
