@@ -45,6 +45,13 @@ func RegisterUser(r *gin.RouterGroup) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
+	}).RouteHooks(&gormext.RouteHooks{
+		// Override global config, never query only by own
+		List: &gormext.ListHook{
+			Cond: func(cond map[string]interface{}, c *gin.Context, info struct{ Name string }) map[string]interface{} {
+				return cond
+			},
+		},
 	})
 	addition.GORMExt.API.Feature("subUser").List(r, "User")
 	addition.GORMExt.API.One(r, "User")
