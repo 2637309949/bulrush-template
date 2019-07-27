@@ -16,17 +16,14 @@ import (
 type User struct {
 	Model
 	Name     string                 `gorm:"comment:'名称';unique;not null"`
-	Password EncryptedData          `gorm:"comment:'密码';not null"`
+	Password string                 `gorm:"comment:'密码';not null"`
 	Age      uint                   `gorm:"comment:'年龄'"`
 	Birthday *time.Time             `gorm:"comment:'生日'"`
 	Mobile   string                 `gorm:"comment:'手机'"`
 	Email    string                 `gorm:"comment:'邮箱'"`
-	Roles    []Role                 `gorm:"comment:'角色列表';many2many:role2users;"`
+	Roles    []*Role                `gorm:"comment:'角色列表';many2many:role2users;"`
 	Ignored  *struct{ Name string } `gorm:"-"`
 }
-
-// EncryptedData defined EncryptedData
-type EncryptedData []byte
 
 var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "User",

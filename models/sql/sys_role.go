@@ -14,7 +14,7 @@ type Role struct {
 	Model
 	Code        string        `gorm:"comment:'编码';unique;not null"`
 	Name        string        `gorm:"comment:'名称';unique;not null"`
-	Type        string        `gorm:"comment:'类型';enum:'管理='101' 业务='102'"`
+	Type        string        `gorm:"comment:'类型';enum:'管理='101' 业务='102';not null"`
 	Permissions []*Permission `gorm:"comment:'权限列表';many2many:role_permission;"`
 }
 

@@ -59,7 +59,7 @@ func adduser(router *gin.RouterGroup, event events.EventEmmiter) {
 		services.AddUsers([]interface{}{
 			nosql.User{
 				Name:     "double",
-				Password: nosql.EncryptedData([]byte("111111")),
+				Password: "111111",
 				Age:      24,
 				Model: nosql.Model{
 					CreatorID: bson.NewObjectId(),

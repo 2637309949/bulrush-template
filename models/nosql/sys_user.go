@@ -17,14 +17,11 @@ import (
 type User struct {
 	Model    `bson:",inline"`
 	Name     string          `bson:"name" br:"comment:'名称'"`
-	Password EncryptedData   `bson:"password" br:"comment:'密码'"`
+	Password string          `bson:"password" br:"comment:'密码'"`
 	Age      uint            `bson:"age"`
 	RoleIds  []bson.ObjectId `bson:"role_ids" br:"comment:'角色列表'"`
 	Roles    *[]Role         `bson:"roles,omitempty" br:"ref(role,role_ids,_id)'"`
 }
-
-// EncryptedData defined EncryptedData
-type EncryptedData []byte
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
 	Name:      "User",
