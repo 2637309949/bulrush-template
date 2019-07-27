@@ -3,12 +3,14 @@ package addition
 import (
 	"path"
 
+	"github.com/go-redis/redis"
+
 	addition "github.com/2637309949/bulrush-addition"
 	"github.com/2637309949/bulrush-addition/apidoc"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-addition/logger"
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
-	"github.com/2637309949/bulrush-addition/redis"
+	redisext "github.com/2637309949/bulrush-addition/redis"
 	identify "github.com/2637309949/bulrush-identify"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/utils"
@@ -153,4 +155,11 @@ var I18N = addition.
 	})
 
 // Redis application redis store
-var Redis = redis.New(conf.Conf)
+var Redis = redisext.New().
+	Init(func(r *redisext.Redis) {
+		cfg := &redis.Options{}
+		if err := conf.Conf.Unmarshal("redis", cfg); err != nil {
+			panic(err)
+		}
+		r.Conf(cfg)
+	})

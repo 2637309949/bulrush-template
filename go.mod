@@ -51,6 +51,7 @@ require (
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/go-playground/locales v0.12.1 // indirect
 	github.com/go-playground/universal-translator v0.16.0 // indirect
+	github.com/go-redis/redis v6.15.2+incompatible
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kataras/go-events v0.0.2
 	github.com/leodido/go-urn v1.1.0 // indirect
