@@ -43,9 +43,9 @@ func init() {
 		return base
 	}).([]string)
 
-	if exist := funk.Find(envFiles, func(file string) bool {
+	if funk.Find(envFiles, func(file string) bool {
 		return file == fileName
-	}); exist == nil {
+	}) == nil {
 		panic(fmt.Errorf("envFileName %s from env or flag has no been found", fileName))
 	}
 	CPath = path.Join(".", dir, fileName)

@@ -1,7 +1,7 @@
 name: 'bulrush-template'
 version: 1
 port: '8080'
-prefix: '/api/v1'
+prefix: '/api'
 mode: 'debug'
 logs:
   path: '/logs'
