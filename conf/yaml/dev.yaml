@@ -7,7 +7,7 @@ logs:
 mongo:
   addrs:
     - '127.0.0.1:27017'
-  timeout: 60
+  timeout: 3000000000
   database: 'bulrush'
   replicaSetName: ''
   source: ''
