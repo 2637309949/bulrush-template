@@ -34,17 +34,11 @@ func init() {
 	flag.Parse()
 	ENV = utils.Some(utils.Some(*eFlag, *envFlag), ENV)
 	fileName := fmt.Sprintf("%s.yaml", ENV)
-
 	if files, err = filepath.Glob(dir + "/**.yaml"); err != nil {
 		panic(err)
 	}
-	envFiles := funk.Map(files, func(file string) string {
-		base := filepath.Base(file)
-		return base
-	}).([]string)
-
-	if funk.Find(envFiles, func(file string) bool {
-		return file == fileName
+	if funk.Find(files, func(file string) bool {
+		return filepath.Base(file) == fileName
 	}) == nil {
 		panic(fmt.Errorf("envFileName %s from env or flag has no been found", fileName))
 	}

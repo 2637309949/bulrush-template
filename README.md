@@ -24,7 +24,6 @@ import (
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/kataras/go-events"
 )
-
 func main() {
 	app := InitApp()
 	app.Use(func(event events.EventEmmiter) {

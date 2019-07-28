@@ -36,5 +36,5 @@ var Identify = identify.
 			Redis: addition.Redis,
 		}
 		iden.FakeTokens = []string{}
-		iden.FakeURLs = []string{`^/api/v1/ignore$`, `^/api/v1/gorm/mock`}
+		iden.FakeURLs = []string{`^/api/ignore$`, `^/api/gorm/mock`}
 	})
