@@ -35,7 +35,7 @@ replace github.com/2637309949/bulrush-utils => ../bulrush-utils
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190725143958-5a43e012d374
-	github.com/2637309949/bulrush-addition v0.0.0-20190726130144-51b2fc84c913
+	github.com/2637309949/bulrush-addition v0.0.0-20190728091137-500987db074f
 	github.com/2637309949/bulrush-captcha v0.0.0-20190726093941-53fcd21bcb22
 	github.com/2637309949/bulrush-delivery v0.0.0-20190726093946-81d54c780c21
 	github.com/2637309949/bulrush-identify v0.0.0-20190726093950-96fa883b719a
@@ -49,13 +49,9 @@ require (
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
-	github.com/go-playground/locales v0.12.1 // indirect
-	github.com/go-playground/universal-translator v0.16.0 // indirect
 	github.com/go-redis/redis v6.15.2+incompatible
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kataras/go-events v0.0.2
-	github.com/leodido/go-urn v1.1.0 // indirect
-	github.com/pierrec/lz4 v2.0.5+incompatible // indirect
 	github.com/stretchr/testify v1.3.0
 	github.com/thoas/go-funk v0.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
