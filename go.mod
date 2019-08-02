@@ -35,7 +35,7 @@ replace github.com/2637309949/bulrush-utils => ../bulrush-utils
 
 require (
 	github.com/2637309949/bulrush v0.0.0-20190725143958-5a43e012d374
-	github.com/2637309949/bulrush-addition v0.0.0-20190728091137-500987db074f
+	github.com/2637309949/bulrush-addition v0.0.0-20190729105901-74c392aece2f
 	github.com/2637309949/bulrush-captcha v0.0.0-20190726093941-53fcd21bcb22
 	github.com/2637309949/bulrush-delivery v0.0.0-20190726093946-81d54c780c21
 	github.com/2637309949/bulrush-identify v0.0.0-20190726093950-96fa883b719a
