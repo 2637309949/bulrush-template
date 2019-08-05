@@ -32,7 +32,7 @@ func chache(router *gin.RouterGroup, event events.EventEmmiter) {
 	store := persistence.NewInMemoryStore(time.Second)
 	router.GET("/test/chache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": addition.I18N.I18NLocale("sys_hello"),
+			"message": addition.I18N.I18NLocale("sys_hello", "hello"),
 		})
 	}))
 }

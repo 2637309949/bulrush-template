@@ -5,11 +5,11 @@
 package routes
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/2637309949/bulrush"
 	mq "github.com/2637309949/bulrush-mq"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
 )
@@ -37,7 +37,7 @@ func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 		c.JSON(http.StatusOK, gin.H{"message": "ok"})
 	})
 	q.Register("mqTest", func(mess mq.Message) error {
-		fmt.Println(mess.Body)
+		addition.Logger.Info("%v", mess.Body)
 		return nil
 	})
 }

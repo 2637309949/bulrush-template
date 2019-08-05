@@ -40,7 +40,10 @@ func mockGormLogin(router *gin.RouterGroup) {
 		addition.GORMExt.DB.Save(user)
 		token, err := plugins.Identify.ObtainToken(user)
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"message": addition.I18N.I18NLocale("sys_error", "Internal Server Error"),
+				"stack":   err.Error(),
+			})
 			return
 		}
 		c.SetCookie("accessToken", token.AccessToken, 60*60*24, "/", "", false, true)
