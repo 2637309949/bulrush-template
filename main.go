@@ -13,8 +13,8 @@ import (
 func main() {
 	app := app()
 	app.Use(func(event events.EventEmmiter) {
-		event.On(bulrush.EventSysBulrushPluginRunImmediately, func(message ...interface{}) {
-			addition.Logger.Info("EventSysBulrushPluginRunImmediately %v", message)
+		event.On(bulrush.EventsRunning, func(message ...interface{}) {
+			addition.Logger.Info("EventsRunning %v", message)
 		})
 	})
 	app.RunImmediately()
