@@ -54,5 +54,6 @@ require (
 	github.com/kataras/go-events v0.0.2
 	github.com/stretchr/testify v1.3.0
 	github.com/thoas/go-funk v0.4.0
+	gopkg.in/guregu/null.v3 v3.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 )

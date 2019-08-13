@@ -10,6 +10,7 @@ import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
+	"gopkg.in/guregu/null.v3"
 )
 
 // User defined struct
@@ -20,7 +21,7 @@ type User struct {
 	Age      uint                   `gorm:"comment:'年龄'"`
 	Birthday *time.Time             `gorm:"comment:'生日'"`
 	Mobile   string                 `gorm:"comment:'手机'"`
-	Email    string                 `gorm:"comment:'邮箱'"`
+	Email    null.String            `gorm:"comment:'邮箱'"`
 	Roles    []*Role                `gorm:"comment:'角色列表';many2many:role2users;"`
 	Ignored  *struct{ Name string } `gorm:"-"`
 }
