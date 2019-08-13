@@ -135,18 +135,10 @@ var APIDoc = apidoc.
 var I18N = addition.
 	NewI18N().
 	Init(func(i18n *addition.I18N) func() {
+		m := &addition.M{}
+		utils.LoadYaml("conf/yaml/locales.yaml", m)
 		return func() {
-			i18n.AddLocales(addition.M{
-				"zh_CN": addition.M{
-					"sys_hello": "你好",
-				},
-				"en_US": addition.M{
-					"sys_hello": "hello",
-				},
-				"zh_TW": addition.M{
-					"sys_hello": "妳好",
-				},
-			})
+			i18n.AddLocales(*m)
 		}
 	})
 
