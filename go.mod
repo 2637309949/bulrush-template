@@ -56,4 +56,5 @@ require (
 	github.com/thoas/go-funk v0.4.0
 	gopkg.in/guregu/null.v3 v3.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
+	gopkg.in/yaml.v2 v2.2.2
 )
