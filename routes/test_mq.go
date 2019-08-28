@@ -36,7 +36,7 @@ func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 		})
 		c.JSON(http.StatusOK, gin.H{"message": "ok"})
 	})
-	q.Register("mqTest", func(mess mq.Message) error {
+	q.Register("mqTest", func(mess *mq.Message) error {
 		addition.Logger.Info("%v", mess.Body)
 		return nil
 	})
