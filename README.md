@@ -78,8 +78,7 @@ c.JSON(http.StatusOK, users)
 #### Reponse Error
 ```go
 c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-	"message": "Internal Server Error",
-	"stack":   "no id found",
+	"message": "no id found",
 })
 ```
 

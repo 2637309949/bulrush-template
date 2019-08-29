@@ -41,8 +41,7 @@ func mockGormLogin(router *gin.RouterGroup) {
 		token, err := plugins.Identify.ObtainToken(user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
-				"message": addition.I18N.I18NLocale("sys_error", "Internal Server Error"),
-				"stack":   err.Error(),
+				"message": addition.I18N.I18NLocale(err.Error(), err.Error()),
 			})
 			return
 		}
