@@ -13,8 +13,8 @@ func RegisterHello(api *openapi.OpenAPI) {
 	api.RegistHandler(openapi.Handler{
 		Name:    "test.hello",
 		Version: "1.0",
-		Voke: func(*openapi.AppInfo, *openapi.CRP) (*openapi.CRPRet, error) {
-			return &openapi.CRPRet{
+		Voke: func(*openapi.AppInfo, *openapi.Form) (*openapi.FormRet, error) {
+			return &openapi.FormRet{
 				Body: map[string]interface{}{
 					"a": "a",
 					"b": "b",
