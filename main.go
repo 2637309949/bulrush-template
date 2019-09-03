@@ -17,5 +17,5 @@ func main() {
 			addition.Logger.Info("EventsRunning %v", message)
 		})
 	})
-	app.RunImmediately()
+	app.Run()
 }

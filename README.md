@@ -27,11 +27,11 @@ import (
 func main() {
 	app := InitApp()
 	app.Use(func(event events.EventEmmiter) {
-		event.On(bulrush.EventSysBulrushPluginRunImmediately, func(message ...interface{}) {
-			addition.Logger.Info("EventSysBulrushPluginRunImmediately %v", message)
+		event.On(bulrush.EventSysBulrushPluginRun, func(message ...interface{}) {
+			addition.Logger.Info("EventSysBulrushPluginRun %v", message)
 		})
 	})
-	app.RunImmediately()
+	app.Run()
 }
 ```
 
