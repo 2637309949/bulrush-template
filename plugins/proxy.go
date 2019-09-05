@@ -8,8 +8,8 @@ import proxy "github.com/2637309949/bulrush-proxy"
 
 // Proxy Plugin init
 var Proxy = &proxy.Proxy{
-	Host:  "https://xxx.com",
-	Match: "^/api/v1/proxyTest",
+	Host:  "https://www.baidu.com",
+	Match: "^/proxy",
 	Map: func(reqPath string) string {
 		return reqPath
 	},
