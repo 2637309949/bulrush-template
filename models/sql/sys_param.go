@@ -21,6 +21,7 @@ type Param struct {
 var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "Param",
 	Reflector: &Param{},
+	AutoHook:  true,
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			// overide global

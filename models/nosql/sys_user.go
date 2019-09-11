@@ -26,7 +26,6 @@ type User struct {
 var _ = addition.MGOExt.Register(&mgoext.Profile{
 	Name:      "User",
 	Reflector: &User{},
-	BanHook:   true,
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{

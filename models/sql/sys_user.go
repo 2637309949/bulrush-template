@@ -29,7 +29,6 @@ type User struct {
 var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "User",
 	Reflector: &User{},
-	BanHook:   true,
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			List: &gormext.ListHook{
