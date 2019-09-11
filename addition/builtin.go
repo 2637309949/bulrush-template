@@ -23,7 +23,7 @@ import (
 // 1: RotateFile
 // 2: Console
 var Logger = addition.RushLogger.
-	AppendTransports(
+	AddTransports(
 		&logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Conf.Log.Path, "logs").(string)), "error"),
 			Level:   logger.ERROR,
