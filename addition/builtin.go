@@ -3,8 +3,6 @@ package addition
 import (
 	"path"
 
-	"github.com/go-redis/redis"
-
 	addition "github.com/2637309949/bulrush-addition"
 	"github.com/2637309949/bulrush-addition/apidoc"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
@@ -16,6 +14,10 @@ import (
 	"github.com/2637309949/bulrush-template/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo"
+	"github.com/go-redis/redis"
+
+	// mysql driver for gorm
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 // Logger defined bulrush or system log global proxy

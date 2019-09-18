@@ -13,7 +13,7 @@ import (
 
 // Model register
 // Make sure all models are initialized here
-var Model = func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+func Model(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(nosql.RegisterUser)
 	ri.Register(nosql.RegisterRole)
 	ri.Register(sql.RegisterUser)

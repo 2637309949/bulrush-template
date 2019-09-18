@@ -50,10 +50,13 @@ require (
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/go-redis/redis v6.15.2+incompatible
+	github.com/golang/protobuf v1.3.2
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kataras/go-events v0.0.2
 	github.com/stretchr/testify v1.4.0
 	github.com/thoas/go-funk v0.4.0
+	golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297
+	google.golang.org/grpc v1.21.1
 	gopkg.in/guregu/null.v3 v3.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
 	gopkg.in/yaml.v2 v2.2.2

@@ -12,7 +12,7 @@ import (
 
 // Route for all routes register
 // Make sure all routes are initialized here
-var Route = func(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
+func Route(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
 	ri.Register(RegisterMgo)
 	ri.Register(RegisterCache)
 	ri.Register(RegisterSeq)
