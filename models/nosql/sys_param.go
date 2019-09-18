@@ -31,6 +31,7 @@ type Param struct {
 var _ = addition.MGOExt.Register(&mgoext.Profile{
 	Name:      "Param",
 	Reflector: &Param{},
+	AutoHook:  true,
 }).Init(func(ext *mgoext.Mongo) {
 	Model := addition.MGOExt.Model("Param")
 	for _, key := range []string{"code", "name"} {
