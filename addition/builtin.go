@@ -15,9 +15,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo"
 	"github.com/go-redis/redis"
-
-	// mysql driver for gorm
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 // Logger defined bulrush or system log global proxy

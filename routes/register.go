@@ -19,5 +19,6 @@ func Route(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.Rever
 	ri.Register(RegisterMq)
 	ri.Register(RegisterEvent)
 	ri.Register(RegisterMock)
+	ri.Register(RegisterGRPC)
 	event.Emit("hello", "this is my payload to hello router")
 }

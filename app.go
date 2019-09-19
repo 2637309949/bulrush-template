@@ -6,21 +6,10 @@ package main
 
 import (
 	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/conf"
-	"github.com/kataras/go-events"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func app() bulrush.Bulrush {
 	return addPlugin(bulrush.Default().Config(conf.CPath))
-}
-
-func runApp() {
-	app := app()
-	app.Use(func(event events.EventEmmiter) {
-		event.On(bulrush.EventsRunning, func(message ...interface{}) {
-			addition.Logger.Info("EventsRunning %v", message)
-		})
-	})
-	app.Run()
 }

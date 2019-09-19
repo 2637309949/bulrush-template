@@ -10,6 +10,7 @@ import (
 	"github.com/2637309949/bulrush"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/grpc"
 	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/openapi"
 	"github.com/2637309949/bulrush-template/plugins"
@@ -30,7 +31,7 @@ func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
-	app.Use(models.Model, routes.Route, tasks.Task, openapi.OpenAPI)
+	app.Use(models.Model, routes.Route, grpc.GRPC, tasks.Task, openapi.OpenAPI)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
 	app.PostUse(addition.APIDoc)
 	app.Inject("bulrushApp")
