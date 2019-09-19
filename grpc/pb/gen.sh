@@ -1,1 +1,1 @@
-protoc -I ./pb ./pb/helloworld.proto --go_out=plugins=grpc:pb
+protoc -I ./ ./helloworld.proto --go_out=plugins=grpc:./

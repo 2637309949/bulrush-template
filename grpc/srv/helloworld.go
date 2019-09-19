@@ -5,10 +5,10 @@ import (
 	"golang.org/x/net/context"
 )
 
-// Greeter is used to implement pb.GreeterServer.
-type Greeter struct{}
+// SendMessage is used to implement pb.SendMessage.
+type SendMessage struct{}
 
-// SayHello implements helloworld.GreeterServer
-func (s *Greeter) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+// SendEmail implements pb.SendMessage
+func (s *SendMessage) SendEmail(ctx context.Context, in *pb.EmailRequest) (*pb.EmailReply, error) {
+	return &pb.EmailReply{Status: pb.EmailReply_Success, Message: "send successfully"}, nil
 }

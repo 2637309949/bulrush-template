@@ -4,6 +4,8 @@ prefix: '/api'
 mode: 'release'
 logs:
   path: '/logs'
+grpc:
+  srv1: '127.0.0.1:8081'
 mongo:
   addrs:
     - '127.0.0.1:27017'

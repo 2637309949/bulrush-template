@@ -11,6 +11,7 @@ import (
 
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/grpc/pb"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
@@ -19,13 +20,19 @@ import (
 
 func helloGrpc(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/test/grpc", func(c *gin.Context) {
-		ret := addition.GRPC("127.0.0.1:8081")(func(conn *grpc.ClientConn, ctx context.Context) interface{} {
-			cli := pb.NewGreeterClient(conn)
-			r, err := cli.SayHello(ctx, &pb.HelloRequest{Name: "test"})
+		srv := &struct {
+			Srv1 string
+		}{}
+		if err := conf.Conf.Unmarshal("grpc", srv); err != nil {
+			panic(err)
+		}
+		ret := addition.GRPC(srv.Srv1)(func(conn *grpc.ClientConn, ctx context.Context) interface{} {
+			cli := pb.NewSendMessageClient(conn)
+			r, err := cli.SendEmail(ctx, &pb.EmailRequest{To: []string{"2637309949@qq.com"}})
 			if err != nil {
 				log.Fatalf("could not greet: %v", err)
 			}
-			return r.Message
+			return r
 		})
 		c.JSON(http.StatusOK, ret)
 	})

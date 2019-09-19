@@ -7,17 +7,48 @@ syntax = "proto3";
 package pb;
 
 // The greeting service definition.
-service Greeter {
+service SendMessage {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SendEmail (EmailRequest) returns (EmailReply) {}
+  rpc SendCode (CodeRequest) returns (CodeReply) {}
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+// The request message containing email message.
+message EmailRequest {
+  string from = 1;
+  repeated string to = 2;
+  repeated string cc = 3;
+  repeated string bcc = 4;
+  string subject = 5;
+  string html = 6;
+  repeated string filename = 7;
 }
 
-// The response message containing the greetings
-message HelloReply {
-  string message = 1;
+// The request message containing code message.
+message CodeRequest {
+  string from = 1;
+  repeated string to = 2;
+  string message = 3;
+}
+
+// The response message containing the sendmessage
+message EmailReply {
+  enum Status {
+    Unknown = 0;
+    Success = 1;
+    Fail = 2;
+  }
+  Status status = 1;
+  string message = 2;
+}
+
+// The response message containing the sendcode
+message CodeReply {
+  enum Status {
+    Unknown = 0;
+    Success = 1;
+    Fail = 2;
+  }
+  Status status = 1;
+  string message = 2;
 }
