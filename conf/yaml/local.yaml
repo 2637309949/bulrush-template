@@ -3,6 +3,7 @@ version: 1
 port: '8080'
 prefix: '/api'
 mode: 'debug'
+env: 'local'
 logs:
   path: '/logs'
 grpc:

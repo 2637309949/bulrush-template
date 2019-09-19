@@ -2,6 +2,7 @@ name: 'bulrush-template'
 port: ':8080'
 prefix: '/api'
 mode: 'release'
+env: 'test'
 logs:
   path: '/logs'
 grpc:

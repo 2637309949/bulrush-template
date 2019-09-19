@@ -2,6 +2,7 @@ name: 'bulrush-template'
 port: ':8080'
 prefix: '/api'
 mode: 'debug'
+env: 'dev'
 logs:
   path: '/logs'
 grpc:
