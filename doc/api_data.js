@@ -304,8 +304,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "./doc/main.js",
-    "group": "_home_double_Work_K11_repo_bulrush_bulrush_template_doc_main_js",
-    "groupTitle": "_home_double_Work_K11_repo_bulrush_bulrush_template_doc_main_js",
+    "group": "_home_double_work_K11_repo_bulrush_bulrush_template_doc_main_js",
+    "groupTitle": "_home_double_work_K11_repo_bulrush_bulrush_template_doc_main_js",
     "name": ""
   }
 ] });
