@@ -46,6 +46,7 @@ require (
 	github.com/2637309949/bulrush-proxy v0.0.0-20190805060003-15134ca1ade4
 	github.com/2637309949/bulrush-role v0.0.0-20190815073833-05a8fe434808
 	github.com/2637309949/bulrush-upload v0.0.0-20190805060057-d3f855287492
+	github.com/2637309949/bulrush-utils v0.0.0-20190815130414-1d9237d59ead
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
@@ -55,6 +56,7 @@ require (
 	github.com/kataras/go-events v0.0.2
 	github.com/stretchr/testify v1.4.0
 	github.com/thoas/go-funk v0.4.0
+	golang.org/x/crypto v0.0.0-20190829043050-9756ffdc2472
 	golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297
 	google.golang.org/grpc v1.23.0
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
