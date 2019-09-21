@@ -5,12 +5,16 @@
 package nosql
 
 import (
+	"fmt"
+
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
+	"golang.org/x/crypto/scrypt"
 )
 
 // User info
@@ -18,9 +22,33 @@ type User struct {
 	Model    `bson:",inline"`
 	Name     string          `bson:"name" br:"comment:'名称'"`
 	Password string          `bson:"password" br:"comment:'密码'"`
-	Age      uint            `bson:"age"`
+	Salt     string          `bson:"salt" br:"comment:'盐噪点s'"`
+	Age      uint            `bson:"age" br:"comment:'年龄'"`
 	RoleIds  []bson.ObjectId `bson:"role_ids" br:"comment:'角色列表'"`
 	Roles    *[]Role         `bson:"roles,omitempty" br:"ref(role,role_ids,_id)'"`
+}
+
+// SetPassword Method to set salt and hash the password for a user
+func (u *User) SetPassword(password string) {
+	b, err := utils.RandomBytes(16)
+	if err != nil {
+		panic(err)
+	}
+	u.Salt = fmt.Sprintf("%x", b)
+	dk, err := scrypt.Key([]byte(password), []byte(u.Salt), 1000, 8, 1, 64)
+	if err != nil {
+		panic(err)
+	}
+	u.Password = fmt.Sprintf("%x", dk)
+}
+
+// ValidPassword Method to check the entered password is correct or not
+func (u *User) ValidPassword(password string) bool {
+	dk, err := scrypt.Key([]byte(password), []byte(u.Salt), 1000, 8, 1, 64)
+	if err != nil {
+		panic(err)
+	}
+	return u.Password == fmt.Sprintf("%x", dk)
 }
 
 var _ = addition.MGOExt.Register(&mgoext.Profile{
