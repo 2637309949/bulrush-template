@@ -34,8 +34,8 @@ replace github.com/2637309949/bulrush-utils => ../bulrush-utils
 // ## end
 
 require (
-	github.com/2637309949/bulrush v0.0.0-20190826101703-2fac7be21f72
-	github.com/2637309949/bulrush-addition v0.0.0-20190831034018-427428781eb0
+	github.com/2637309949/bulrush v0.0.0-20190923101754-9016de9ddc56
+	github.com/2637309949/bulrush-addition v0.0.0-20190923101740-7c6aa383b07f
 	github.com/2637309949/bulrush-captcha v0.0.0-20190805060015-0335411e830a
 	github.com/2637309949/bulrush-delivery v0.0.0-20190805055946-c208fdca9d47
 	github.com/2637309949/bulrush-identify v0.0.0-20190809180431-61d49dc64bae
@@ -46,19 +46,19 @@ require (
 	github.com/2637309949/bulrush-proxy v0.0.0-20190805060003-15134ca1ade4
 	github.com/2637309949/bulrush-role v0.0.0-20190815073833-05a8fe434808
 	github.com/2637309949/bulrush-upload v0.0.0-20190805060057-d3f855287492
-	github.com/2637309949/bulrush-utils v0.0.0-20190815130414-1d9237d59ead
+	github.com/2637309949/bulrush-utils v0.0.0-20190831033838-023613c5526f
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
-	github.com/go-redis/redis v6.15.2+incompatible
+	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/golang/protobuf v1.3.2
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kataras/go-events v0.0.2
 	github.com/stretchr/testify v1.4.0
 	github.com/thoas/go-funk v0.4.0
 	golang.org/x/crypto v0.0.0-20190829043050-9756ffdc2472
-	golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297
-	google.golang.org/grpc v1.23.0
+	golang.org/x/net v0.0.0-20190921015927-1a5e07d1ff72
+	google.golang.org/grpc v1.23.1
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	gopkg.in/guregu/null.v3 v3.4.0
 	gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
