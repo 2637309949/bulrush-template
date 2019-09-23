@@ -10,6 +10,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Property defined struct
+type Property struct {
+	Model
+	ParamID     uint   `gorm:"comment:'Param外键'"`
+	Category    string `gorm:"comment:'类别'"`
+	SubCategory string `gorm:"comment:'子类别'"`
+	Key         string `gorm:"comment:'属性'"`
+	Value       string `gorm:"comment:'属性值'"`
+}
+
+var _ = addition.GORMExt.Register(&gormext.Profile{
+	Name:      "Property",
+	Reflector: &Property{},
+})
+
 // Param defined struct
 type Param struct {
 	Model

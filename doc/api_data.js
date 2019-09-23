@@ -38,7 +38,7 @@ define({ "api": [
     "name": "GetGormMockInit",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/gorm/mock/init"
+        "url": "http://127.0.0.1:8080/api/gorm/mock/init"
       }
     ]
   },
@@ -81,7 +81,7 @@ define({ "api": [
     "name": "GetGormMockLogin",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/gorm/mock/login"
+        "url": "http://127.0.0.1:8080/api/gorm/mock/login"
       }
     ]
   },
@@ -124,7 +124,7 @@ define({ "api": [
     "name": "GetTestChache",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/test/chache"
+        "url": "http://127.0.0.1:8080/api/test/chache"
       }
     ]
   },
@@ -183,7 +183,7 @@ define({ "api": [
     "name": "GetTestMgoAdduser",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/test/mgo/adduser"
+        "url": "http://127.0.0.1:8080/api/test/mgo/adduser"
       }
     ]
   },
@@ -226,7 +226,7 @@ define({ "api": [
     "name": "GetTestMqHello",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/test/mq/hello"
+        "url": "http://127.0.0.1:8080/api/test/mq/hello"
       }
     ]
   },
@@ -276,7 +276,59 @@ define({ "api": [
     "name": "GetTestSeqUsers",
     "sampleRequest": [
       {
-        "url": "http://127.0.0.1:8080/api/v1/test/seq/users"
+        "url": "http://127.0.0.1:8080/api/test/seq/users"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "/signup",
+    "title": "用户注册",
+    "group": "Users",
+    "description": "<p>用户注册</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Mess",
+            "description": "<p>实体类</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Mess.message",
+            "description": "<p>消息内容</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "正常返回",
+          "content": "HTTP/1.1 200 OK\n{\n   \"message\": \"ok\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "错误返回",
+          "content": "HTTP/1.1 500 Internal ServerError\n{\n   \"message\": \"the username already exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./models/sql/sys_user.go",
+    "groupTitle": "Users",
+    "name": "PostSignup",
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8080/api/signup"
       }
     ]
   },

@@ -5,15 +5,20 @@
 package sql
 
 import (
-	"net/http"
+	"errors"
 	"fmt"
+	"net/http"
 	"time"
-	"golang.org/x/crypto/scrypt"
-	"github.com/2637309949/bulrush-utils/funcs"
+
+	"github.com/gin-gonic/gin/binding"
+
+	"github.com/2637309949/bulrush"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/utils"
+	"github.com/2637309949/bulrush-utils/funcs"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/scrypt"
 	"gopkg.in/guregu/null.v3"
 )
 
@@ -22,7 +27,7 @@ type User struct {
 	Model
 	Name     string                 `gorm:"comment:'名称';unique;not null"`
 	Password string                 `gorm:"comment:'密码';not null"`
-	Salt	 string				    `gorm:"comment:'盐噪点';not null"`
+	Salt     string                 `gorm:"comment:'盐噪点';not null"`
 	Age      uint                   `gorm:"comment:'年龄'"`
 	Birthday *time.Time             `gorm:"comment:'生日'"`
 	Mobile   string                 `gorm:"comment:'手机'"`
@@ -54,6 +59,16 @@ func (u *User) ValidPassword(password string) bool {
 	return u.Password == fmt.Sprintf("%x", dk)
 }
 
+// Exist defined user is existed or not
+func (u *User) Exist(query interface{}, args ...interface{}) bool {
+	count := 0
+	addition.GORMExt.Model("User").Where(query, args...).Count(&count)
+	if count > 0 {
+		return true
+	}
+	return false
+}
+
 var _ = addition.GORMExt.Register(&gormext.Profile{
 	Name:      "User",
 	Reflector: &User{},
@@ -68,8 +83,56 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 	},
 })
 
+/**
+ * @api {post} /signup                        用户注册
+ * @apiGroup Users
+ * @apiDescription                            用户注册
+ * @apiSuccess        {Object}  Mess		  实体类
+ * @apiSuccess        {String}  Mess.message  消息内容
+ * @apiSuccessExample {json}                  正常返回
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "ok"
+ * }
+ * @apiErrorExample {json}                    错误返回
+ * HTTP/1.1 500 Internal ServerError
+ * {
+ *    "message": "the username already exists"
+ * }
+**/
+func signup(r *gin.RouterGroup) {
+	r.POST("/signup", func(c *gin.Context) {
+		ret, err := funcs.Chain(func(ret interface{}) (interface{}, error) {
+			var form = &User{}
+			if err := c.ShouldBindBodyWith(form, binding.JSON); err != nil {
+				addition.Logger.Error(err.Error())
+				return nil, err
+			}
+			form.SetPassword(form.Password)
+			if form.Exist("name = ?", form.Name) {
+				return nil, errors.New("the username already exists")
+			}
+			if err := addition.GORMExt.DB.Save(form).Error; err != nil {
+				return nil, err
+			}
+			return gin.H{
+				"message": "ok",
+			}, nil
+		})
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+		c.JSON(http.StatusOK, ret)
+	})
+}
+
 // RegisterUser inject function
-func RegisterUser(r *gin.RouterGroup) {
+func RegisterUser(r *gin.RouterGroup, ri *bulrush.ReverseInject) {
+	ri.Register(signup)
+
 	addition.GORMExt.API.List(r, "User").Post(func(c *gin.Context) {
 		addition.Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
@@ -88,29 +151,4 @@ func RegisterUser(r *gin.RouterGroup) {
 	addition.GORMExt.API.Create(r, "User")
 	addition.GORMExt.API.Update(r, "User")
 	addition.GORMExt.API.Delete(r, "User")
-
-	// Model Api
-	r.POST("/signup", func(c *gin.Context) {
-		ret, err := funcs.Chain(func(ret interface{}) (interface{}, error) {
-			var newUser = &User{}
-			if err := c.ShouldBindJSON(newUser); err != nil {
-				addition.Logger.Error(err.Error())
-				return nil, err
-			}
-			newUser.SetPassword(newUser.Password)
-			if err := addition.GORMExt.DB.Save(newUser).Error; err != nil {
-				return nil, err
-			}
-			return gin.H{
-				"message": "User added succesfully.",
-			}, nil
-		})
-		if err != nil {
-			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-				"message": err.Error(),
-			})
-			return
-		}
-		c.JSON(http.StatusOK, ret)
-	})
 }
