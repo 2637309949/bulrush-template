@@ -27,7 +27,7 @@ func helloGrpc(router *gin.RouterGroup, event events.EventEmmiter) {
 			panic(err)
 		}
 		ret := addition.GRPC(srv.Srv1)(func(conn *grpc.ClientConn, ctx context.Context) interface{} {
-			cli := pb.NewSendMessageClient(conn)
+			cli := pb.NewMessageClient(conn)
 			r, err := cli.SendEmail(ctx, &pb.EmailRequest{To: []string{"2637309949@qq.com"}})
 			if err != nil {
 				log.Fatalf("could not greet: %v", err)

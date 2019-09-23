@@ -8,5 +8,5 @@ import (
 
 // GRPC for register srv
 func GRPC(s *grpc.Server) {
-	pb.RegisterSendMessageServer(s, &srv.SendMessage{})
+	pb.RegisterMessageServer(s, &srv.Message{})
 }
