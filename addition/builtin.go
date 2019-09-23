@@ -23,16 +23,16 @@ import (
 // 2: Console
 var Logger = addition.RushLogger.
 	AddTransports(
-		&logger.Transport{
+		logger.NewFileTransport(logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Conf.Log.Path, "logs").(string)), "error"),
 			Level:   logger.ERROR,
 			Maxsize: logger.Maxsize,
-		},
-		&logger.Transport{
+		}),
+		logger.NewFileTransport(logger.Transport{
 			Dirname: path.Join(path.Join(".", utils.Some(conf.Conf.Log.Path, "logs").(string)), "combined"),
 			Level:   logger.SILLY,
 			Maxsize: logger.Maxsize,
-		},
+		}),
 	).
 	Init(func(j *logger.Journal) {
 		j.SetFlags((logger.LstdFlags | logger.Llongfile))
