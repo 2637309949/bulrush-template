@@ -31,7 +31,6 @@ func init() {
 		files []string
 		err   error
 	)
-	flag.Parse()
 	ENV = utils.Some(utils.Some(*eFlag, *envFlag), ENV)
 	fileName := fmt.Sprintf("%s.yaml", ENV)
 	if files, err = filepath.Glob(dir + "/**.yaml"); err != nil {

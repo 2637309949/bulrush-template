@@ -1,6 +1,6 @@
 name: 'bulrush-template'
 version: 1
-port: '8080'
+port: '8089'
 prefix: '/api'
 mode: 'debug'
 env: 'local'
