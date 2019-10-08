@@ -42,8 +42,8 @@ func TestCache(t *testing.T) {
 func TestMain(m *testing.M) {
 	ok := make(chan struct{}, 0)
 	gin.SetMode("release")
-	app := app()
-	go app.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
+	app1 := app()
+	go app1.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
 		engine = httpProxy
 		ok <- struct{}{}
 	})

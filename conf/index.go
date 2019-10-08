@@ -5,7 +5,6 @@
 package conf
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"path"
@@ -14,21 +13,11 @@ import (
 	"github.com/2637309949/bulrush-template/utils"
 )
 
-// var declare
-var (
-	dir     = "conf/yaml"
-	eFlag   = flag.String("e", "", "specify environment variables")
-	envFlag = flag.String("env", "", "specify environment variables")
-	ENV     = utils.Some(utils.Some(os.Getenv("ENV"), os.Getenv("env")), "local")
-	CPath   string
-	Conf    *bulrush.Config
-)
+// ENV defined env var
+var ENV = utils.Some(utils.Some(utils.Some(os.Getenv("ENV"), os.Getenv("env")), os.Getenv("e")), "local")
 
-func init() {
-	ENV = utils.Some(utils.Some(*eFlag, *envFlag), ENV)
-	CPath = path.Join(".", dir, fmt.Sprintf("%s.yaml", ENV))
-	if _, err := os.Stat(CPath); os.IsNotExist(err) {
-		panic(fmt.Errorf("file %s not existed", CPath))
-	}
-	Conf = bulrush.LoadConfig(CPath)
-}
+// CPath defined config path
+var CPath = path.Join(".", "conf/yaml", fmt.Sprintf("%s.yaml", ENV))
+
+// Conf defined config
+var Conf = bulrush.LoadConfig(CPath)

@@ -5,15 +5,12 @@
 package main
 
 import (
-	"flag"
-
 	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/kataras/go-events"
 )
 
 func main() {
-	flag.Parse()
 	app := app()
 	app.Use(func(event events.EventEmmiter) {
 		event.On(bulrush.EventsRunning, func(message ...interface{}) {
