@@ -50,13 +50,10 @@ require (
 	github.com/gin-contrib/cache v1.1.1-0.20190528084033-1eca46a236ea
 	github.com/gin-gonic/gin v1.4.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
-	github.com/go-playground/locales v0.12.1 // indirect
-	github.com/go-playground/universal-translator v0.16.0 // indirect
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/golang/protobuf v1.3.2
 	github.com/jinzhu/gorm v1.9.11
 	github.com/kataras/go-events v0.0.2
-	github.com/leodido/go-urn v1.1.0 // indirect
 	github.com/stretchr/testify v1.4.0
 	github.com/thoas/go-funk v0.4.0
 	golang.org/x/crypto v0.0.0-20191002192127-34f69633bfdc
