@@ -17,6 +17,7 @@ import (
 	"github.com/2637309949/bulrush-template/routes"
 	"github.com/2637309949/bulrush-template/tasks"
 	"github.com/gin-gonic/gin"
+	"github.com/kataras/go-events"
 )
 
 func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
@@ -37,14 +38,17 @@ func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 	app.Inject("bulrushApp")
 	app.Use(func(testInject string, role *role.Role, router *gin.RouterGroup) {
 		router.GET("/bulrushApp", role.Can("r1,r2@p1,p3,p4;r4"), func(c *gin.Context) {
-			addition.Logger.Info("1.from bulrushApp %s", "info")
-			addition.Logger.Error("1.from bulrushApp %s", "error")
 			c.JSON(http.StatusOK, gin.H{
 				"message": testInject,
 			})
 		})
-	}, func(test string) {
-		addition.Logger.Info("2.from bulrushApp %s", test)
+	})
+	app.Use(func(test string) {
+		addition.Logger.Info("inject test= %s", test)
+	}, func(event events.EventEmmiter) {
+		event.On(bulrush.EventsRunning, func(message ...interface{}) {
+			addition.Logger.Info("message from EventsRunning%v", message)
+		})
 	})
 	return app
 }
