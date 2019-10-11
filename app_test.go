@@ -15,38 +15,44 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var engine *gin.Engine
+// HTTPTools defined  tools
+type HTTPTools struct {
+	engine *gin.Engine
+}
 
-func handler(m, p string, h func(w *httptest.ResponseRecorder)) {
+func (t HTTPTools) handler(m, p string, h func(w *httptest.ResponseRecorder)) {
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest(m, p, nil)
-	engine.ServeHTTP(w, req)
+	t.engine.ServeHTTP(w, req)
 	h(w)
 }
 
-func Get(p string, h func(w *httptest.ResponseRecorder)) {
-	handler("GET", p, h)
+func (t HTTPTools) Get(p string, h func(w *httptest.ResponseRecorder)) {
+	t.handler("GET", p, h)
 }
 
-func Post(p string, h func(w *httptest.ResponseRecorder)) {
-	handler("POST", p, h)
+func (t HTTPTools) Post(p string, h func(w *httptest.ResponseRecorder)) {
+	t.handler("POST", p, h)
 }
+
+var httpTools *HTTPTools
 
 func TestCache(t *testing.T) {
-	Get("/api/test/cache", func(w *httptest.ResponseRecorder) {
+	httpTools.Get("/api/test/cache", func(w *httptest.ResponseRecorder) {
 		assert.Equal(t, 401, w.Code)
 		assert.Equal(t, "{\"message\":\"no token found\"}", w.Body.String())
 	})
 }
 
 func TestMain(m *testing.M) {
-	ok := make(chan struct{}, 0)
+	httpTools = &HTTPTools{}
+	signal := make(chan struct{}, 0)
 	gin.SetMode("release")
 	app := app()
 	go app.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
-		engine = httpProxy
-		ok <- struct{}{}
+		httpTools.engine = httpProxy
+		signal <- struct{}{}
 	})
-	<-ok
+	<-signal
 	os.Exit(m.Run())
 }
