@@ -47,7 +47,6 @@ func TestCache(t *testing.T) {
 func TestMain(m *testing.M) {
 	httpTools = &HTTPTools{}
 	signal := make(chan struct{}, 0)
-	gin.SetMode("release")
 	app := app()
 	go app.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
 		httpTools.engine = httpProxy
