@@ -22,12 +22,11 @@ migration:
 	@cp -rf assets ./build
 	@cp -rf doc/api_data.js ./build
 	@cp -rf doc/api_project.js ./build
-	@cp -rf conf ./build
 	@cd conf && cp -rf `ls | grep -v index.go | xargs` ../build/conf && cd ../
 	@cp -rf logs ./build
-	@cp web ./build
+	@cp app ./build
 clean:
 	@echo "\033[32mClean files\033[0m"
-	@rm -rf web
+	@rm -rf app
 
 .PHONY: all target dependence doc bin migration clean 
