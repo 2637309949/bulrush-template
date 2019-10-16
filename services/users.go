@@ -10,11 +10,13 @@ import (
 
 // FindUsers users
 // users := []User{} 需要具体化时用Type去声明变量，否则直接用反射体
-func FindUsers(match map[string]interface{}) interface{} {
+func FindUsers(match map[string]interface{}) (interface{}, error) {
 	User := addition.MGOExt.Model("User")
 	users := addition.MGOExt.Vars("User")
-	User.Find(match).All(users)
-	return users
+	if err := User.Find(match).All(users); err != nil {
+		return nil, err
+	}
+	return users, nil
 }
 
 // AddUsers users

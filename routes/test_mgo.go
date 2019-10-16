@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/nosql"
 	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-gonic/gin"
@@ -67,7 +68,13 @@ func adduser(router *gin.RouterGroup, event events.EventEmmiter) {
 				},
 			},
 		})
-		users := services.FindUsers(bson.M{"name": "double"})
+		users, err := services.FindUsers(bson.M{"name": "double"})
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"message": addition.I18N.I18NLocale(err.Error(), err.Error()),
+			})
+			return
+		}
 		c.JSON(http.StatusOK, users)
 	})
 }
