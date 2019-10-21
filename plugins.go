@@ -32,7 +32,7 @@ func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
-	app.Use(models.Model, routes.Route, grpc.GRPC, tasks.Task, openapi.OpenAPI)
+	app.Use(models.Init, routes.Init, grpc.Init, tasks.Init, openapi.Init)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
 	app.PostUse(addition.APIDoc)
 	app.Inject("bulrushApp")

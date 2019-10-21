@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-// GRPC for register srv
-func GRPC(s *grpc.Server) {
+// Init for register srv
+func Init(s *grpc.Server) {
 	pb.RegisterMessageServer(s, &srv.Message{})
 }

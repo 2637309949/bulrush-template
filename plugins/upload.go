@@ -8,9 +8,5 @@ import (
 	upload "github.com/2637309949/bulrush-upload"
 )
 
-func initUpload() *upload.Upload {
-	return upload.New()
-}
-
 // Upload Plugin init
-var Upload = initUpload()
+var Upload = upload.New()

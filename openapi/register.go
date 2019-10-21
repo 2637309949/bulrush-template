@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// OpenAPI register
+// Init register
 // Make sure all models are initialized here
-var OpenAPI = func(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
+func Init(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(RegisterHello)
 }

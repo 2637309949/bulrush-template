@@ -8,12 +8,10 @@ import (
 	captcha "github.com/2637309949/bulrush-captcha"
 )
 
-func initCaptcha() *captcha.Captcha {
-	var c = captcha.New()
-	c.Secret = "7658388"
-	c.URLPrefix = "/captcha"
-	return c
-}
-
 // Captcha plugin init
-var Captcha = initCaptcha()
+var Captcha = captcha.
+	New().
+	Init(func(c *captcha.Captcha) {
+		c.Secret = "7658388"
+		c.URLPrefix = "/captcha"
+	})
