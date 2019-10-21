@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
 
-package main
+package cmd
 
 import (
 	"net/http"
@@ -10,6 +10,7 @@ import (
 	"github.com/2637309949/bulrush"
 	role "github.com/2637309949/bulrush-role"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/grpc"
 	"github.com/2637309949/bulrush-template/models"
 	"github.com/2637309949/bulrush-template/openapi"
@@ -20,7 +21,10 @@ import (
 	"github.com/kataras/go-events"
 )
 
-func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
+// New defined Bulrush
+func New() bulrush.Bulrush {
+	app := bulrush.Default()
+	app.Config(conf.CPath)
 	app.PreUse(addition.I18N)
 	app.Use(plugins.Limit)
 	app.Use(plugins.Proxy)
@@ -32,7 +36,7 @@ func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
-	app.Use(models.Init, routes.Init, grpc.Init, tasks.Init, openapi.Init)
+	app.Use(models.Init, routes.NewRoutes(), grpc.Init, tasks.Init, openapi.Init)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
 	app.PostUse(addition.APIDoc)
 	app.Inject("bulrushApp")
@@ -50,5 +54,11 @@ func addPlugin(app bulrush.Bulrush) bulrush.Bulrush {
 			addition.Logger.Info("message from EventsRunning%v", message)
 		})
 	})
+
 	return app
+}
+
+// Execute defined run Bulrush
+func Execute() {
+	New().Run()
 }

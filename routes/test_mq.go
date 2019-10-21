@@ -7,9 +7,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/2637309949/bulrush"
 	mq "github.com/2637309949/bulrush-mq"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
 )
@@ -26,7 +24,7 @@ import (
  *    "message": "ok"
  * }
 **/
-func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
+func (r *Routes) testMQHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 	router.GET("/test/mq/hello", func(c *gin.Context) {
 		q.Push(mq.Message{
 			Type: "mqTest",
@@ -37,12 +35,7 @@ func mqHello(router *gin.RouterGroup, event events.EventEmmiter, q *mq.MQ) {
 		c.JSON(http.StatusOK, gin.H{"message": "ok"})
 	})
 	q.Register("mqTest", func(mess *mq.Message) error {
-		addition.Logger.Info("%v", mess.Body)
+		r.Logger.Info("%v", mess.Body)
 		return nil
 	})
-}
-
-// RegisterMq defined hello routes
-func RegisterMq(router *gin.RouterGroup, event events.EventEmmiter, ri *bulrush.ReverseInject) {
-	ri.Register(mqHello)
 }

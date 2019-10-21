@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/2637309949/bulrush"
+	"github.com/2637309949/bulrush-template/cmd"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
@@ -47,7 +48,7 @@ func TestCache(t *testing.T) {
 func TestMain(m *testing.M) {
 	httpTools = &HTTPTools{}
 	signal := make(chan struct{}, 0)
-	app := app()
+	app := cmd.New()
 	go app.Run(func(httpProxy *gin.Engine, config *bulrush.Config) {
 		httpTools.engine = httpProxy
 		signal <- struct{}{}

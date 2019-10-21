@@ -9,7 +9,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/conf"
 	"github.com/2637309949/bulrush-template/grpc/pb"
@@ -18,7 +17,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-func helloGrpc(router *gin.RouterGroup, event events.EventEmmiter) {
+func (r *Routes) testGrpc(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/test/grpc", func(c *gin.Context) {
 		srv := &struct {
 			Srv1 string
@@ -36,9 +35,4 @@ func helloGrpc(router *gin.RouterGroup, event events.EventEmmiter) {
 		})
 		c.JSON(http.StatusOK, ret)
 	})
-}
-
-// RegisterGRPC defined test routes
-func RegisterGRPC(ri *bulrush.ReverseInject) {
-	ri.Register(helloGrpc)
 }

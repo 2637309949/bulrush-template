@@ -8,10 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-contrib/cache"
-	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
 )
@@ -28,16 +26,10 @@ import (
  *    "message": "hello"
  * }
 **/
-func chache(router *gin.RouterGroup, event events.EventEmmiter) {
-	store := persistence.NewInMemoryStore(time.Second)
-	router.GET("/test/cache", cache.CachePage(store, time.Minute, func(c *gin.Context) {
+func (r *Routes) testChache(router *gin.RouterGroup, event events.EventEmmiter) {
+	router.GET("/test/cache", cache.CachePage(r.Persistence, time.Minute, func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": addition.I18N.I18NLocale("sys_hello", "hello"),
 		})
 	}))
-}
-
-// RegisterCache defined test routes
-func RegisterCache(ri *bulrush.ReverseInject) {
-	ri.Register(chache)
 }

@@ -7,7 +7,6 @@ package routes
 import (
 	"net/http"
 
-	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/nosql"
 	"github.com/2637309949/bulrush-template/services"
@@ -55,7 +54,7 @@ import (
  *     "Test2": null
  * }
 **/
-func adduser(router *gin.RouterGroup, event events.EventEmmiter) {
+func (r *Routes) testAddUser(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/test/mgo/adduser", func(c *gin.Context) {
 		services.AddUsers([]interface{}{
 			nosql.User{
@@ -77,9 +76,4 @@ func adduser(router *gin.RouterGroup, event events.EventEmmiter) {
 		}
 		c.JSON(http.StatusOK, users)
 	})
-}
-
-// RegisterMgo defined test routes
-func RegisterMgo(ri *bulrush.ReverseInject) {
-	ri.Register(adduser)
 }

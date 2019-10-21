@@ -8,8 +8,6 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/2637309949/bulrush"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/go-events"
@@ -39,17 +37,12 @@ import (
  *     "Age": 23
  * }
 **/
-func testseq(router *gin.RouterGroup, event events.EventEmmiter) {
+func (r *Routes) testSeq(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/test/seq/users", func(c *gin.Context) {
-		addition.GORMExt.DB.AutoMigrate(&sql.User{})
-		addition.GORMExt.DB.Create(&sql.User{Name: "L1212", Age: 23})
+		r.GORMExt.DB.AutoMigrate(&sql.User{})
+		r.GORMExt.DB.Create(&sql.User{Name: "L1212", Age: 23})
 		products := reflect.New(reflect.SliceOf(reflect.ValueOf(sql.User{}).Type())).Interface()
-		addition.GORMExt.DB.Find(products)
+		r.GORMExt.DB.Find(products)
 		c.JSON(http.StatusOK, products)
 	})
-}
-
-// RegisterSeq for routes
-func RegisterSeq(router *gin.RouterGroup, ri *bulrush.ReverseInject) {
-	ri.Register(testseq)
 }

@@ -4,7 +4,10 @@
 
 package main
 
+import (
+	"github.com/2637309949/bulrush-template/cmd"
+)
+
 func main() {
-	app := app()
-	app.Run()
+	cmd.Execute()
 }

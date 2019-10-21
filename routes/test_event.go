@@ -7,18 +7,12 @@ package routes
 import (
 	"fmt"
 
-	"github.com/2637309949/bulrush"
 	"github.com/kataras/go-events"
 )
 
-func onHello(event events.EventEmmiter) {
+func (r *Routes) testEvent(event events.EventEmmiter) {
 	event.On("hello", func(payload ...interface{}) {
 		message := payload[0].(string)
 		fmt.Println(message)
 	})
-}
-
-// RegisterEvent defined test routes
-func RegisterEvent(ri *bulrush.ReverseInject) {
-	ri.Register(onHello)
 }

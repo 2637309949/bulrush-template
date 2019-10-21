@@ -7,7 +7,6 @@ package routes
 import (
 	"net/http"
 
-	"github.com/2637309949/bulrush"
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/sql"
 	"github.com/2637309949/bulrush-template/plugins"
@@ -26,18 +25,18 @@ import (
  *    "message": "ok"
  * }
 **/
-func mockGormLogin(router *gin.RouterGroup) {
+func (r *Routes) testMockGormLogin(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/login", func(c *gin.Context) {
 		user := &sql.User{
 			Name:  "test",
 			Model: sql.DefaultModel(),
 		}
-		if addition.GORMExt.DB.Where(map[string]interface{}{"name": "test"}).Find(user).RecordNotFound() {
-			addition.GORMExt.DB.Create(user)
+		if r.GORMExt.DB.Where(map[string]interface{}{"name": "test"}).Find(user).RecordNotFound() {
+			r.GORMExt.DB.Create(user)
 		}
 		user.CreatorID = user.ID
 		user.UpdatorID = user.ID
-		addition.GORMExt.DB.Save(user)
+		r.GORMExt.DB.Save(user)
 		token, err := plugins.Identify.ObtainToken(user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -62,11 +61,11 @@ func mockGormLogin(router *gin.RouterGroup) {
  *    "message": "ok"
  * }
 **/
-func mockInit(router *gin.RouterGroup) {
+func (r *Routes) testMockInit(router *gin.RouterGroup) {
 	router.GET("/gorm/mock/init", func(c *gin.Context) {
-		addition.GORMExt.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8")
+		r.GORMExt.DB.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8")
 		// 1. create user
-		tx := addition.GORMExt.DB.Begin()
+		tx := r.GORMExt.DB.Begin()
 		tx.Exec("SET FOREIGN_KEY_CHECKS = 0;")
 		tx.Exec("DROP DATABASE IF EXISTS bulrush;")
 		tx.Exec("CREATE DATABASE bulrush;")
@@ -136,10 +135,4 @@ func mockInit(router *gin.RouterGroup) {
 			err = tx.Rollback().Error
 		}
 	})
-}
-
-// RegisterMock defined hello routes
-func RegisterMock(ri *bulrush.ReverseInject) {
-	ri.Register(mockGormLogin)
-	ri.Register(mockInit)
 }

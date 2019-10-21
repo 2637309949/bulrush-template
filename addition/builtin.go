@@ -3,6 +3,9 @@ package addition
 import (
 	"path"
 
+	// dialects/mysql
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+
 	addition "github.com/2637309949/bulrush-addition"
 	"github.com/2637309949/bulrush-addition/apidoc"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
