@@ -7,9 +7,16 @@ package nosql
 import (
 	"time"
 
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/utils"
 	"github.com/globalsign/mgo/bson"
 )
+
+// MGOExt mgo ext
+var MGOExt = addition.MGOExt
+
+// Logger logger
+var Logger = addition.Logger
 
 // Model common fields
 type Model struct {

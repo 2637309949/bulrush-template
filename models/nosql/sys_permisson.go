@@ -6,7 +6,6 @@ package nosql
 
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/globalsign/mgo/bson"
 )
 
@@ -20,7 +19,7 @@ type Permission struct {
 	Type        uint          `bson:"type" br:"comment:'类型',enum:'一级菜单=101 二级菜单=102 三级菜单=103 按钮=104 自定义=105'"`
 }
 
-var _ = addition.MGOExt.Register(&mgoext.Profile{
+var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "Permission",
 	Reflector: &Permission{},
 }).Init(func(ext *mgoext.Mongo) {

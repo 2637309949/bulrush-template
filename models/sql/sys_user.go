@@ -14,7 +14,6 @@ import (
 
 	"github.com/2637309949/bulrush"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/utils"
 	"github.com/2637309949/bulrush-utils/funcs"
 	"github.com/gin-gonic/gin"
@@ -62,21 +61,21 @@ func (u *User) ValidPassword(password string) bool {
 // Exist defined user is existed or not
 func (u *User) Exist(query interface{}, args ...interface{}) bool {
 	count := 0
-	addition.GORMExt.Model("User").Where(query, args...).Count(&count)
+	GORMExt.Model("User").Where(query, args...).Count(&count)
 	if count > 0 {
 		return true
 	}
 	return false
 }
 
-var _ = addition.GORMExt.Register(&gormext.Profile{
+var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "User",
 	Reflector: &User{},
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			List: &gormext.ListHook{
 				Pre: func(c *gin.Context) {
-					addition.Logger.Info("User model pre hook")
+					Logger.Info("User model pre hook")
 				},
 			},
 		},
@@ -105,14 +104,14 @@ func signup(r *gin.RouterGroup) {
 		ret, err := funcs.Chain(func(ret interface{}) (interface{}, error) {
 			var form = &User{}
 			if err := c.ShouldBindBodyWith(form, binding.JSON); err != nil {
-				addition.Logger.Error(err.Error())
+				Logger.Error(err.Error())
 				return nil, err
 			}
 			form.SetPassword(form.Password)
 			if form.Exist("name = ?", form.Name) {
 				return nil, errors.New("the username already exists")
 			}
-			if err := addition.GORMExt.DB.Save(form).Error; err != nil {
+			if err := GORMExt.DB.Save(form).Error; err != nil {
 				return nil, err
 			}
 			return gin.H{
@@ -133,8 +132,8 @@ func signup(r *gin.RouterGroup) {
 func RegisterUser(r *gin.RouterGroup, ri *bulrush.ReverseInject) {
 	ri.Register(signup)
 
-	addition.GORMExt.API.List(r, "User").Post(func(c *gin.Context) {
-		addition.Logger.Info("after")
+	GORMExt.API.List(r, "User").Post(func(c *gin.Context) {
+		Logger.Info("after")
 	}).Auth(func(c *gin.Context) bool {
 		return true
 	}).RouteHooks(&gormext.RouteHooks{
@@ -146,9 +145,9 @@ func RegisterUser(r *gin.RouterGroup, ri *bulrush.ReverseInject) {
 		},
 	})
 	// Example Restful Api
-	addition.GORMExt.API.Feature("subUser").List(r, "User")
-	addition.GORMExt.API.One(r, "User")
-	addition.GORMExt.API.Create(r, "User")
-	addition.GORMExt.API.Update(r, "User")
-	addition.GORMExt.API.Delete(r, "User")
+	GORMExt.API.Feature("subUser").List(r, "User")
+	GORMExt.API.One(r, "User")
+	GORMExt.API.Create(r, "User")
+	GORMExt.API.Update(r, "User")
+	GORMExt.API.Delete(r, "User")
 }

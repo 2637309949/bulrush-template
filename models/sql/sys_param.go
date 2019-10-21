@@ -6,7 +6,6 @@ package sql
 
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,7 +19,7 @@ type Property struct {
 	Value       string `gorm:"comment:'属性值'"`
 }
 
-var _ = addition.GORMExt.Register(&gormext.Profile{
+var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Property",
 	Reflector: &Property{},
 })
@@ -33,7 +32,7 @@ type Param struct {
 	Value []Property `gorm:"foreignkey:ParamID"`
 }
 
-var _ = addition.GORMExt.Register(&gormext.Profile{
+var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Param",
 	Reflector: &Param{},
 	AutoHook:  true,
@@ -51,13 +50,13 @@ var _ = addition.GORMExt.Register(&gormext.Profile{
 
 // AddEnum defined add enum type
 func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
-	DB := addition.GORMExt.Model("Param")
+	DB := GORMExt.Model("Param")
 	tx := DB.Begin()
 	enum := &Param{Model: DefaultModel(), Code: "enum", Name: "枚举类型"}
 	if tx.Where(&Param{Code: "enum"}).Find(enum).RecordNotFound() {
 		if err := tx.Save(&enum).Error; err != nil {
 			tx.Rollback()
-			addition.Logger.Error(err.Error())
+			Logger.Error(err.Error())
 			return p
 		}
 	}
@@ -69,13 +68,13 @@ func (p *Param) AddEnum(model string, key string, value *[]Property) *Param {
 			v.Model = DefaultModel()
 			if err := tx.Save(&v).Error; err != nil {
 				tx.Rollback()
-				addition.Logger.Error(err.Error())
+				Logger.Error(err.Error())
 				return p
 			}
 		}
 	}
 	if err := tx.Commit().Error; err != nil {
-		addition.Logger.Error(err.Error())
+		Logger.Error(err.Error())
 	}
 	return p
 }

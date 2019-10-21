@@ -6,7 +6,6 @@ package sql
 
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
-	"github.com/2637309949/bulrush-template/addition"
 )
 
 // Role defined struct
@@ -18,7 +17,7 @@ type Role struct {
 	Permissions []*Permission `gorm:"comment:'权限列表';many2many:role_permission;"`
 }
 
-var _ = addition.GORMExt.Register(&gormext.Profile{
+var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Role",
 	Reflector: &Role{},
 }).Init(func(ext *gormext.GORM) {

@@ -6,7 +6,6 @@ package sql
 
 import (
 	gormext "github.com/2637309949/bulrush-addition/gorm"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/guregu/null.v3"
 )
@@ -23,14 +22,14 @@ type File struct {
 	Path   null.String `gorm:"comment:'路径'"`
 }
 
-var _ = addition.GORMExt.Register(&gormext.Profile{
+var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "File",
 	Reflector: &File{},
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			List: &gormext.ListHook{
 				Pre: func(c *gin.Context) {
-					addition.Logger.Info("File model pre hook")
+					Logger.Info("File model pre hook")
 				},
 			},
 		},

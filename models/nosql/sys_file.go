@@ -6,7 +6,6 @@ package nosql
 
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/guregu/null.v3"
 )
@@ -23,14 +22,14 @@ type File struct {
 	Path   null.String `bson:"path" br:"comment:'路径'"`
 }
 
-var _ = addition.MGOExt.Register(&mgoext.Profile{
+var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "File",
 	Reflector: &File{},
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{
 				Pre: func(c *gin.Context) {
-					addition.Logger.Info("file before")
+					Logger.Info("file before")
 				},
 			},
 		},

@@ -6,7 +6,6 @@ package nosql
 
 import (
 	mgoext "github.com/2637309949/bulrush-addition/mgo"
-	"github.com/2637309949/bulrush-template/addition"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
 )
@@ -21,14 +20,14 @@ type Role struct {
 	Permissions   *[]Permission   `bson:"permissions,omitempty" br:"ref(permission,permission_ids,_id)'"`
 }
 
-var _ = addition.MGOExt.Register(&mgoext.Profile{
+var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "Role",
 	Reflector: &Role{},
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{
 				Auth: func(c *gin.Context) bool {
-					addition.Logger.Info("Role model auth hook")
+					Logger.Info("Role model auth hook")
 					return true
 				},
 			},
@@ -50,13 +49,13 @@ var _ = addition.MGOExt.Register(&mgoext.Profile{
 
 // RegisterRole inject function
 func RegisterRole(r *gin.RouterGroup) {
-	addition.MGOExt.API.ALL(r, "Role").Pre(func(c *gin.Context) {
-		addition.Logger.Info("before")
+	MGOExt.API.ALL(r, "Role").Pre(func(c *gin.Context) {
+		Logger.Info("before")
 	}).Post(func(c *gin.Context) {
-		addition.Logger.Info("after")
+		Logger.Info("after")
 	})
-	addition.MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "Role").Pre(func(c *gin.Context) {
-		addition.Logger.Info("before")
+	MGOExt.API.Feature("subRole").Feature("subRole2").List(r, "Role").Pre(func(c *gin.Context) {
+		Logger.Info("before")
 	}).Auth(func(c *gin.Context) bool {
 		return false
 	})

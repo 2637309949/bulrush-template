@@ -7,8 +7,15 @@ package sql
 import (
 	"time"
 
+	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/utils"
 )
+
+// GORMExt gorm ext
+var GORMExt = addition.GORMExt
+
+// Logger logger
+var Logger = addition.Logger
 
 // Model defined common field
 type Model struct {
