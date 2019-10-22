@@ -21,7 +21,7 @@ type Permission struct {
 
 var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "Permission",
-	Reflector: &Permission{},
+	Reflector: new(Permission),
 }).Init(func(ext *mgoext.Mongo) {
 	(&Param{}).
 		AddEnum("Permission", "Type", []Value{

@@ -29,7 +29,7 @@ type Param struct {
 
 var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "Param",
-	Reflector: &Param{},
+	Reflector: new(Param),
 	AutoHook:  true,
 }).Init(func(ext *mgoext.Mongo) {
 	Model := MGOExt.Model("Param")

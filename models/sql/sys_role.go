@@ -19,7 +19,7 @@ type Role struct {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Role",
-	Reflector: &Role{},
+	Reflector: new(Role),
 }).Init(func(ext *gormext.GORM) {
 	(&Param{}).
 		AddEnum("Role", "Type", &[]Property{

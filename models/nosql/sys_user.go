@@ -52,7 +52,7 @@ func (u *User) ValidPassword(password string) bool {
 
 var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "User",
-	Reflector: &User{},
+	Reflector: new(User),
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{

@@ -24,7 +24,7 @@ type File struct {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "File",
-	Reflector: &File{},
+	Reflector: new(File),
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			List: &gormext.ListHook{

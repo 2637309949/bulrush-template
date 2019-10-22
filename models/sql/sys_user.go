@@ -70,7 +70,7 @@ func (u *User) Exist(query interface{}, args ...interface{}) bool {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "User",
-	Reflector: &User{},
+	Reflector: new(User),
 	Opts: &gormext.Opts{
 		RouteHooks: &gormext.RouteHooks{
 			List: &gormext.ListHook{

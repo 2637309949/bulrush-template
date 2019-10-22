@@ -22,7 +22,7 @@ type Role struct {
 
 var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "Role",
-	Reflector: &Role{},
+	Reflector: new(Role),
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{

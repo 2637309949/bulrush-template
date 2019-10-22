@@ -24,7 +24,7 @@ type File struct {
 
 var _ = MGOExt.Register(&mgoext.Profile{
 	Name:      "File",
-	Reflector: &File{},
+	Reflector: new(File),
 	Opts: &mgoext.Opts{
 		RouteHooks: &mgoext.RouteHooks{
 			List: &mgoext.ListHook{

@@ -21,7 +21,7 @@ type Permission struct {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Permission",
-	Reflector: &Permission{},
+	Reflector: new(Permission),
 }).Init(func(ext *gormext.GORM) {
 	// Generate front-end parameters
 	(&Param{}).

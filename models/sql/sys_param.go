@@ -21,7 +21,7 @@ type Property struct {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Property",
-	Reflector: &Property{},
+	Reflector: new(Property),
 })
 
 // Param defined struct

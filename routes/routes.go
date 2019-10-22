@@ -10,7 +10,9 @@ import (
 	"github.com/2637309949/bulrush"
 	gormext "github.com/2637309949/bulrush-addition/gorm"
 	"github.com/2637309949/bulrush-addition/logger"
+	mgoext "github.com/2637309949/bulrush-addition/mgo"
 	"github.com/2637309949/bulrush-template/addition"
+	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/kataras/go-events"
 )
@@ -18,6 +20,8 @@ import (
 // Routes defined Routes struct
 type Routes struct {
 	GORMExt     *gormext.GORM
+	MGOExt      *mgoext.Mongo
+	SRV         *services.Services
 	Persistence *persistence.InMemoryStore
 	Logger      *logger.Journal
 }
@@ -36,10 +40,14 @@ func (r *Routes) Plugin(event events.EventEmmiter, ri *bulrush.ReverseInject) {
 }
 
 // NewRoutes defined new Routes
-func NewRoutes() *Routes {
-	return &Routes{
+var NewRoutes *Routes
+
+func init() {
+	NewRoutes = &Routes{
 		Persistence: persistence.NewInMemoryStore(time.Second),
 		GORMExt:     addition.GORMExt,
+		MGOExt:      addition.MGOExt,
 		Logger:      addition.Logger,
+		SRV:         services.NewServices,
 	}
 }

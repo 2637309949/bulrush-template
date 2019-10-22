@@ -9,7 +9,6 @@ import (
 
 	"github.com/2637309949/bulrush-template/addition"
 	"github.com/2637309949/bulrush-template/models/nosql"
-	"github.com/2637309949/bulrush-template/services"
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
 	"github.com/kataras/go-events"
@@ -56,7 +55,7 @@ import (
 **/
 func (r *Routes) testAddUser(router *gin.RouterGroup, event events.EventEmmiter) {
 	router.GET("/test/mgo/adduser", func(c *gin.Context) {
-		services.AddUsers([]interface{}{
+		r.SRV.AddUsers([]interface{}{
 			nosql.User{
 				Name:     "double",
 				Password: "111111",
@@ -67,7 +66,7 @@ func (r *Routes) testAddUser(router *gin.RouterGroup, event events.EventEmmiter)
 				},
 			},
 		})
-		users, err := services.FindUsers(bson.M{"name": "double"})
+		users, err := r.SRV.FindUsers(bson.M{"name": "double"})
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"message": addition.I18N.I18NLocale(err.Error(), err.Error()),

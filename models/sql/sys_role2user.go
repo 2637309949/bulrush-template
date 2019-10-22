@@ -22,5 +22,5 @@ func (Role2User) TableName() string {
 
 var _ = GORMExt.Register(&gormext.Profile{
 	Name:      "Role2User",
-	Reflector: &Role2User{},
+	Reflector: new(Role2User),
 })

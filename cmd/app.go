@@ -36,7 +36,7 @@ func New() bulrush.Bulrush {
 	app.Use(plugins.Role)
 	app.Use(plugins.OpenAPI)
 	app.Use(plugins.MQ)
-	app.Use(models.Init, routes.NewRoutes(), grpc.Init, tasks.Init, openapi.Init)
+	app.Use(models.Init, routes.NewRoutes, grpc.Init, tasks.Init, openapi.Init)
 	app.PostUse(addition.GORMExt, addition.MGOExt)
 	app.PostUse(addition.APIDoc)
 	app.Inject("bulrushApp")
